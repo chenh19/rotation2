@@ -532,15 +532,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree2723e7fcd5791efbe646bc452eb2d3b7238ec431targetblank2723e7fa">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree6e56d75ddafb0a0df6e06845d5c29d70eaf7d761targetblank6e56d75a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/chenh19/rotation2/tree/2723e7fcd5791efbe646bc452eb2d3b7238ec431" target="_blank">2723e7f</a>
+<a href="https://github.com/chenh19/rotation2/tree/6e56d75ddafb0a0df6e06845d5c29d70eaf7d761" target="_blank">6e56d75</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree2723e7fcd5791efbe646bc452eb2d3b7238ec431targetblank2723e7fa"
+id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree6e56d75ddafb0a0df6e06845d5c29d70eaf7d761targetblank6e56d75a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -550,7 +550,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/chenh19/rotation2/tree/2723e7fcd5791efbe646bc452eb2d3b7238ec431" target="_blank">2723e7f</a>.
+<a href="https://github.com/chenh19/rotation2/tree/6e56d75ddafb0a0df6e06845d5c29d70eaf7d761" target="_blank">6e56d75</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -609,6 +609,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/6e56d75ddafb0a0df6e06845d5c29d70eaf7d761/analysis/project_1.Rmd" target="_blank">6e56d75</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/f653f7bffb8c4fe3d5c31d99b1df21770fb518e4/docs/project_1.html" target="_blank">f653f7b</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1076,22 +1110,22 @@ update
 </div>
 </div>
 <div id="understand-sting-seq" class="section level2">
-<h2>Understand STING-seq</h2>
-<div id="read-the-paper" class="section level3">
-<h3>Read the paper</h3>
+<h2>1.Understand STING-seq</h2>
+<div id="a.read-the-morris-paper" class="section level3">
+<h3>a.Read the Morris paper</h3>
 <p><a
 href="https://chenh19.github.io/rotation2/refs/Morris_2020.pdf">Morris
 <em>et al.</em> 2021: STING-Seq</a></p>
 </div>
 </div>
 <div id="prelim-qc-for-sting-seq-data" class="section level2">
-<h2>Prelim QC for STING-seq data</h2>
-<div id="download-data" class="section level3">
-<h3>Download data</h3>
+<h2>2.Prelim QC for STING-seq data</h2>
+<div id="a.download-data" class="section level3">
+<h3>a.Download data</h3>
 <pre class="bash"><code>rsync -a hchen131@midway2.rcc.uchicago.edu:/project2/xuanyao/data/Morris_2021 ~/Desktop</code></pre>
 </div>
-<div id="perform-fastqc-on-all-fastq-files" class="section level3">
-<h3>Perform FastQC on all fastq files</h3>
+<div id="b.perform-fastqc-on-all-fastq-files" class="section level3">
+<h3>b.Perform FastQC on all fastq files</h3>
 <pre class="bash"><code>cd ~/rotation2/
 [ ! -d ../Morris_2021/fastqc_results/ ] &amp;&amp; mkdir ../Morris_2021/fastqc_results/
 fastqc --threads 16 ../Morris_2021/STINGseq_Morris_2021_raw/*.fastq.gz --outdir=../Morris_2021/fastqc_results/</code></pre>
@@ -1155,8 +1189,8 @@ href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141145_GDO_Homo_sa
 href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141146_GDO_Homo_sapiens_1_fastqc.html">SRR14141146_1</a><br />
 - <a
 href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141146_GDO_Homo_sapiens_2_fastqc.html">SRR14141146_2</a></p>
-<div id="a-brief-summary" class="section level4">
-<h4>A brief summary</h4>
+<div id="c.a-brief-summary" class="section level4">
+<h4>c.A brief summary</h4>
 <ul>
 <li><strong>samples:</strong> <code>12</code></li>
 <li><strong>length:</strong> <code>26bp</code> or <code>57bp</code>
@@ -1167,22 +1201,28 @@ href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141146_GDO_Homo_sa
 </ul>
 </div>
 </div>
-<div id="other-preliminary-qc-will-need-to-learn"
+<div id="d.other-preliminary-qc-will-need-to-learn"
 class="section level3">
-<h3>Other preliminary QC (will need to learn)</h3>
+<h3>d.Other preliminary QC (will need to learn)</h3>
+<div id="read-the-rna-seq-analysis-references" class="section level4">
+<h4>Read the RNA-seq analysis references</h4>
+<p><a
+href="https://chenh19.github.io/rotation2/refs/Yalamanchili_2017.pdf">Yalamanchili
+<em>et al.</em> 2017: RNA-seq analysis pipeline</a></p>
 </div>
 </div>
-<div id="analyze-qced-data" class="section level2">
-<h2>Analyze QC’ed data</h2>
-<div id="install-r-packages" class="section level3">
-<h3>Install R packages</h3>
+</div>
+<div id="analyze-qced-sting-seq-data" class="section level2">
+<h2>3.Analyze QC’ed STING-seq data</h2>
+<div id="a.install-r-packages" class="section level3">
+<h3>a.Install R packages</h3>
 <pre class="bash"><code>sudo apt-get update &amp;&amp; sudo apt-get install libgeos-dev -y
 sudo -i R
 installe.packages(&quot;Seurat&quot;)
 q()</code></pre>
 </div>
-<div id="import-qced-data" class="section level3">
-<h3>Import QC’ed data</h3>
+<div id="b.import-qced-data" class="section level3">
+<h3>b.Import QC’ed data</h3>
 <pre class="r"><code>f_exp_matrix &lt;- Seurat::ReadMtx(mtx = &quot;../Morris_2021/GSM5225857_cDNA.mtx&quot;, 
                                 features = &quot;../Morris_2021/GSM5225857_cDNA.features.txt&quot;, 
                                 cells = &quot;../Morris_2021/GSM5225857_cDNA.barcodes.txt&quot;, 
