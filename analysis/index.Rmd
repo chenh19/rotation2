@@ -14,7 +14,9 @@ editor_options:
 
 [**Project-1: STING-seq**](https://chenh19.github.io/rotation2/project_1.html)
 
-- [ ] read Morris *et al.* 2021
+- [x] read Morris *et al.* 2021
+- [ ] read Morris *et al.* 2021 **again**
+- [x] perform fastqc on demuxed fastq files
 - [ ] check scRNA-seq data (expression distribution)
 - [ ] perform association analysis (*cis*-regulation)
 
