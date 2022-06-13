@@ -15,7 +15,7 @@ editor_options:
 [**Project-1: STING-seq**](https://chenh19.github.io/rotation2/project_1.html)
 
 - [x] read Morris *et al.* 2021
-- [ ] read Morris *et al.* 2021 ```again```
+- [ ] read Morris *et al.* 2021 **again**
 - [ ] read Yalamanchili *et al.* 2017
 - [x] perform fastqc on demuxed fastq files
 - [ ] know what else QC should be done
