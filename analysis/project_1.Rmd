@@ -32,6 +32,33 @@ fastqc --threads 16 ../Morris_2021/STINGseq_Morris_2021_raw/*.fastq.gz --outdir=
 ```
 
 
+
+SRR14141135_cDNA_Homo_sapiens_1_fastqc.html
+SRR14141135_cDNA_Homo_sapiens_2_fastqc.html
+SRR14141136_cDNA_Homo_sapiens_1_fastqc.html
+SRR14141136_cDNA_Homo_sapiens_2_fastqc.html
+SRR14141137_cDNA_Homo_sapiens_1_fastqc.html
+SRR14141137_cDNA_Homo_sapiens_2_fastqc.html
+SRR14141138_cDNA_Homo_sapiens_1_fastqc.html
+SRR14141138_cDNA_Homo_sapiens_2_fastqc.html
+SRR14141139_cDNA_Homo_sapiens_1_fastqc.html
+SRR14141139_cDNA_Homo_sapiens_2_fastqc.html
+SRR14141140_cDNA_Homo_sapiens_1_fastqc.html
+SRR14141140_cDNA_Homo_sapiens_2_fastqc.html
+SRR14141141_cDNA_Homo_sapiens_1_fastqc.html
+SRR14141141_cDNA_Homo_sapiens_2_fastqc.html
+SRR14141142_cDNA_Homo_sapiens_1_fastqc.html
+SRR14141142_cDNA_Homo_sapiens_2_fastqc.html
+SRR14141143_HTO_Homo_sapiens_1_fastqc.html
+SRR14141143_HTO_Homo_sapiens_2_fastqc.html
+SRR14141144_HTO_Homo_sapiens_1_fastqc.html
+SRR14141144_HTO_Homo_sapiens_2_fastqc.html
+SRR14141145_GDO_Homo_sapiens_1_fastqc.html
+SRR14141145_GDO_Homo_sapiens_2_fastqc.html
+SRR14141146_GDO_Homo_sapiens_1_fastqc.html
+SRR14141146_GDO_Homo_sapiens_2_fastqc.html
+
+
 **A typical FastQC result:**  
 
 ![]()
