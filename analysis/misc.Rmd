@@ -12,9 +12,6 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## RNA-seq analysis references
-[Yalamanchili *et al.* 2017: RNA-seq analysis pipeline](https://chenh19.github.io/rotation2/refs/Yalamanchili_2017.pdf)
-
 ## Routine
 
 **Load:**

@@ -12,22 +12,21 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Understand STING-seq
+## 1.Understand STING-seq
 
-
-### Read the paper
+### a.Read the Morris paper
 
 [Morris *et al.* 2021: STING-Seq](https://chenh19.github.io/rotation2/refs/Morris_2020.pdf)
 
 
-## Prelim QC for STING-seq data
+## 2.Prelim QC for STING-seq data
 
-### Download data
+### a.Download data
 ```{bash,eval=FALSE}
 rsync -a hchen131@midway2.rcc.uchicago.edu:/project2/xuanyao/data/Morris_2021 ~/Desktop
 ```
 
-### Perform FastQC on all fastq files
+### b.Perform FastQC on all fastq files
 ```{bash,eval=FALSE}
 cd ~/rotation2/
 [ ! -d ../Morris_2021/fastqc_results/ ] && mkdir ../Morris_2021/fastqc_results/
@@ -83,7 +82,7 @@ fastqc --threads 16 ../Morris_2021/STINGseq_Morris_2021_raw/*.fastq.gz --outdir=
 - [SRR14141146_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141146_GDO_Homo_sapiens_2_fastqc.html)  
 
   
-#### A brief summary
+#### c.A brief summary
 
 - **samples:** ```12```
 - **length:** ```26bp``` or ```57bp``` (**why?**)
@@ -91,12 +90,17 @@ fastqc --threads 16 ../Morris_2021/STINGseq_Morris_2021_raw/*.fastq.gz --outdir=
 - **overall quality:** good (within ```40 bp```)
 
 
-### Other preliminary QC (will need to learn)
+### d.Other preliminary QC (will need to learn)
+
+#### Read the RNA-seq analysis references
+[Yalamanchili *et al.* 2017: RNA-seq analysis pipeline](https://chenh19.github.io/rotation2/refs/Yalamanchili_2017.pdf)
 
 
-## Analyze QC'ed data
 
-### Install R packages
+
+## 3.Analyze QC'ed STING-seq data
+
+### a.Install R packages
 ```{bash,eval=FALSE}
 sudo apt-get update && sudo apt-get install libgeos-dev -y
 sudo -i R
@@ -104,7 +108,7 @@ installe.packages("Seurat")
 q()
 ```
 
-### Import QC'ed data
+### b.Import QC'ed data
 ```{r,eval=FALSE}
 f_exp_matrix <- Seurat::ReadMtx(mtx = "../Morris_2021/GSM5225857_cDNA.mtx", 
                                 features = "../Morris_2021/GSM5225857_cDNA.features.txt", 

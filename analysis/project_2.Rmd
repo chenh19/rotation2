@@ -12,8 +12,8 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Understand SCEPTRE
+## 1.Understand SCEPTRE
 
-### Read the paper
+### a.Read the paper
 
 [Barry *et al.* 2021: SCEPTRE](https://chenh19.github.io/rotation2/refs/Barry_2021.pdf)

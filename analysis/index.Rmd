@@ -16,6 +16,7 @@ editor_options:
 
 - [x] read Morris *et al.* 2021
 - [ ] read Morris *et al.* 2021 **again**
+- [ ] read Yalamanchili *et al.* 2017
 - [x] perform fastqc on demuxed fastq files
 - [ ] know what else QC should be done
 - [ ] check QC'ed scRNA-seq data (expression distribution)
@@ -27,5 +28,4 @@ editor_options:
 
 [**Miscellaneous:**](https://chenh19.github.io/rotation2/misc.html)
 
-- [ ] read Yalamanchili *et al.* 2017
 - [x] organize all logistics
