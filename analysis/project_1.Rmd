@@ -17,7 +17,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Read the paper
 
-[Morris *et al.* 2021: STING-Seq](https://chenh19.github.io/rotation2/Morris_2020.pdf)
+[Morris *et al.* 2021: STING-Seq](https://chenh19.github.io/rotation2/refs/Morris_2020.pdf)
+
+
+## Prelim QC for STING-seq data
 
 ### Download data
 ```{bash,eval=FALSE}
@@ -89,6 +92,9 @@ fastqc --threads 16 ../Morris_2021/STINGseq_Morris_2021_raw/*.fastq.gz --outdir=
 
 
 ### Other preliminary QC (will need to learn)
+
+
+## 
 
 ### Install R packages
 ```{bash,eval=FALSE}
