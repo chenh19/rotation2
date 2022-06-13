@@ -94,7 +94,7 @@ fastqc --threads 16 ../Morris_2021/STINGseq_Morris_2021_raw/*.fastq.gz --outdir=
 ### Other preliminary QC (will need to learn)
 
 
-## 
+## Analyze QC'ed data
 
 ### Install R packages
 ```{bash,eval=FALSE}
