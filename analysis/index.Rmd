@@ -24,4 +24,5 @@ editor_options:
 
 [**Miscellaneous:**](https://chenh19.github.io/rotation2/misc.html)
 
+- [ ] read Yalamanchili *et al.* 2017
 - [x] organize all logistics
