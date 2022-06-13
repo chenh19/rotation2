@@ -82,10 +82,10 @@ fastqc --threads 16 ../Morris_2021/STINGseq_Morris_2021_raw/*.fastq.gz --outdir=
   
 #### A brief summary
 
-- samples: 12
-- length: 26 or 57 bp (**why?**)
-- depth: 30-35x
-- overall quality: good (within 40 bp)
+- **samples:** ```12```
+- **length:** ```26bp``` or ```57bp``` (**why?**)
+- **depth:** ```30-35x```
+- **overall quality:** good (within ```40 bp```)
 
 
 [Reports]()
