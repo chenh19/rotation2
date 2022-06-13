@@ -78,23 +78,14 @@ fastqc --threads 16 ../Morris_2021/STINGseq_Morris_2021_raw/*.fastq.gz --outdir=
 **Sample SRR14141146:**  
 - [SRR14141146_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141146_GDO_Homo_sapiens_1_fastqc.html)  
 - [SRR14141146_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141146_GDO_Homo_sapiens_2_fastqc.html)  
+
   
+#### A brief summary
 
-
-
-
-
-
-
-**A typical FastQC result:**  
-
-![]()
-![]()
-
-**Some very brief observations:**  
-- length:
-- depth:
-- 
+- samples: 12
+- length: 26 or 57 bp (**why?**)
+- depth: 30-35x
+- overall quality: good (within 40 bp)
 
 
 [Reports]()
