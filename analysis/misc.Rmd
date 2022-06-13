@@ -100,7 +100,7 @@ sudo apt-get update && sudo apt install -f -y && sudo apt-get autoremove -y && s
 - Ref: [Canon Support](https://www.usa.canon.com/internet/portal/us/home/support/details/printers/color-laser/color-imageclass-mf735cdw)
 
 
-## Watering Ran's plant
+## Watering Ran's plant in N410
 
 - [x] 6/13/22 10:30AM
 
