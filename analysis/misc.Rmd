@@ -12,7 +12,7 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 1.Routine
+## 1. Routine
 
 **Load:**
 
@@ -52,7 +52,7 @@ git push -u origin main
 ```
 
 
-## 2.Meetings
+## 2. Meetings
 
 - Xuanyao one-on-one: ```Tue 1pm``` and ```Thur 1pm```
 - Liu group meeting: ```Wed 1pm``` (Work-in-progress/Journal clubs)
@@ -62,7 +62,7 @@ git push -u origin main
 - Group lunch: ```Wed 12pm```
 
 
-## 3.Git SSH configuration
+## 3. Git SSH configuration
 
 ```{bash,eval=FALSE}
 # check for existing keys
@@ -85,7 +85,7 @@ cat ~/.ssh/id_ed25519.pub
 - Ref: [YouTube](https://youtu.be/YnSMYgIybFU)
 
 
-## 4.Canon printer configuration
+## 4. Canon printer configuration
 
 ```{bash, eval=FALSE}
 # Canon Color ImageCLASS MF735Cdw driver for linux
@@ -100,6 +100,6 @@ sudo apt-get update && sudo apt install -f -y && sudo apt-get autoremove -y && s
 - Ref: [Canon Support](https://www.usa.canon.com/internet/portal/us/home/support/details/printers/color-laser/color-imageclass-mf735cdw)
 
 
-## 5.Watering Ran's plant
+## 5. Watering Ran's plant
 
 - [x] 6/13/22 10:30AM
