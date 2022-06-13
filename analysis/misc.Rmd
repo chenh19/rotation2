@@ -56,7 +56,7 @@ git push -u origin main
 
 - Xuanyao one-on-one: ```Tue 1pm``` and ```Thur 1pm```
 - Liu group meeting: ```Wed 1pm``` (Work-in-progress/Journal clubs)
-- Joint lab meeting (Andy & Haky groups): ```Thurs 2pm``` (Work-in-progress/Journal clubs)
+- Joint lab meeting (Andy & Haky groups): ```Thur 2pm``` (Work-in-progress/Journal clubs)
 - Yang lab journal club: ```Mon 1pm```
 - PBC serminar (Matthew & Xin & John groups): ```Fri 10:30am```
 - Group lunch: ```Wed 12pm```
