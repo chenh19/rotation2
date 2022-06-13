@@ -88,8 +88,6 @@ fastqc --threads 16 ../Morris_2021/STINGseq_Morris_2021_raw/*.fastq.gz --outdir=
 - **overall quality:** good (within ```40 bp```)
 
 
-[Reports]()
-
 ### Other preliminary QC (will need to learn)
 
 ### Install R packages
