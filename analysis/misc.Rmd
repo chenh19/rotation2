@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r,eval=FALSE}
 # load
-setwd("~/rotation2/")
+setwd("./rotation2/")
 library(workflowr)
 ```
 
@@ -40,7 +40,7 @@ rm(list = ls())
 
 ```{bash,eval=FALSE}
 # git pull
-#mkdir ~/rotation2/ && cd ~/rotation2/ && git init
+#mkdir ./rotation2/ && cd ./rotation2/ && git init
 #git pull git@github.com:chenh19/rotation2.git
 
 # git push
