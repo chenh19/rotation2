@@ -1,0 +1,100 @@
+---
+title: "Miscellaneous"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: true
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Routine
+
+**Load:**
+
+```{r,eval=FALSE}
+# load
+setwd("~/rotation2/")
+library(workflowr)
+```
+
+**WorkflowR publish:**
+
+```{r,eval=FALSE}
+# workflowR publish
+wflow_publish("analysis/*.Rmd")
+```
+
+**Cleanup:**
+
+```{r,eval=FALSE}
+# cleanup environment
+rm(list = ls())
+```
+
+**Git commit and push:**
+
+```{bash,eval=FALSE}
+# git pull
+#mkdir ~/rotation2/ && cd ~/rotation2/ && git init
+#git pull git@github.com:chenh19/rotation2.git
+
+# git push
+cd ~/rotation2/
+#git remote add origin git@github.com:chenh19/rotation2.git
+#git commit -a -m "update"
+git push -u origin main
+```
+
+
+## Meetings
+
+- Xuanyao one-on-one: ```Tue 1pm``` and ```Thur 1pm```
+- Liu group meeting: ```Wed 1pm``` (Work-in-progress/Journal clubs)
+- Joint lab meeting (Andy & Haky groups): ```Thurs 2pm``` (Work-in-progress/Journal clubs)
+- Yang lab journal club: ```Mon 1pm```
+- PBC serminar (Matthew & Xin & John groups): ```Fri 10:30am```
+- Group lunch: ```Wed 12pm```
+
+
+## Git SSH configuration
+
+```{bash,eval=FALSE}
+# check for existing keys
+#ls -al ~/.ssh
+
+# create a key if does not exist
+ssh-keygen -t ed25519 -C "your_email@example.com"
+# when asked "Enter a file in which to save the key," press Enter (default file location)
+# input a passphrase (anything you can remember)
+
+# add SSH key to ssh-agent-
+eval `ssh-agent -s`
+ssh-add ~/.ssh/id_ed25519
+
+# get the key
+cat ~/.ssh/id_ed25519.pub
+# copy the output key, then navigate to Github account and add the ssh key
+```
+
+- Ref: [YouTube](https://youtu.be/YnSMYgIybFU)
+
+
+## Canon printer configuration
+
+```{bash, eval=FALSE}
+# Canon Color ImageCLASS MF735Cdw driver for linux
+cd ~/Downloads
+wget -q -O linux-UFRII-drv-v550-us-00.tar.gz https://pdisp01.c-wss.com/gdl/WWUFORedirectTarget.do?id=MDEwMDAwOTIzNjEx&cmp=ABR&lang=EN && sleep 10 && 
+tar -xf linux-UFRII-drv-v550-us-00.tar.gz && sleep 1 && rm linux-UFRII-drv-v550-us-00.tar.gz
+sudo bash ./linux-UFRII-drv-v550-us/install.sh && sleep 1 && rm -rf ./linux-UFRII-drv-v550-us/
+sudo apt-get update && sudo apt install -f -y && sudo apt-get autoremove -y && sudo apt-get clean
+```
+
+- Note: the private IP address is labeled on the printer.
+- Ref: [Canon Support](https://www.usa.canon.com/internet/portal/us/home/support/details/printers/color-laser/color-imageclass-mf735cdw)
+

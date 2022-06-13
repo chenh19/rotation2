@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Hang’s rotation-2 log</title>
+
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Rotation2</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Projects
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="project_1.html">Project-1</a>
+    </li>
+    <li>
+      <a href="project_2.html">Project-2</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="misc.html">Misc.</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/chenh19/rotation2">
+    <span class="fa fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Hang’s rotation-2 log</h1>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+workflowr <span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2022-06-13
+</p>
+<p>
+<strong>Checks:</strong> <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> 0
+</p>
+<p>
+<strong>Knit directory:</strong> <code>rotation2/</code> <span
+class="glyphicon glyphicon-question-sign" aria-hidden="true"
+title="This is the local directory in which the code in this file was executed.">
+</span>
+</p>
+<p>
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
+analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version
+1.7.0). The <em>Checks</em> tab describes the reproducibility checks
+that were applied when the results were created. The <em>Past
+versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguptodate"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree9c733d1ce83ef5df130c048a61c761b585ebb89etargetblank9c733d1a">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Repository version:</strong>
+<a href="https://github.com/chenh19/rotation2/tree/9c733d1ce83ef5df130c048a61c761b585ebb89e" target="_blank">9c733d1</a>
+</a>
+</p>
+</div>
+<div
+id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree9c733d1ce83ef5df130c048a61c761b585ebb89etargetblank9c733d1a"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development
+and connecting the code version to the results is critical for
+reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version
+<a href="https://github.com/chenh19/rotation2/tree/9c733d1ce83ef5df130c048a61c761b585ebb89e" target="_blank">9c733d1</a>.
+See the <em>Past versions</em> tab to see a history of the changes made
+to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for
+the analysis have been committed to Git prior to generating the results
+(you can use <code>wflow_publish</code> or
+<code>wflow_git_commit</code>). workflowr only checks the R Markdown
+file, but you know if there are other scripts or data files that it
+depends on. Below is the status of the Git repository when the results
+were generated:
+</p>
+<pre><code>
+working directory clean
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not
+included in this status report because it is ok for generated content to
+have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the repository in which changes were
+made to the R Markdown (<code>analysis/index.Rmd</code>) and HTML
+(<code>docs/index.html</code>) files. If you’ve configured a remote Git
+repository (see <code>?wflow_git_remote</code>), click on the hyperlinks
+in the table below to view the files as they were in that past version.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/7511e760366acbeebc688d0c4183345c901cc01d/docs/index.html" target="_blank">7511e76</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/cb5382d59112d900bbafeeaaa1ab1d377303a8a3/docs/index.html" target="_blank">cb5382d</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/c6d1f5c933ac2c3e2ce3ec7dd81ac6de5fab8c6c/docs/index.html" target="_blank">c6d1f5c</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-10
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/1b26e3b6e0dde09028b613d7d309048daaaef0ea/docs/index.html" target="_blank">1b26e3b</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/a75b50dedd6c0a2987f03661447225220d349d19/docs/index.html" target="_blank">a75b50d</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/ece2f9ce6b50eb44b69373115e2af921bb4cf791/docs/index.html" target="_blank">ece2f9c</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/305374ef84b809f99a2a592f6d29beb5c73846d2/docs/index.html" target="_blank">305374e</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/9895724e0380dd30e17940ba9fd8f58faa6e1342/docs/index.html" target="_blank">9895724</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/15dd453b33b654af74feaad2a002f99f6e51d159/docs/index.html" target="_blank">15dd453</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/32282fccec7f692a8f03fb34fde8f6736aa24fdf/docs/index.html" target="_blank">32282fc</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/aac8e3053644f6450746ab962fd446adc5094ce8/docs/index.html" target="_blank">aac8e30</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/0a4112840aaee061035deef49b093b5c14c2f8a3/analysis/index.Rmd" target="_blank">0a41128</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/a5f707a97f5f4aee1cc6e6788d170b63d795c36a/docs/index.html" target="_blank">a5f707a</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/073fb9e493cab0a654d33337a5164bbb087b40a0/analysis/index.Rmd" target="_blank">073fb9e</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/4d2c7651cebcbf2862a9f470c6858cb4315a1ceb/docs/index.html" target="_blank">4d2c765</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/d2675fde3510a1c309226a5f15165a93a466a57d/analysis/index.Rmd" target="_blank">d2675fd</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/e462855ee8a766eb1e038d03c06d3851b0151d36/docs/index.html" target="_blank">e462855</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/93224ef785e1e367017bed686ef103cb193f3230/analysis/index.Rmd" target="_blank">93224ef</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/2443390cb729531f8f3fe605f012dee2213f89d7/docs/index.html" target="_blank">2443390</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/ec046190baf4ed63fa43b68aee9ab4633354ad2c/analysis/index.Rmd" target="_blank">ec04619</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/71c3a98c73df0b46e19f9b8fe288b92cdc4f1c62/docs/index.html" target="_blank">71c3a98</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/dcd937ad5b60ffdd45d9881ce812cdcb50ee93af/analysis/index.Rmd" target="_blank">dcd937a</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/69f60316f45e68978ffd4e9d6cff74d38c565588/docs/index.html" target="_blank">69f6031</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/9ec413ea62a509e48aded4342f883cc483649907/analysis/index.Rmd" target="_blank">9ec413e</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/108387f9ae082259d0964b933aecd8698162ac8e/docs/index.html" target="_blank">108387f</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/992568d9f34fd7e666fb12f9dc7b8f09d73c1824/analysis/index.Rmd" target="_blank">992568d</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/337fa54fdca86dadc415d7ee675b1744f69fe63d/docs/index.html" target="_blank">337fa54</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/c8ae4e3515c533857e857feb1ada0ce6bfed9833/analysis/index.Rmd" target="_blank">c8ae4e3</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/64227dfc832d9e8ea3580cd511f7600b4b89efff/docs/index.html" target="_blank">64227df</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/e87f2f8f46e0be64561073cb7a9ca936cd82fe55/docs/index.html" target="_blank">e87f2f8</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/909b74be05869a8db81cc1867ca5c9c7dd4dd1df/docs/index.html" target="_blank">909b74b</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/761e84a5d2d91e9ddd32729e6b66bad903ec1f48/docs/index.html" target="_blank">761e84a</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/930156fd9df27a3046c0673f1338627444db2f4e/docs/index.html" target="_blank">930156f</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/e1414e41986cdbafde4a32f24562546bfed9ce5e/analysis/index.Rmd" target="_blank">e1414e4</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/73fa9a4d08ea3381d70140b1ab58e3df8a6fd29d/docs/index.html" target="_blank">73fa9a4</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/b1b4d742787bd7877fea8f5a50a5a6474f0f86f8/analysis/index.Rmd" target="_blank">b1b4d74</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/a2c22306f8e75f18e618f94e1901dad6157c4296/docs/index.html" target="_blank">a2c2230</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/adefcde321000970309fc95e376eb6688b5ab0cc/analysis/index.Rmd" target="_blank">adefcde</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/ebb4af8c519bcad9b61d91b506ce8b86a0525bd6/docs/index.html" target="_blank">ebb4af8</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/bd5ad001b60afac93f838bfbcfb992437199794f/docs/index.html" target="_blank">bd5ad00</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/6fffb9d6ca9993cd9ac90712c40be4ca2c198403/docs/index.html" target="_blank">6fffb9d</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/7049659116929085e477b9b6bf3693f34c034e10/docs/index.html" target="_blank">7049659</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/993d7be7f32726ce22b26abbef9446e423a3744f/docs/index.html" target="_blank">993d7be</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/e6f90374408a94d187fd9fcdf7c8d29cd286e94d/docs/index.html" target="_blank">e6f9037</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/474ddb230f3867af2226abaf7ac98913ea89f156/docs/index.html" target="_blank">474ddb2</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/e5e4a02dfdf6d664a681339a9c27ab4fc7f9de80/docs/index.html" target="_blank">e5e4a02</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/31ca9f6caa943819499aed86d204bf56db0507e8/docs/index.html" target="_blank">31ca9f6</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/987faa92e9ebe683ce374bfb1b8ecd3903c86e22/docs/index.html" target="_blank">987faa9</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/aad1a52115c021c60bc95d74a3ecb9f3b5197ad9/docs/index.html" target="_blank">aad1a52</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/7bd47e14089b92067d3bb37db3053681aa8c73af/docs/index.html" target="_blank">7bd47e1</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/7f5bd4c7d5030f8beb7923fb2ad06e65d4b21af1/docs/index.html" target="_blank">7f5bd4c</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/66e901d2f86d33c6c8361d171184890c2cad6c10/analysis/index.Rmd" target="_blank">66e901d</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/226a171d4afeddf6defcce2fd1f288f981ab3548/docs/index.html" target="_blank">226a171</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/4e9607ace1ee9a9361731a899a3e40c54e5cf745/docs/index.html" target="_blank">4e9607a</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/df838fce70eb7d3e83b58bea7fb0aaf4ef461767/analysis/index.Rmd" target="_blank">df838fc</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/ac98e7acf9870de0b47fdaedaeeb75fde50c47d5/docs/index.html" target="_blank">ac98e7a</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/9918dc8a6415f43287ee2464d8f91c49c6f017a2/docs/index.html" target="_blank">9918dc8</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/2ead8bb5f6705389a2e436e98700252fae4fb53b/docs/index.html" target="_blank">2ead8bb</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/34dc6774f107dde5561e448eed971802dad72d11/docs/index.html" target="_blank">34dc677</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/2dc08d0d8aad3d5efb21470d5e39fc33db0831f6/docs/index.html" target="_blank">2dc08d0</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/f1f83dd999c64ae8cf822240ca728f6935b65208/docs/index.html" target="_blank">f1f83dd</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/832b9fb5ccd34f472dddaed41431cbb1a68a2cfa/docs/index.html" target="_blank">832b9fb</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/ce628d0130b2694789efd77130d38c0e0a79ad32/docs/index.html" target="_blank">ce628d0</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/f9d7db80a583390f74ee3df8570228e4d368ee1d/docs/index.html" target="_blank">f9d7db8</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/52d6b78308e467faa4c9e5d26f097705bfee81fc/docs/index.html" target="_blank">52d6b78</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/5cf574c53049601ae6119607fcab2193ae992dca/docs/index.html" target="_blank">5cf574c</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/7eba90a451588a5f19491d5ccc1cada33c850058/docs/index.html" target="_blank">7eba90a</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/935f626d46efbc178a750259ef72bc3498679dcc/docs/index.html" target="_blank">935f626</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/0778aeacd9dbb452924f8dcaaac5a661e5a385e4/docs/index.html" target="_blank">0778aea</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/0c31d93e946455d2129b31fe3c1ce61c817c3ad0/docs/index.html" target="_blank">0c31d93</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/8f306deaf2351dc3e5acf6aa9d8642d93cde80f5/analysis/index.Rmd" target="_blank">8f306de</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/8f306deaf2351dc3e5acf6aa9d8642d93cde80f5/docs/index.html" target="_blank">8f306de</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-09
+</td>
+<td>
+update
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/analysis/images/header.jpg" /></p>
+<div id="gtd" class="section level2">
+<h2>GTD</h2>
+<p><a
+href="https://chenh19.github.io/rotation2/project_1.html"><strong>Project-1:
+STING-seq</strong></a></p>
+<ul class="task-list">
+<li><input type="checkbox" disabled="" />
+read Morris <em>et al.</em> 2021</li>
+<li><input type="checkbox" disabled="" />
+check scRNA-seq data (expression distribution)</li>
+<li><input type="checkbox" disabled="" />
+perform association analysis (<em>cis</em>-regulation)</li>
+</ul>
+<p><a
+href="https://chenh19.github.io/rotation2/project_2.html"><strong>Project-2:
+SCEPTRE</strong></a></p>
+<ul class="task-list">
+<li><input type="checkbox" disabled="" />
+read Barry <em>et al.</em> 2021</li>
+</ul>
+<p><a
+href="https://chenh19.github.io/rotation2/misc.html"><strong>Miscellaneous:</strong></a></p>
+<ul class="task-list">
+<li><input type="checkbox" disabled="" checked="" />
+organize all logistics</li>
+</ul>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

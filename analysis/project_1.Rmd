@@ -1,0 +1,73 @@
+---
+title: "Project-1: STING-seq"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: true
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Understand STING-seq
+
+
+### Read the paper
+
+[Morris *et al.* 2021: STING-Seq](https://chenh19.github.io/rotation2/Morris_2020.pdf)
+
+### Download data
+```{bash,eval=FALSE}
+rsync -a hchen131@midway2.rcc.uchicago.edu:/project2/xuanyao/data/Morris_2021 ~/Desktop
+```
+
+### Perform FastQC on all fastq files
+```{bash,eval=FALSE}
+cd ~/rotation2/
+[ ! -d ../Morris_2021/fastqc_results/ ] && mkdir ../Morris_2021/fastqc_results/
+fastqc --threads 16 ../Morris_2021/STINGseq_Morris_2021_raw/*.fastq.gz --outdir=../Morris_2021/fastqc_results/
+```
+
+
+**A typical FastQC result:**  
+
+![]()
+![]()
+
+**Some very brief observations:**  
+- length:
+- depth:
+- 
+
+
+[Reports]()
+
+### Other preliminary QC (will need to learn)
+
+### Install R packages
+```{bash,eval=FALSE}
+sudo apt-get update && sudo apt-get install libgeos-dev -y
+sudo -i R
+installe.packages("Seurat")
+q()
+```
+
+### Import QC'ed data
+```{r,eval=FALSE}
+f_exp_matrix <- Seurat::ReadMtx(mtx = "../Morris_2021/GSM5225857_cDNA.mtx", 
+                                features = "../Morris_2021/GSM5225857_cDNA.features.txt", 
+                                cells = "../Morris_2021/GSM5225857_cDNA.barcodes.txt", 
+                                cell.column=1, 
+                                feature.column=1, 
+                                mtx.transpose=T)
+f_grna_matrix <- Seurat::ReadMtx(mtx = "../Morris_2021/GSM5225858_GDO.mtx", 
+                                 features = "../Morris_2021/GSM5225858_GDO.features.txt", 
+                                 cells = "../Morris_2021/GSM5225858_GDO.barcodes.txt", 
+                                 cell.column=1, 
+                                 feature.column=1, 
+                                 mtx.transpose=T)
+```
+

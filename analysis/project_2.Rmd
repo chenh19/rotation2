@@ -1,0 +1,19 @@
+---
+title: "Project-2: SCEPTRE"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: true
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Understand SCEPTRE
+
+### Read the paper
+
+[Barry *et al.* 2021: SCEPTRE](https://chenh19.github.io/rotation2/Barry_2021.pdf)
