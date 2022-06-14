@@ -163,6 +163,8 @@ fastqc --threads 16 ../Morris_2021/STINGseq_Morris_2021_raw/*.fastq.gz --outdir=
 
 ### d. Kallisto | bustools pipeline
 
+**also check [cell ranger](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger)
+
 **Install package: pip3 install kb:**
 ```{bash,eval=FALSE}
 # install via python3-pip (python3 is installed by default)
@@ -226,4 +228,13 @@ f_grna_matrix <- Seurat::ReadMtx(mtx = "../Morris_2021/GSM5225858_GDO.mtx",
                                  cell.column=1, 
                                  feature.column=1, 
                                  mtx.transpose=T)
+```
+
+**try:**
+```{r,eval=FALSE}
+class(f_exp_matrix)
+attributes(f_exp_matrix)
+dim(f_exp_matrix)
+f_exp_matrix[1,1]
+summary(f_exp_matrix[,1])
 ```
