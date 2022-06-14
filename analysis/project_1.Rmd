@@ -163,7 +163,7 @@ fastqc --threads 16 ../Morris_2021/STINGseq_Morris_2021_raw/*.fastq.gz --outdir=
 
 ### d. Kallisto | bustools pipeline
 
-**Install kb package:**
+**Install package: pip3 install kb:**
 ```{bash,eval=FALSE}
 # install via python3-pip (python3 is installed by default)
 sudo apt-get update && sudo apt install python3-pip -y
@@ -173,7 +173,7 @@ sudo pip3 install kb-python
 kb
 ```
 
-**Side note: conda install kallisto (not necessary for kb)**
+**Side note: conda install kallisto (not necessary for kb):**
 ```{bash,eval=FALSE}
 # install anaconda
 [ ! -d ./shscript/ ] && mkdir ./shscript/
