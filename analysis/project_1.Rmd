@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #### Some key points:
 
-**Some key ideas:**
+**Some key ideas:**  
 * STING-seq: Systematic Targeting and Inbition of Noncoding GWAS loci with scRNA-seq
 * prioritizes candidate *cis*-regulatory elements (cCREs, 1kb<distance to TSS<1Mb) using fine-mapped GWAS
 * selected 88 variants (in 56 loci) with enhancer activity
@@ -29,7 +29,7 @@ knitr::opts_chunk$set(echo = TRUE)
 * CRIPSRi on the 88 variants: two gRNAs for each variant, both within 200bp of the variant
 * ECCITE-seq: captures gRNAs and epitopes
 
-**Some data processing steps and results:**
+**Some data processing steps and results:**  
 * QC: remove cells with low total reads or excessive mitochondrial reads, gRNA assignment UMI>5 (9,343 cells after QC)
 * Kallisto: counting
 * Seurat: QC and ```reference mapping?``` [read more on the official website](https://satijalab.org/seurat/)
@@ -39,7 +39,7 @@ knitr::opts_chunk$set(echo = TRUE)
 * 37 of the 88 variants were significant
 * *Trans*-regulatory elements: **I'll come back later**
 
-**Note:**
+**Note:**  
 * [Expanded CRISPR-compatible CITE-seq (ECCITE-Seq)](https://cite-seq.com/eccite-seq/)
 * [Cellular Indexing of Transcriptomes and Epitopes by Sequencing (CITE-seq)](https://cite-seq.com/)
 
@@ -52,7 +52,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #### Some key points:
 
-**Protocol-1 (differential expression of genes):**
+**Protocol-1 (differential expression of genes):**  
 * demuxed raw reads (FastQC)
 * trimming reads (awk)
 * aligning reads (TopHat2)
@@ -60,13 +60,13 @@ knitr::opts_chunk$set(echo = TRUE)
 * detect DE using counted reads (DEseq2)
 * more QC (PCA/correlation heatmap)
 
-**Protocol-2 (differential usage fo isoforms):**
+**Protocol-2 (differential usage fo isoforms):**  
 * Protocol-1
 * counting isoforms (Kallisto)
 * detect DU using counted isoforms (Sleuth)
 * more QC (aslo PCA/correlation heatmap)
 
-**Protocol-3 (crypic splicing):**
+**Protocol-3 (crypic splicing):**  
 * Protocol-1
 * detect differential junstions (CrypSplice)
 
@@ -148,7 +148,7 @@ fastqc --threads 16 ../Morris_2021/STINGseq_Morris_2021_raw/*.fastq.gz --outdir=
 
 ## 3. Analyze QC'ed STING-seq data
 
-**Note:**
+**Note:**  
 
 * cDNA, HTO (Hashing antibody-oligos), GDO (gRNAs)
 * ECCITE-seq:
