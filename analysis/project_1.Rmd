@@ -33,13 +33,13 @@ knitr::opts_chunk$set(echo = TRUE)
 **Some data processing steps and results:**  
 
 * QC: remove cells with low total reads or excessive mitochondrial reads, gRNA assignment UMI>5 (9,343 cells after QC)
-* Kallisto: counting
-* Seurat: QC and ```reference mapping?``` [read more on the official website](https://satijalab.org/seurat/)
-* SCEPTRE: gRNA_to_gene-expression pairwise test
+* **Kallisto:** counting
+* **Seurat:** QC and ```reference mapping?``` [read more on the official website](https://satijalab.org/seurat/)
+* **SCEPTRE:** gRNA_to_gene-expression pairwise test
 * non-targeting gRNA-gene pairs: not significant (negative ctrl)
 * TSS-targeting gRNA-gene pairs: expression significantly decreased (positive ctrl)
 * 37 of the 88 variants were significant
-* *Trans*-regulatory elements: **I'll come back later**
+* *Trans*-regulatory elements: ```I'll come back later```
 
 **Note:**  
 
