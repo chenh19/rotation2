@@ -49,7 +49,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## 2. Prelim QC for STING-seq data
 
-### Read a RNA-seq analysis pipeline review
+### Read about RNA-seq analysis
 
 [Yalamanchili *et al.* 2017: RNA-seq analysis pipeline](https://chenh19.github.io/rotation2/refs/Yalamanchili_2017.pdf)  
 
