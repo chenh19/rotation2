@@ -47,9 +47,11 @@ knitr::opts_chunk$set(echo = TRUE)
 * [Cellular Indexing of Transcriptomes and Epitopes by Sequencing (CITE-seq)](https://cite-seq.com/)
 
 
+
+
 ## 2. Prelim QC for STING-seq data
 
-### Read about RNA-seq analysis
+### a. Read about RNA-seq analysis
 
 [Yalamanchili *et al.* 2017: RNA-seq analysis pipeline](https://chenh19.github.io/rotation2/refs/Yalamanchili_2017.pdf)  
 
@@ -153,7 +155,7 @@ fastqc --threads 16 ../Morris_2021/STINGseq_Morris_2021_raw/*.fastq.gz --outdir=
 * [SRR14141146_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141146_GDO_Homo_sapiens_2_fastqc.html)  
   
   
-#### d. A brief summary
+**A brief summary:**  
 
 * **samples:** ```12```
 * **length:** ```26bp``` or ```57bp``` (**trimmed?**)
