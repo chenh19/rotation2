@@ -532,15 +532,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree065d7e9310f57078c1367ca76861c4e3bf616268targetblank065d7e9a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree68948e3fc40d709954ebe2173d3aea27252ee6a4targetblank68948e3a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/chenh19/rotation2/tree/065d7e9310f57078c1367ca76861c4e3bf616268" target="_blank">065d7e9</a>
+<a href="https://github.com/chenh19/rotation2/tree/68948e3fc40d709954ebe2173d3aea27252ee6a4" target="_blank">68948e3</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree065d7e9310f57078c1367ca76861c4e3bf616268targetblank065d7e9a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree68948e3fc40d709954ebe2173d3aea27252ee6a4targetblank68948e3a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -550,7 +550,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/chenh19/rotation2/tree/065d7e9310f57078c1367ca76861c4e3bf616268" target="_blank">065d7e9</a>.
+<a href="https://github.com/chenh19/rotation2/tree/68948e3fc40d709954ebe2173d3aea27252ee6a4" target="_blank">68948e3</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -612,6 +612,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/68948e3fc40d709954ebe2173d3aea27252ee6a4/analysis/project_1.Rmd" target="_blank">68948e3</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/741027be3ff4b6d47fa575bee0c3d8034eb944b9/docs/project_1.html" target="_blank">741027b</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1529,52 +1563,30 @@ href="https://chenh19.github.io/rotation2/refs/Morris_2020.pdf">Morris
 <em>et al.</em> 2021: STING-Seq</a></p>
 <div id="some-key-points" class="section level4">
 <h4>Some key points:</h4>
-<p><strong>Some key ideas:</strong></p>
-<ul>
-<li>STING-seq: Systematic Targeting and Inbition of Noncoding GWAS loci
-with scRNA-seq</li>
-<li>prioritizes candidate <em>cis</em>-regulatory elements (cCREs,
-1kb&lt;distance to TSS&lt;1Mb) using fine-mapped GWAS</li>
-<li>selected 88 variants (in 56 loci) with enhancer activity</li>
-<li>dual CRISPR inhibition: dCas9 as the GPS, MeCP2 and KRAB as the
-repressors</li>
-<li>confirming dual CRISPRi efficacy: gRNAs target TSS of
-<em>MRPS23</em>, <em>CTSB</em>, <em>FSCN1</em></li>
-<li>CRIPSRi on the 88 variants: two gRNAs for each variant, both within
-200bp of the variant</li>
-<li>ECCITE-seq: captures gRNAs and epitopes</li>
-</ul>
-<p><strong>Some data processing steps and results:</strong></p>
-<ul>
-<li>QC: remove cells with low total reads or excessive mitochondrial
-reads, gRNA assignment UMI&gt;5 (9,343 cells after QC)<br />
-</li>
-<li>Kallisto: counting<br />
-</li>
-<li>Seurat: QC and <code>reference mapping?</code> <a
+<p><strong>Some key ideas:</strong> * STING-seq: Systematic Targeting
+and Inbition of Noncoding GWAS loci with scRNA-seq * prioritizes
+candidate <em>cis</em>-regulatory elements (cCREs, 1kb&lt;distance to
+TSS&lt;1Mb) using fine-mapped GWAS * selected 88 variants (in 56 loci)
+with enhancer activity * dual CRISPR inhibition: dCas9 as the GPS, MeCP2
+and KRAB as the repressors * confirming dual CRISPRi efficacy: gRNAs
+target TSS of <em>MRPS23</em>, <em>CTSB</em>, <em>FSCN1</em> * CRIPSRi
+on the 88 variants: two gRNAs for each variant, both within 200bp of the
+variant * ECCITE-seq: captures gRNAs and epitopes</p>
+<p><strong>Some data processing steps and results:</strong> * QC: remove
+cells with low total reads or excessive mitochondrial reads, gRNA
+assignment UMI&gt;5 (9,343 cells after QC) * Kallisto: counting *
+Seurat: QC and <code>reference mapping?</code> <a
 href="https://satijalab.org/seurat/">read more on the official
-website</a><br />
-</li>
-<li>SCEPTRE: gRNA_to_gene-expression pairwise test<br />
-</li>
-<li>non-targeting gRNA-gene pairs: not significant (negative ctrl)<br />
-</li>
-<li>TSS-targeting gRNA-gene pairs: expression significantly decreased
-(positive ctrl)<br />
-</li>
-<li>37 of the 88 variants were significant<br />
-</li>
-<li><em>Trans</em>-regulatory elements: <strong>I’ll come back
-later</strong></li>
-</ul>
-<p><strong>Note:</strong></p>
-<ul>
-<li><a href="https://cite-seq.com/eccite-seq/">Expanded
-CRISPR-compatible CITE-seq (ECCITE-Seq)</a><br />
-</li>
-<li><a href="https://cite-seq.com/">Cellular Indexing of Transcriptomes
-and Epitopes by Sequencing (CITE-seq)</a></li>
-</ul>
+website</a> * SCEPTRE: gRNA_to_gene-expression pairwise test *
+non-targeting gRNA-gene pairs: not significant (negative ctrl) *
+TSS-targeting gRNA-gene pairs: expression significantly decreased
+(positive ctrl) * 37 of the 88 variants were significant *
+<em>Trans</em>-regulatory elements: <strong>I’ll come back
+later</strong></p>
+<p><strong>Note:</strong> * <a
+href="https://cite-seq.com/eccite-seq/">Expanded CRISPR-compatible
+CITE-seq (ECCITE-Seq)</a> * <a href="https://cite-seq.com/">Cellular
+Indexing of Transcriptomes and Epitopes by Sequencing (CITE-seq)</a></p>
 </div>
 </div>
 </div>
@@ -1588,26 +1600,16 @@ href="https://chenh19.github.io/rotation2/refs/Yalamanchili_2017.pdf">Yalamanchi
 <em>et al.</em> 2017: RNA-seq analysis pipeline</a></p>
 <div id="some-key-points-1" class="section level4">
 <h4>Some key points:</h4>
-<p><strong>Protocol-1 (differential expression of genes):</strong></p>
-<ul>
-<li>demuxed raw reads (FastQC)<br />
-</li>
-<li>trimming reads (awk)<br />
-</li>
-<li>aligning reads (TopHat2)<br />
-</li>
-<li>counting reads (HTSeq; may filter out genes with low counts before
-next step)<br />
-</li>
-<li>detect DE using counted reads (DEseq2)<br />
-</li>
-<li>more QC (PCA/correlation heatmap)</li>
-</ul>
-<p><strong>Protocol-2 (differential usage fo isoforms):</strong><br />
-* Protocol-1 * counting isoforms (Kallisto) * detect DU using counted
+<p><strong>Protocol-1 (differential expression of genes):</strong> *
+demuxed raw reads (FastQC) * trimming reads (awk) * aligning reads
+(TopHat2) * counting reads (HTSeq; may filter out genes with low counts
+before next step) * detect DE using counted reads (DEseq2) * more QC
+(PCA/correlation heatmap)</p>
+<p><strong>Protocol-2 (differential usage fo isoforms):</strong> *
+Protocol-1 * counting isoforms (Kallisto) * detect DU using counted
 isoforms (Sleuth) * more QC (aslo PCA/correlation heatmap)</p>
-<p><strong>Protocol-3 (crypic splicing):</strong><br />
-* Protocol-1 * detect differential junstions (CrypSplice)</p>
+<p><strong>Protocol-3 (crypic splicing):</strong> * Protocol-1 * detect
+differential junstions (CrypSplice)</p>
 </div>
 </div>
 <div id="b.-download-data" class="section level3">
@@ -1624,71 +1626,60 @@ cd ~/rotation2/
 [ ! -d ../Morris_2021/fastqc_results/ ] &amp;&amp; mkdir ../Morris_2021/fastqc_results/
 fastqc --threads 16 ../Morris_2021/STINGseq_Morris_2021_raw/*.fastq.gz --outdir=../Morris_2021/fastqc_results/</code></pre>
 <p><strong>Sample SRR14141135:</strong><br />
-- <a
-href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141135_cDNA_Homo_sapiens_1_fastqc.html">SRR14141135_1</a><br />
-- <a
+* <a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141135_cDNA_Homo_sapiens_1_fastqc.html">SRR14141135_1</a>
+* <a
 href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141135_cDNA_Homo_sapiens_2_fastqc.html">SRR14141135_2</a></p>
-<p><strong>Sample SRR14141136:</strong><br />
-- <a
-href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141136_cDNA_Homo_sapiens_1_fastqc.html">SRR14141136_1</a><br />
-- <a
+<p><strong>Sample SRR14141136:</strong> * <a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141136_cDNA_Homo_sapiens_1_fastqc.html">SRR14141136_1</a>
+* <a
 href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141136_cDNA_Homo_sapiens_2_fastqc.html">SRR14141136_2</a></p>
-<p><strong>Sample SRR14141137:</strong><br />
-- <a
-href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141137_cDNA_Homo_sapiens_1_fastqc.html">SRR14141137_1</a><br />
-- <a
+<p><strong>Sample SRR14141137:</strong> * <a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141137_cDNA_Homo_sapiens_1_fastqc.html">SRR14141137_1</a>
+* <a
 href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141137_cDNA_Homo_sapiens_2_fastqc.html">SRR14141137_2</a></p>
-<p><strong>Sample SRR14141138:</strong><br />
-- <a
-href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141138_cDNA_Homo_sapiens_1_fastqc.html">SRR14141138_1</a><br />
-- <a
+<p><strong>Sample SRR14141138:</strong> * <a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141138_cDNA_Homo_sapiens_1_fastqc.html">SRR14141138_1</a>
+* <a
 href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141138_cDNA_Homo_sapiens_2_fastqc.html">SRR14141138_2</a></p>
-<p><strong>Sample SRR14141139:</strong><br />
-- <a
-href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141139_cDNA_Homo_sapiens_1_fastqc.html">SRR14141139_1</a><br />
-- <a
+<p><strong>Sample SRR14141139:</strong> * <a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141139_cDNA_Homo_sapiens_1_fastqc.html">SRR14141139_1</a>
+* <a
 href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141139_cDNA_Homo_sapiens_2_fastqc.html">SRR14141139_2</a></p>
-<p><strong>Sample SRR14141140:</strong><br />
-- <a
-href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141140_cDNA_Homo_sapiens_1_fastqc.html">SRR14141140_1</a><br />
-- <a
+<p><strong>Sample SRR14141140:</strong> * <a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141140_cDNA_Homo_sapiens_1_fastqc.html">SRR14141140_1</a>
+* <a
 href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141140_cDNA_Homo_sapiens_2_fastqc.html">SRR14141140_2</a></p>
-<p><strong>Sample SRR14141141:</strong><br />
-- <a
-href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141141_cDNA_Homo_sapiens_1_fastqc.html">SRR14141141_1</a><br />
-- <a
+<p><strong>Sample SRR14141141:</strong> * <a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141141_cDNA_Homo_sapiens_1_fastqc.html">SRR14141141_1</a>
+* <a
 href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141141_cDNA_Homo_sapiens_2_fastqc.html">SRR14141141_2</a></p>
-<p><strong>Sample SRR14141142:</strong><br />
-- <a
-href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141142_cDNA_Homo_sapiens_1_fastqc.html">SRR14141142_1</a><br />
-- <a
+<p><strong>Sample SRR14141142:</strong> * <a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141142_cDNA_Homo_sapiens_1_fastqc.html">SRR14141142_1</a>
+* <a
 href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141142_cDNA_Homo_sapiens_2_fastqc.html">SRR14141142_2</a></p>
-<p><strong>Sample SRR14141143:</strong><br />
-- <a
-href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141143_HTO_Homo_sapiens_1_fastqc.html">SRR14141143_1</a><br />
-- <a
+<p><strong>Sample SRR14141143:</strong> * <a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141143_HTO_Homo_sapiens_1_fastqc.html">SRR14141143_1</a>
+* <a
 href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141143_HTO_Homo_sapiens_2_fastqc.html">SRR14141143_2</a></p>
-<p><strong>Sample SRR14141144:</strong><br />
-- <a
-href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141144_HTO_Homo_sapiens_1_fastqc.html">SRR14141144_1</a><br />
-- <a
+<p><strong>Sample SRR14141144:</strong> * <a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141144_HTO_Homo_sapiens_1_fastqc.html">SRR14141144_1</a>
+* <a
 href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141144_HTO_Homo_sapiens_2_fastqc.html">SRR14141144_2</a></p>
-<p><strong>Sample SRR14141145:</strong><br />
-- <a
-href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141145_GDO_Homo_sapiens_1_fastqc.html">SRR14141145_1</a><br />
-- <a
+<p><strong>Sample SRR14141145:</strong> * <a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141145_GDO_Homo_sapiens_1_fastqc.html">SRR14141145_1</a>
+* <a
 href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141145_GDO_Homo_sapiens_2_fastqc.html">SRR14141145_2</a></p>
-<p><strong>Sample SRR14141146:</strong><br />
-- <a
-href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141146_GDO_Homo_sapiens_1_fastqc.html">SRR14141146_1</a><br />
-- <a
+<p><strong>Sample SRR14141146:</strong> * <a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141146_GDO_Homo_sapiens_1_fastqc.html">SRR14141146_1</a>
+* <a
 href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141146_GDO_Homo_sapiens_2_fastqc.html">SRR14141146_2</a></p>
 <div id="d.-a-brief-summary" class="section level4">
 <h4>d. A brief summary</h4>
 <ul>
 <li><strong>samples:</strong> <code>12</code></li>
 <li><strong>length:</strong> <code>26bp</code> or <code>57bp</code>
-(<strong>why?</strong>)</li>
+(<strong>trimmed?</strong>)</li>
 <li><strong>depth:</strong> <code>30-35x</code></li>
 <li><strong>overall quality:</strong> good (within
 <code>~40 bp</code>)</li>
@@ -1700,8 +1691,7 @@ href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141146_GDO_Homo_sa
 <h2>3. Analyze QC’ed STING-seq data</h2>
 <p><strong>Note:</strong></p>
 <ul>
-<li>cDNA, HTO (Hashing antibody-oligos), GDO (gRNAs)<br />
-</li>
+<li>cDNA, HTO (Hashing antibody-oligos), GDO (gRNAs)</li>
 <li>ECCITE-seq:</li>
 </ul>
 <p><img
