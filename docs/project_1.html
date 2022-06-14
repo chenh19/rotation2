@@ -532,15 +532,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2treeb4a7331e2f2a78bfd5851ed24a61f04934eb1ed6targetblankb4a7331a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2treeb6e09934030981fc8946fc73003c26812d1857a6targetblankb6e0993a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/chenh19/rotation2/tree/b4a7331e2f2a78bfd5851ed24a61f04934eb1ed6" target="_blank">b4a7331</a>
+<a href="https://github.com/chenh19/rotation2/tree/b6e09934030981fc8946fc73003c26812d1857a6" target="_blank">b6e0993</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2treeb4a7331e2f2a78bfd5851ed24a61f04934eb1ed6targetblankb4a7331a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2treeb6e09934030981fc8946fc73003c26812d1857a6targetblankb6e0993a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -550,7 +550,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/chenh19/rotation2/tree/b4a7331e2f2a78bfd5851ed24a61f04934eb1ed6" target="_blank">b4a7331</a>.
+<a href="https://github.com/chenh19/rotation2/tree/b6e09934030981fc8946fc73003c26812d1857a6" target="_blank">b6e0993</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -612,6 +612,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/b6e09934030981fc8946fc73003c26812d1857a6/analysis/project_1.Rmd" target="_blank">b6e0993</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/93a27ae37969ef2a24fc6c42b5ee251bd65163ef/docs/project_1.html" target="_blank">93a27ae</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1461,31 +1495,58 @@ href="https://chenh19.github.io/rotation2/refs/Morris_2020.pdf">Morris
 <em>et al.</em> 2021: STING-Seq</a></p>
 <div id="some-key-points" class="section level4">
 <h4>Some key points:</h4>
-<p><strong>Some key ideas:</strong> - STING-seq: Systematic Targeting
-and Inbition of Noncoding GWAS loci with scRNA-seq - prioritizes
-candidate <em>cis</em>-regulatory elements (cCREs, 1kb&lt;distance to
-TSS&lt;1Mb) using fine-mapped GWAS - selected 88 variants (in 56 loci)
-with enhancer activity - dual CRISPR inhibition: dCas9 as the GPS, MeCP2
-and KRAB as the repressors - confirming dual CRISPRi efficacy: gRNAs
-target TSS of <em>MRPS23</em>, <em>CTSB</em>, <em>FSCN1</em> - CRIPSRi
-on the 88 variants: two gRNAs for each variant, both within 200bp of the
-variant - ECCITE-seq: captures gRNAs and epitopes</p>
-<p><strong>Some data processing steps and results:</strong> - QC: remove
-cells with low total reads or excessive mitochondrial reads, gRNA
-assignment UMI&gt;5 (9,343 cells after QC) - Kallisto: counting -
-Seurat: QC and <code>reference mapping?</code> <a
+<p><strong>Some key ideas:</strong></p>
+<ul>
+<li>STING-seq: Systematic Targeting and Inbition of Noncoding GWAS loci
+with scRNA-seq<br />
+</li>
+<li>prioritizes candidate <em>cis</em>-regulatory elements (cCREs,
+1kb&lt;distance to TSS&lt;1Mb) using fine-mapped GWAS<br />
+</li>
+<li>selected 88 variants (in 56 loci) with enhancer activity<br />
+</li>
+<li>dual CRISPR inhibition: dCas9 as the GPS, MeCP2 and KRAB as the
+repressors<br />
+</li>
+<li>confirming dual CRISPRi efficacy: gRNAs target TSS of
+<em>MRPS23</em>, <em>CTSB</em>, <em>FSCN1</em><br />
+</li>
+<li>CRIPSRi on the 88 variants: two gRNAs for each variant, both within
+200bp of the variant<br />
+</li>
+<li>ECCITE-seq: captures gRNAs and epitopes</li>
+</ul>
+<p><strong>Some data processing steps and results:</strong></p>
+<ul>
+<li>QC: remove cells with low total reads or excessive mitochondrial
+reads, gRNA assignment UMI&gt;5 (9,343 cells after QC)<br />
+</li>
+<li>Kallisto: counting<br />
+</li>
+<li>Seurat: QC and <code>reference mapping?</code> <a
 href="https://satijalab.org/seurat/">read more on the official
-website</a> - SCEPTRE: gRNA_to_gene-expression pairwise test -
-non-targeting gRNA-gene pairs: not significant (negative ctrl) -
-TSS-targeting gRNA-gene pairs: expression significantly decreased
-(positive ctrl) - 37 of the 88 variants were significant -
-<em>Trans</em>-regulatory elements: <strong>I’ll come back
-later</strong></p>
-<p><strong>Note:</strong><br />
-- Ref1: <a href="https://cite-seq.com/eccite-seq/">Expanded
-CRISPR-compatible CITE-seq (ECCITE-Seq)</a> - Ref2: <a
-href="https://cite-seq.com/">Cellular Indexing of Transcriptomes and
-Epitopes by Sequencing (CITE-seq)</a></p>
+website</a><br />
+</li>
+<li>SCEPTRE: gRNA_to_gene-expression pairwise test<br />
+</li>
+<li>non-targeting gRNA-gene pairs: not significant (negative ctrl)<br />
+</li>
+<li>TSS-targeting gRNA-gene pairs: expression significantly decreased
+(positive ctrl)<br />
+</li>
+<li>37 of the 88 variants were significant<br />
+</li>
+<li><em>Trans</em>-regulatory elements: <strong>I’ll come back
+later</strong></li>
+</ul>
+<p><strong>Note:</strong></p>
+<ul>
+<li><a href="https://cite-seq.com/eccite-seq/">Expanded
+CRISPR-compatible CITE-seq (ECCITE-Seq)</a><br />
+</li>
+<li><a href="https://cite-seq.com/">Cellular Indexing of Transcriptomes
+and Epitopes by Sequencing (CITE-seq)</a></li>
+</ul>
 </div>
 </div>
 </div>
@@ -1499,11 +1560,21 @@ href="https://chenh19.github.io/rotation2/refs/Yalamanchili_2017.pdf">Yalamanchi
 <em>et al.</em> 2017: RNA-seq analysis pipeline</a></p>
 <div id="some-key-points-1" class="section level4">
 <h4>Some key points:</h4>
-<p><strong>Protocol-1 (differential expression of genes):</strong><br />
-- demuxed raw reads (FastQC) - trimming reads (awk) - aligning reads
-(TopHat2) - counting reads (HTSeq; may filter out genes with low counts
-before next step) - detect DE using counted reads (DEseq2) - more QC
-(PCA/correlation heatmap)</p>
+<p><strong>Protocol-1 (differential expression of genes):</strong></p>
+<ul>
+<li>demuxed raw reads (FastQC)<br />
+</li>
+<li>trimming reads (awk)<br />
+</li>
+<li>aligning reads (TopHat2)<br />
+</li>
+<li>counting reads (HTSeq; may filter out genes with low counts before
+next step)<br />
+</li>
+<li>detect DE using counted reads (DEseq2)<br />
+</li>
+<li>more QC (PCA/correlation heatmap)</li>
+</ul>
 <p><strong>Protocol-2 (differential usage fo isoforms):</strong><br />
 - Protocol-1 - counting isoforms (Kallisto) - detect DU using counted
 isoforms (Sleuth) - more QC (aslo PCA/correlation heatmap)</p>
