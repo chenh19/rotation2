@@ -93,50 +93,62 @@ fastqc --threads 16 ../Morris_2021/STINGseq_Morris_2021_raw/*.fastq.gz --outdir=
 ```
 
 **Sample SRR14141135:**  
+
 * [SRR14141135_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141135_cDNA_Homo_sapiens_1_fastqc.html)  
 * [SRR14141135_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141135_cDNA_Homo_sapiens_2_fastqc.html)  
   
 **Sample SRR14141136:**  
+
 * [SRR14141136_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141136_cDNA_Homo_sapiens_1_fastqc.html)  
 * [SRR14141136_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141136_cDNA_Homo_sapiens_2_fastqc.html)  
   
 **Sample SRR14141137:**  
+
 * [SRR14141137_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141137_cDNA_Homo_sapiens_1_fastqc.html)  
 * [SRR14141137_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141137_cDNA_Homo_sapiens_2_fastqc.html)  
   
 **Sample SRR14141138:**  
+
 * [SRR14141138_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141138_cDNA_Homo_sapiens_1_fastqc.html)  
 * [SRR14141138_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141138_cDNA_Homo_sapiens_2_fastqc.html)  
   
 **Sample SRR14141139:**  
+
 * [SRR14141139_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141139_cDNA_Homo_sapiens_1_fastqc.html)  
 * [SRR14141139_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141139_cDNA_Homo_sapiens_2_fastqc.html)  
   
 **Sample SRR14141140:**  
+
 * [SRR14141140_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141140_cDNA_Homo_sapiens_1_fastqc.html)  
 * [SRR14141140_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141140_cDNA_Homo_sapiens_2_fastqc.html)  
   
 **Sample SRR14141141:**  
+
 * [SRR14141141_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141141_cDNA_Homo_sapiens_1_fastqc.html)  
 * [SRR14141141_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141141_cDNA_Homo_sapiens_2_fastqc.html)  
   
 **Sample SRR14141142:**  
+
 * [SRR14141142_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141142_cDNA_Homo_sapiens_1_fastqc.html)  
 * [SRR14141142_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141142_cDNA_Homo_sapiens_2_fastqc.html)  
   
 **Sample SRR14141143:**  
+
 * [SRR14141143_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141143_HTO_Homo_sapiens_1_fastqc.html)  
 * [SRR14141143_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141143_HTO_Homo_sapiens_2_fastqc.html)  
   
 **Sample SRR14141144:**  
+
 * [SRR14141144_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141144_HTO_Homo_sapiens_1_fastqc.html)  
 * [SRR14141144_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141144_HTO_Homo_sapiens_2_fastqc.html)  
   
 **Sample SRR14141145:**  
+
 * [SRR14141145_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141145_GDO_Homo_sapiens_1_fastqc.html)  
 * [SRR14141145_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141145_GDO_Homo_sapiens_2_fastqc.html)  
   
 **Sample SRR14141146:**  
+
 * [SRR14141146_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141146_GDO_Homo_sapiens_1_fastqc.html)  
 * [SRR14141146_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141146_GDO_Homo_sapiens_2_fastqc.html)  
   
