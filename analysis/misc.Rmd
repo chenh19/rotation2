@@ -26,7 +26,7 @@ library(workflowr)
 
 ```{r,eval=FALSE}
 # workflowR publish
-wflow_publish("analysis/*.Rmd")
+wflow_publish("./analysis/*.Rmd")
 ```
 
 **Cleanup:**
@@ -51,7 +51,7 @@ git commit -a -m "update"
 git push -u origin main
 ```
 
-**Environment: [Kubuntu 22.04 LTS](https://kubuntu.org/)**
+**Environment: [Kubuntu 22.04 LTS](https://kubuntu.org/); [Setup shell scripts](https://github.com/chenh19/MyWorkspace)**
 
 ## 2. Meetings
 
