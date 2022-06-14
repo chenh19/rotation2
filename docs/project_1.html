@@ -532,15 +532,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree4d7183eb975597a1c3e7f82494425c5d3205eacatargetblank4d7183ea">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree49f192280f51683d6b8e7a6d4781346c5c0f6c8dtargetblank49f1922a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/chenh19/rotation2/tree/4d7183eb975597a1c3e7f82494425c5d3205eaca" target="_blank">4d7183e</a>
+<a href="https://github.com/chenh19/rotation2/tree/49f192280f51683d6b8e7a6d4781346c5c0f6c8d" target="_blank">49f1922</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree4d7183eb975597a1c3e7f82494425c5d3205eacatargetblank4d7183ea"
+id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree49f192280f51683d6b8e7a6d4781346c5c0f6c8dtargetblank49f1922a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -550,7 +550,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/chenh19/rotation2/tree/4d7183eb975597a1c3e7f82494425c5d3205eaca" target="_blank">4d7183e</a>.
+<a href="https://github.com/chenh19/rotation2/tree/49f192280f51683d6b8e7a6d4781346c5c0f6c8d" target="_blank">49f1922</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -564,7 +564,10 @@ depends on. Below is the status of the Git repository when the results
 were generated:
 </p>
 <pre><code>
-working directory clean
+Unstaged changes:
+    Modified:   .RData
+    Modified:   .Rhistory
+
 </code></pre>
 <p>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not
@@ -609,6 +612,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/49f192280f51683d6b8e7a6d4781346c5c0f6c8d/analysis/project_1.Rmd" target="_blank">49f1922</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/fd7271e37ee28b6962a733eadcd6f40c5a8cf715/docs/project_1.html" target="_blank">fd7271e</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -2123,7 +2160,9 @@ repressors</li>
 <ul>
 <li>QC: remove cells with low total reads or excessive mitochondrial
 reads, gRNA assignment UMI&gt;5 (9,343 cells after QC)</li>
-<li><strong>Kallisto:</strong> counting</li>
+<li><strong>Kallisto:</strong> counting <a
+href="https://pachterlab.github.io/kallisto/">read more on the official
+website</a></li>
 <li><strong>Seurat:</strong> QC and <code>reference mapping?</code> <a
 href="https://satijalab.org/seurat/">read more on the official
 website</a></li>
@@ -2295,6 +2334,31 @@ href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141146_GDO_Homo_sa
 <li><strong>overall quality:</strong> good (within
 <code>~40 bp</code>)</li>
 </ul>
+</div>
+<div id="d.-kallisto-bustools-pipeline" class="section level3">
+<h3>d. Kallisto | bustools pipeline</h3>
+<p><strong>Install kb package:</strong></p>
+<pre class="bash"><code># install via python3-pip (python3 is installed by default)
+sudo apt-get update &amp;&amp; sudo apt install python3-pip -y
+sudo pip3 install kb-python
+
+# run
+kb</code></pre>
+<p><strong>Side note: conda install kallisto (not necessary for
+kb)</strong></p>
+<pre class="bash"><code># install anaconda
+[ ! -d ./shscript/ ] &amp;&amp; mkdir ./shscript/
+wget -O ./shscript/Anaconda-latest-Linux-x86_64.sh https://repo.anaconda.com/archive/Anaconda3-2022.05-Linux-x86_64.sh
+bash ./shscript/Anaconda-latest-Linux-x86_64.sh &amp;&amp; sleep 3
+conda update anaconda -y &amp;&amp; conda update --all -y
+conda config --add channels defaults
+conda config --add channels bioconda
+conda config --add channels conda-forge
+conda install kallisto -y
+conda config --set auto_activate_base false # disable auto activate base in terminal
+#conda activate # activate base when needed
+#rm -rf ~/anaconda3/ # uninstall anaconda
+rm -rf ./shscript/</code></pre>
 </div>
 </div>
 <div id="analyze-qced-sting-seq-data" class="section level2">

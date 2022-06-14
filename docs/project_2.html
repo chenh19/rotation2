@@ -532,15 +532,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree4d7183eb975597a1c3e7f82494425c5d3205eacatargetblank4d7183ea">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree49f192280f51683d6b8e7a6d4781346c5c0f6c8dtargetblank49f1922a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/chenh19/rotation2/tree/4d7183eb975597a1c3e7f82494425c5d3205eaca" target="_blank">4d7183e</a>
+<a href="https://github.com/chenh19/rotation2/tree/49f192280f51683d6b8e7a6d4781346c5c0f6c8d" target="_blank">49f1922</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree4d7183eb975597a1c3e7f82494425c5d3205eacatargetblank4d7183ea"
+id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree49f192280f51683d6b8e7a6d4781346c5c0f6c8dtargetblank49f1922a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -550,7 +550,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/chenh19/rotation2/tree/4d7183eb975597a1c3e7f82494425c5d3205eaca" target="_blank">4d7183e</a>.
+<a href="https://github.com/chenh19/rotation2/tree/49f192280f51683d6b8e7a6d4781346c5c0f6c8d" target="_blank">49f1922</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -564,7 +564,10 @@ depends on. Below is the status of the Git repository when the results
 were generated:
 </p>
 <pre><code>
-working directory clean
+Unstaged changes:
+    Modified:   .RData
+    Modified:   .Rhistory
+
 </code></pre>
 <p>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not
@@ -609,6 +612,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/49f192280f51683d6b8e7a6d4781346c5c0f6c8d/analysis/project_2.Rmd" target="_blank">49f1922</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/fd7271e37ee28b6962a733eadcd6f40c5a8cf715/docs/project_2.html" target="_blank">fd7271e</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -1665,6 +1702,13 @@ href="https://github.com/Katsevich-Lab/sceptre">Katsevich-Lab/sceptre</a></li>
 <li><a
 href="https://github.com/Katsevich-Lab/sceptre-manuscript">Katsevich-Lab/sceptre-manuscript</a></li>
 </ul>
+</div>
+<div id="c.-install-the-package" class="section level3">
+<h3>c. Install the package</h3>
+<pre class="bash"><code>sudo -i R
+install.packages(&quot;devtools&quot;)
+devtools::install_github(&quot;katsevich-lab/sceptre&quot;)
+q()</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
