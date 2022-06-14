@@ -21,7 +21,6 @@ knitr::opts_chunk$set(echo = TRUE)
 #### Some key points:
 
 **Some key ideas:**
-
 * STING-seq: Systematic Targeting and Inbition of Noncoding GWAS loci with scRNA-seq
 * prioritizes candidate *cis*-regulatory elements (cCREs, 1kb<distance to TSS<1Mb) using fine-mapped GWAS
 * selected 88 variants (in 56 loci) with enhancer activity
@@ -30,22 +29,20 @@ knitr::opts_chunk$set(echo = TRUE)
 * CRIPSRi on the 88 variants: two gRNAs for each variant, both within 200bp of the variant
 * ECCITE-seq: captures gRNAs and epitopes
 
-**Some data processing steps and results:**  
+**Some data processing steps and results:**
+* QC: remove cells with low total reads or excessive mitochondrial reads, gRNA assignment UMI>5 (9,343 cells after QC)
+* Kallisto: counting
+* Seurat: QC and ```reference mapping?``` [read more on the official website](https://satijalab.org/seurat/)
+* SCEPTRE: gRNA_to_gene-expression pairwise test
+* non-targeting gRNA-gene pairs: not significant (negative ctrl)
+* TSS-targeting gRNA-gene pairs: expression significantly decreased (positive ctrl)
+* 37 of the 88 variants were significant
+* *Trans*-regulatory elements: **I'll come back later**
 
-* QC: remove cells with low total reads or excessive mitochondrial reads, gRNA assignment UMI>5 (9,343 cells after QC)  
-* Kallisto: counting  
-* Seurat: QC and ```reference mapping?``` [read more on the official website](https://satijalab.org/seurat/)  
-* SCEPTRE: gRNA_to_gene-expression pairwise test  
-* non-targeting gRNA-gene pairs: not significant (negative ctrl)  
-* TSS-targeting gRNA-gene pairs: expression significantly decreased (positive ctrl)  
-* 37 of the 88 variants were significant  
-* *Trans*-regulatory elements: **I'll come back later**  
+**Note:**
+* [Expanded CRISPR-compatible CITE-seq (ECCITE-Seq)](https://cite-seq.com/eccite-seq/)
+* [Cellular Indexing of Transcriptomes and Epitopes by Sequencing (CITE-seq)](https://cite-seq.com/)
 
-
-**Note:**  
-
-* [Expanded CRISPR-compatible CITE-seq (ECCITE-Seq)](https://cite-seq.com/eccite-seq/)  
-* [Cellular Indexing of Transcriptomes and Epitopes by Sequencing (CITE-seq)](https://cite-seq.com/)  
 
 ## 2. Prelim QC for STING-seq data
 
@@ -55,22 +52,21 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #### Some key points:
 
-**Protocol-1 (differential expression of genes):**  
+**Protocol-1 (differential expression of genes):**
+* demuxed raw reads (FastQC)
+* trimming reads (awk)
+* aligning reads (TopHat2)
+* counting reads (HTSeq; may filter out genes with low counts before next step)
+* detect DE using counted reads (DEseq2)
+* more QC (PCA/correlation heatmap)
 
-* demuxed raw reads (FastQC)  
-* trimming reads (awk)  
-* aligning reads (TopHat2)  
-* counting reads (HTSeq; may filter out genes with low counts before next step)  
-* detect DE using counted reads (DEseq2)  
-* more QC (PCA/correlation heatmap)  
-
-**Protocol-2 (differential usage fo isoforms):**  
+**Protocol-2 (differential usage fo isoforms):**
 * Protocol-1
 * counting isoforms (Kallisto)
 * detect DU using counted isoforms (Sleuth)
 * more QC (aslo PCA/correlation heatmap)
 
-**Protocol-3 (crypic splicing):**  
+**Protocol-3 (crypic splicing):**
 * Protocol-1
 * detect differential junstions (CrypSplice)
 
@@ -91,62 +87,60 @@ fastqc --threads 16 ../Morris_2021/STINGseq_Morris_2021_raw/*.fastq.gz --outdir=
 ```
 
 **Sample SRR14141135:**  
-- [SRR14141135_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141135_cDNA_Homo_sapiens_1_fastqc.html)  
-- [SRR14141135_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141135_cDNA_Homo_sapiens_2_fastqc.html)  
-  
-**Sample SRR14141136:**  
-- [SRR14141136_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141136_cDNA_Homo_sapiens_1_fastqc.html)  
-- [SRR14141136_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141136_cDNA_Homo_sapiens_2_fastqc.html)  
-  
-**Sample SRR14141137:**  
-- [SRR14141137_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141137_cDNA_Homo_sapiens_1_fastqc.html)  
-- [SRR14141137_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141137_cDNA_Homo_sapiens_2_fastqc.html)  
-  
-**Sample SRR14141138:**  
-- [SRR14141138_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141138_cDNA_Homo_sapiens_1_fastqc.html)  
-- [SRR14141138_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141138_cDNA_Homo_sapiens_2_fastqc.html)  
-  
-**Sample SRR14141139:**  
-- [SRR14141139_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141139_cDNA_Homo_sapiens_1_fastqc.html)  
-- [SRR14141139_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141139_cDNA_Homo_sapiens_2_fastqc.html)  
-  
-**Sample SRR14141140:**  
-- [SRR14141140_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141140_cDNA_Homo_sapiens_1_fastqc.html)  
-- [SRR14141140_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141140_cDNA_Homo_sapiens_2_fastqc.html)  
-  
-**Sample SRR14141141:**  
-- [SRR14141141_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141141_cDNA_Homo_sapiens_1_fastqc.html)  
-- [SRR14141141_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141141_cDNA_Homo_sapiens_2_fastqc.html)  
-  
-**Sample SRR14141142:**  
-- [SRR14141142_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141142_cDNA_Homo_sapiens_1_fastqc.html)  
-- [SRR14141142_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141142_cDNA_Homo_sapiens_2_fastqc.html)  
-  
-**Sample SRR14141143:**  
-- [SRR14141143_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141143_HTO_Homo_sapiens_1_fastqc.html)  
-- [SRR14141143_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141143_HTO_Homo_sapiens_2_fastqc.html)  
-  
-**Sample SRR14141144:**  
-- [SRR14141144_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141144_HTO_Homo_sapiens_1_fastqc.html)  
-- [SRR14141144_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141144_HTO_Homo_sapiens_2_fastqc.html)  
-  
-**Sample SRR14141145:**  
-- [SRR14141145_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141145_GDO_Homo_sapiens_1_fastqc.html)  
-- [SRR14141145_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141145_GDO_Homo_sapiens_2_fastqc.html)  
-  
-**Sample SRR14141146:**  
-- [SRR14141146_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141146_GDO_Homo_sapiens_1_fastqc.html)  
-- [SRR14141146_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141146_GDO_Homo_sapiens_2_fastqc.html)  
+* [SRR14141135_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141135_cDNA_Homo_sapiens_1_fastqc.html)
+* [SRR14141135_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141135_cDNA_Homo_sapiens_2_fastqc.html)
+
+**Sample SRR14141136:**
+* [SRR14141136_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141136_cDNA_Homo_sapiens_1_fastqc.html)
+* [SRR14141136_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141136_cDNA_Homo_sapiens_2_fastqc.html)
+
+**Sample SRR14141137:**
+* [SRR14141137_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141137_cDNA_Homo_sapiens_1_fastqc.html)
+* [SRR14141137_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141137_cDNA_Homo_sapiens_2_fastqc.html)
+
+**Sample SRR14141138:**
+* [SRR14141138_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141138_cDNA_Homo_sapiens_1_fastqc.html)
+* [SRR14141138_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141138_cDNA_Homo_sapiens_2_fastqc.html)
+
+**Sample SRR14141139:**
+* [SRR14141139_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141139_cDNA_Homo_sapiens_1_fastqc.html)
+* [SRR14141139_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141139_cDNA_Homo_sapiens_2_fastqc.html)
+
+**Sample SRR14141140:**
+* [SRR14141140_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141140_cDNA_Homo_sapiens_1_fastqc.html)
+* [SRR14141140_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141140_cDNA_Homo_sapiens_2_fastqc.html)
+
+**Sample SRR14141141:**
+* [SRR14141141_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141141_cDNA_Homo_sapiens_1_fastqc.html)
+* [SRR14141141_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141141_cDNA_Homo_sapiens_2_fastqc.html)
+
+**Sample SRR14141142:**
+* [SRR14141142_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141142_cDNA_Homo_sapiens_1_fastqc.html)
+* [SRR14141142_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141142_cDNA_Homo_sapiens_2_fastqc.html)
+
+**Sample SRR14141143:**
+* [SRR14141143_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141143_HTO_Homo_sapiens_1_fastqc.html)
+* [SRR14141143_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141143_HTO_Homo_sapiens_2_fastqc.html)
+
+**Sample SRR14141144:**
+* [SRR14141144_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141144_HTO_Homo_sapiens_1_fastqc.html)
+* [SRR14141144_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141144_HTO_Homo_sapiens_2_fastqc.html)
+
+**Sample SRR14141145:**
+* [SRR14141145_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141145_GDO_Homo_sapiens_1_fastqc.html)
+* [SRR14141145_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141145_GDO_Homo_sapiens_2_fastqc.html)
+
+**Sample SRR14141146:**
+* [SRR14141146_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141146_GDO_Homo_sapiens_1_fastqc.html)
+* [SRR14141146_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141146_GDO_Homo_sapiens_2_fastqc.html)
 
   
 #### d. A brief summary
 
-- **samples:** ```12```
-- **length:** ```26bp``` or ```57bp``` (**why?**)
-- **depth:** ```30-35x```
-- **overall quality:** good (within ```~40 bp```)
-
-
+* **samples:** ```12```
+* **length:** ```26bp``` or ```57bp``` (**trimmed?**)
+* **depth:** ```30-35x```
+* **overall quality:** good (within ```~40 bp```)
 
 
 
@@ -156,8 +150,8 @@ fastqc --threads 16 ../Morris_2021/STINGseq_Morris_2021_raw/*.fastq.gz --outdir=
 
 **Note:**
 
-* cDNA, HTO (Hashing antibody-oligos), GDO (gRNAs)  
-* ECCITE-seq:  
+* cDNA, HTO (Hashing antibody-oligos), GDO (gRNAs)
+* ECCITE-seq:
 
 ![](https://citeseq.files.wordpress.com/2018/11/eccite.png)
 
