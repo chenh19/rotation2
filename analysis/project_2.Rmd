@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 [Barry *et al.* 2021: SCEPTRE](https://chenh19.github.io/rotation2/refs/Barry_2021.pdf)
 
-> First, SCEPTRE fits a **negative binomial distribution** to measure the effect of a single gRNA on a given gene via Z-score. Then, the distribution of gRNAs to cells is randomly sampled to build a gRNA-specific null distribution, recomputing a negative binomial Z-score. A skew-t distribution is fit to compare the test Z-score and the null distribution, and a two-sided p-value is derived, allowing for significance tests of increased or decreased gene expression.  
+> *First, SCEPTRE fits a **negative binomial distribution** to measure the effect of a single gRNA on a given gene via Z-score. Then, the distribution of gRNAs to cells is randomly sampled to build a gRNA-specific null distribution, recomputing a negative binomial Z-score. A skew-t distribution is fit to compare the test Z-score and the null distribution, and a two-sided p-value is derived, allowing for significance tests of increased or decreased gene expression.*  
 
 From [Morris *et al.* 2021: STING-Seq](https://chenh19.github.io/rotation2/refs/Morris_2020.pdf)
 
