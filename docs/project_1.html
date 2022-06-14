@@ -401,7 +401,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-06-13
+<strong>Last updated:</strong> 2022-06-14
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -532,15 +532,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2treecc6a40ad4b7df51cee564a5ddb9004c4e3630404targetblankcc6a40aa">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2treefce1ffd29665a824be2be7737e8062aaa451a085targetblankfce1ffda">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/chenh19/rotation2/tree/cc6a40ad4b7df51cee564a5ddb9004c4e3630404" target="_blank">cc6a40a</a>
+<a href="https://github.com/chenh19/rotation2/tree/fce1ffd29665a824be2be7737e8062aaa451a085" target="_blank">fce1ffd</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2treecc6a40ad4b7df51cee564a5ddb9004c4e3630404targetblankcc6a40aa"
+id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2treefce1ffd29665a824be2be7737e8062aaa451a085targetblankfce1ffda"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -550,7 +550,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/chenh19/rotation2/tree/cc6a40ad4b7df51cee564a5ddb9004c4e3630404" target="_blank">cc6a40a</a>.
+<a href="https://github.com/chenh19/rotation2/tree/fce1ffd29665a824be2be7737e8062aaa451a085" target="_blank">fce1ffd</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -564,7 +564,10 @@ depends on. Below is the status of the Git repository when the results
 were generated:
 </p>
 <pre><code>
-working directory clean
+Unstaged changes:
+    Modified:   .RData
+    Modified:   .Rhistory
+
 </code></pre>
 <p>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not
@@ -609,6 +612,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/fce1ffd29665a824be2be7737e8062aaa451a085/analysis/project_1.Rmd" target="_blank">fce1ffd</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/44517c1a4a22bc35cb33d30e7ddd431def3acc58/docs/project_1.html" target="_blank">44517c1</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1388,16 +1425,64 @@ update
 <p><a
 href="https://chenh19.github.io/rotation2/refs/Morris_2020.pdf">Morris
 <em>et al.</em> 2021: STING-Seq</a></p>
+<div id="some-key-points" class="section level4">
+<h4>Some key points:</h4>
+<p><strong>Some key ideas:</strong> - STING-seq: Systematic Targeting
+and Inbition of Noncoding GWAS loci with scRNA-seq - prioritizes
+candidate <em>cis</em>-regulatory elements (cCREs, 1kb&lt;distance to
+TSS&lt;1Mb) using fine-mapped GWAS - selected 88 variants (in 56 loci)
+with enhancer activity - dual CRISPR inhibition: dCas9 as the GPS, MeCP2
+and KRAB as the repressors - confirming dual CRISPRi efficacy: gRNAs
+target TSS of <em>MRPS23</em>, <em>CTSB</em>, <em>FSCN1</em> - CRIPSRi
+on the 88 variants: two gRNAs for each variant, both within 200bp of the
+variant - ECCITE-seq: captures gRNAs and epitopes</p>
+<p><strong>Some data processing steps and results:</strong> - QC: remove
+cells with low total reads or excessive mitochondrial reads, gRNA
+assignment UMI&gt;5 (9,343 cells after QC) - Kallisto: counting -
+Seurat: QC and <code>reference mapping?</code> <a
+href="https://satijalab.org/seurat/">read more on the official
+website</a> - SCEPTRE: gRNA_to_gene-expression pairwise test -
+non-targeting gRNA-gene pairs: not significant (negative ctrl) -
+TSS-targeting gRNA-gene pairs: expression significantly decreased
+(positive ctrl) - 37 of the 88 variants were significant -
+<em>Trans</em>-regulatory elements: <strong>I’ll come back
+later</strong></p>
+<p><strong>Note:</strong><br />
+- Ref1: <a href="https://cite-seq.com/eccite-seq/">Expanded
+CRISPR-compatible CITE-seq (ECCITE-Seq)</a> - Ref2: <a
+href="https://cite-seq.com/">Cellular Indexing of Transcriptomes and
+Epitopes by Sequencing (CITE-seq)</a></p>
+</div>
 </div>
 </div>
 <div id="prelim-qc-for-sting-seq-data" class="section level2">
 <h2>2. Prelim QC for STING-seq data</h2>
-<div id="a.-download-data" class="section level3">
-<h3>a. Download data</h3>
+<div id="read-a-rna-seq-analysis-pipeline-review"
+class="section level3">
+<h3>Read a RNA-seq analysis pipeline review</h3>
+<p><a
+href="https://chenh19.github.io/rotation2/refs/Yalamanchili_2017.pdf">Yalamanchili
+<em>et al.</em> 2017: RNA-seq analysis pipeline</a></p>
+<div id="some-key-points-1" class="section level4">
+<h4>Some key points:</h4>
+<p><strong>Protocol-1 (differential expression of genes):</strong><br />
+- demuxed raw reads (FastQC) - trimming reads (awk) - aligning reads
+(TopHat2) - counting reads (HTSeq; may filter out genes with low counts
+before next step) - detect DE using counted reads (DEseq2) - more QC
+(PCA/correlation heatmap)</p>
+<p><strong>Protocol-2 (differential usage fo isoforms):</strong><br />
+- Protocol-1 - counting isoforms (Kallisto) - detect DU using counted
+isoforms (Sleuth) - more QC (aslo PCA/correlation heatmap)</p>
+<p><strong>Protocol-3 (crypic splicing):</strong><br />
+- Protocol-1 - detect differential junstions (CrypSplice)</p>
+</div>
+</div>
+<div id="b.-download-data" class="section level3">
+<h3>b. Download data</h3>
 <pre class="bash"><code>rsync -a hchen131@midway2.rcc.uchicago.edu:/project2/xuanyao/data/Morris_2021 ~/Desktop</code></pre>
 </div>
-<div id="b.-perform-fastqc-on-all-fastq-files" class="section level3">
-<h3>b. Perform FastQC on all fastq files</h3>
+<div id="c.-perform-fastqc-on-all-fastq-files" class="section level3">
+<h3>c. Perform FastQC on all fastq files</h3>
 <pre class="bash"><code># install fastqc
 sudo apt-get update &amp;&amp; sudo apt-get install fastqc -y
 
@@ -1465,8 +1550,8 @@ href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141145_GDO_Homo_sa
 href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141146_GDO_Homo_sapiens_1_fastqc.html">SRR14141146_1</a><br />
 - <a
 href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141146_GDO_Homo_sapiens_2_fastqc.html">SRR14141146_2</a></p>
-<div id="c.-a-brief-summary" class="section level4">
-<h4>c. A brief summary</h4>
+<div id="d.-a-brief-summary" class="section level4">
+<h4>d. A brief summary</h4>
 <ul>
 <li><strong>samples:</strong> <code>12</code></li>
 <li><strong>length:</strong> <code>26bp</code> or <code>57bp</code>
@@ -1475,16 +1560,6 @@ href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141146_GDO_Homo_sa
 <li><strong>overall quality:</strong> good (within
 <code>~40 bp</code>)</li>
 </ul>
-</div>
-</div>
-<div id="d.-other-preliminary-qc-will-need-to-learn"
-class="section level3">
-<h3>d. Other preliminary QC (will need to learn)</h3>
-<div id="read-some-rna-seq-analysis-references" class="section level4">
-<h4>Read some RNA-seq analysis reference(s)</h4>
-<p><a
-href="https://chenh19.github.io/rotation2/refs/Yalamanchili_2017.pdf">Yalamanchili
-<em>et al.</em> 2017: RNA-seq analysis pipeline</a></p>
 </div>
 </div>
 </div>
@@ -1499,6 +1574,13 @@ q()</code></pre>
 </div>
 <div id="b.-import-qced-data" class="section level3">
 <h3>b. Import QC’ed data</h3>
+<ul>
+<li>cDNA, HTO (Hashing antibody-oligos), GDO (gRNAs)<br />
+</li>
+<li>ECCITE-seq:</li>
+</ul>
+<p><img
+src="https://citeseq.files.wordpress.com/2018/11/eccite.png" /></p>
 <pre class="r"><code>f_exp_matrix &lt;- Seurat::ReadMtx(mtx = &quot;../Morris_2021/GSM5225857_cDNA.mtx&quot;, 
                                 features = &quot;../Morris_2021/GSM5225857_cDNA.features.txt&quot;, 
                                 cells = &quot;../Morris_2021/GSM5225857_cDNA.barcodes.txt&quot;, 
