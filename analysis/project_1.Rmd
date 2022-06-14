@@ -20,32 +20,32 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #### Some key points:
 
-**Some key ideas:**  
+**Some key ideas:**
 
-- STING-seq: Systematic Targeting and Inbition of Noncoding GWAS loci with scRNA-seq  
-- prioritizes candidate *cis*-regulatory elements (cCREs, 1kb<distance to TSS<1Mb) using fine-mapped GWAS  
-- selected 88 variants (in 56 loci) with enhancer activity  
-- dual CRISPR inhibition: dCas9 as the GPS, MeCP2 and KRAB as the repressors  
-- confirming dual CRISPRi efficacy: gRNAs target TSS of *MRPS23*, *CTSB*, *FSCN1*  
-- CRIPSRi on the 88 variants: two gRNAs for each variant, both within 200bp of the variant  
-- ECCITE-seq: captures gRNAs and epitopes  
+* STING-seq: Systematic Targeting and Inbition of Noncoding GWAS loci with scRNA-seq
+* prioritizes candidate *cis*-regulatory elements (cCREs, 1kb<distance to TSS<1Mb) using fine-mapped GWAS
+* selected 88 variants (in 56 loci) with enhancer activity
+* dual CRISPR inhibition: dCas9 as the GPS, MeCP2 and KRAB as the repressors
+* confirming dual CRISPRi efficacy: gRNAs target TSS of *MRPS23*, *CTSB*, *FSCN1*
+* CRIPSRi on the 88 variants: two gRNAs for each variant, both within 200bp of the variant
+* ECCITE-seq: captures gRNAs and epitopes
 
 **Some data processing steps and results:**  
 
-- QC: remove cells with low total reads or excessive mitochondrial reads, gRNA assignment UMI>5 (9,343 cells after QC)  
-- Kallisto: counting  
-- Seurat: QC and ```reference mapping?``` [read more on the official website](https://satijalab.org/seurat/)  
-- SCEPTRE: gRNA_to_gene-expression pairwise test  
-- non-targeting gRNA-gene pairs: not significant (negative ctrl)  
-- TSS-targeting gRNA-gene pairs: expression significantly decreased (positive ctrl)  
-- 37 of the 88 variants were significant  
-- *Trans*-regulatory elements: **I'll come back later**  
+* QC: remove cells with low total reads or excessive mitochondrial reads, gRNA assignment UMI>5 (9,343 cells after QC)  
+* Kallisto: counting  
+* Seurat: QC and ```reference mapping?``` [read more on the official website](https://satijalab.org/seurat/)  
+* SCEPTRE: gRNA_to_gene-expression pairwise test  
+* non-targeting gRNA-gene pairs: not significant (negative ctrl)  
+* TSS-targeting gRNA-gene pairs: expression significantly decreased (positive ctrl)  
+* 37 of the 88 variants were significant  
+* *Trans*-regulatory elements: **I'll come back later**  
 
 
 **Note:**  
 
-- [Expanded CRISPR-compatible CITE-seq (ECCITE-Seq)](https://cite-seq.com/eccite-seq/)  
-- [Cellular Indexing of Transcriptomes and Epitopes by Sequencing (CITE-seq)](https://cite-seq.com/)  
+* [Expanded CRISPR-compatible CITE-seq (ECCITE-Seq)](https://cite-seq.com/eccite-seq/)  
+* [Cellular Indexing of Transcriptomes and Epitopes by Sequencing (CITE-seq)](https://cite-seq.com/)  
 
 ## 2. Prelim QC for STING-seq data
 
@@ -65,14 +65,14 @@ knitr::opts_chunk$set(echo = TRUE)
 * more QC (PCA/correlation heatmap)  
 
 **Protocol-2 (differential usage fo isoforms):**  
-- Protocol-1
-- counting isoforms (Kallisto)
-- detect DU using counted isoforms (Sleuth)
-- more QC (aslo PCA/correlation heatmap)
+* Protocol-1
+* counting isoforms (Kallisto)
+* detect DU using counted isoforms (Sleuth)
+* more QC (aslo PCA/correlation heatmap)
 
 **Protocol-3 (crypic splicing):**  
-- Protocol-1
-- detect differential junstions (CrypSplice)
+* Protocol-1
+* detect differential junstions (CrypSplice)
 
 ### b. Download data
 ```{bash,eval=FALSE}
