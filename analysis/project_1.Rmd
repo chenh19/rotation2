@@ -150,7 +150,15 @@ fastqc --threads 16 ../Morris_2021/STINGseq_Morris_2021_raw/*.fastq.gz --outdir=
 
 ## 3. Analyze QC'ed STING-seq data
 
+**Note:**
+
+- cDNA, HTO (Hashing antibody-oligos), GDO (gRNAs)  
+- ECCITE-seq:  
+
+![](https://citeseq.files.wordpress.com/2018/11/eccite.png)
+
 ### a. Install R packages
+
 ```{bash,eval=FALSE}
 sudo apt-get update && sudo apt-get install libgeos-dev -y
 sudo -i R
@@ -159,12 +167,6 @@ q()
 ```
 
 ### b. Import QC'ed data
-
-- cDNA, HTO (Hashing antibody-oligos), GDO (gRNAs)  
-- ECCITE-seq:  
-
-![](https://citeseq.files.wordpress.com/2018/11/eccite.png)
-
 
 ```{r,eval=FALSE}
 f_exp_matrix <- Seurat::ReadMtx(mtx = "../Morris_2021/GSM5225857_cDNA.mtx", 
