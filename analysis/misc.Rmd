@@ -51,7 +51,7 @@ git commit -a -m "update"
 git push -u origin main
 ```
 
-**Environment: [Kubuntu 22.04 LTS](https://kubuntu.org/); [Setup shell scripts](https://github.com/chenh19/MyWorkspace)**
+**Environment: [Kubuntu 22.04 LTS](https://kubuntu.org/); [Setup Shell Scripts](https://github.com/chenh19/MyWorkspace)**
 
 ## 2. Meetings
 
