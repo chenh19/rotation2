@@ -51,6 +51,7 @@ cd ./rotation2/
 git push -u origin main
 ```
 
+**Environment: [Kubuntu 22.04 LTS](https://kubuntu.org/)**
 
 ## 2. Meetings
 

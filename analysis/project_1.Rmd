@@ -18,15 +18,64 @@ knitr::opts_chunk$set(echo = TRUE)
 
 [Morris *et al.* 2021: STING-Seq](https://chenh19.github.io/rotation2/refs/Morris_2020.pdf)
 
+#### Some key points:
+
+**Some key ideas:**
+- STING-seq: Systematic Targeting and Inbition of Noncoding GWAS loci with scRNA-seq
+- prioritizes candidate *cis*-regulatory elements (cCREs, 1kb<distance to TSS<1Mb) using fine-mapped GWAS
+- selected 88 variants (in 56 loci) with enhancer activity
+- dual CRISPR inhibition: dCas9 as the GPS, MeCP2 and KRAB as the repressors
+- confirming dual CRISPRi efficacy: gRNAs target TSS of *MRPS23*, *CTSB*, *FSCN1*
+- CRIPSRi on the 88 variants: two gRNAs for each variant, both within 200bp of the variant
+- ECCITE-seq: captures gRNAs and epitopes
+
+**Some data processing steps and results:**
+- QC: remove cells with low total reads or excessive mitochondrial reads, gRNA assignment UMI>5 (9,343 cells after QC)
+- Kallisto: counting
+- Seurat: QC and ```reference mapping?``` [read more on the official website](https://satijalab.org/seurat/)
+- SCEPTRE: gRNA_to_gene-expression pairwise test
+- non-targeting gRNA-gene pairs: not significant (negative ctrl)
+- TSS-targeting gRNA-gene pairs: expression significantly decreased (positive ctrl)
+- 37 of the 88 variants were significant
+- *Trans*-regulatory elements: **I'll come back later**
+
+
+**Note:**  
+- Ref1: [Expanded CRISPR-compatible CITE-seq (ECCITE-Seq)](https://cite-seq.com/eccite-seq/)
+- Ref2: [Cellular Indexing of Transcriptomes and Epitopes by Sequencing (CITE-seq)](https://cite-seq.com/)
 
 ## 2. Prelim QC for STING-seq data
 
-### a. Download data
+### Read a RNA-seq analysis pipeline review
+
+[Yalamanchili *et al.* 2017: RNA-seq analysis pipeline](https://chenh19.github.io/rotation2/refs/Yalamanchili_2017.pdf)  
+
+#### Some key points:
+
+**Protocol-1 (differential expression of genes):**  
+- demuxed raw reads (FastQC)
+- trimming reads (awk)
+- aligning reads (TopHat2)
+- counting reads (HTSeq; may filter out genes with low counts before next step)
+- detect DE using counted reads (DEseq2)
+- more QC (PCA/correlation heatmap)
+
+**Protocol-2 (differential usage fo isoforms):**  
+- Protocol-1
+- counting isoforms (Kallisto)
+- detect DU using counted isoforms (Sleuth)
+- more QC (aslo PCA/correlation heatmap)
+
+**Protocol-3 (crypic splicing):**  
+- Protocol-1
+- detect differential junstions (CrypSplice)
+
+### b. Download data
 ```{bash,eval=FALSE}
 rsync -a hchen131@midway2.rcc.uchicago.edu:/project2/xuanyao/data/Morris_2021 ~/Desktop
 ```
 
-### b. Perform FastQC on all fastq files
+### c. Perform FastQC on all fastq files
 ```{bash,eval=FALSE}
 # install fastqc
 sudo apt-get update && sudo apt-get install fastqc -y
@@ -86,7 +135,7 @@ fastqc --threads 16 ../Morris_2021/STINGseq_Morris_2021_raw/*.fastq.gz --outdir=
 - [SRR14141146_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141146_GDO_Homo_sapiens_2_fastqc.html)  
 
   
-#### c. A brief summary
+#### d. A brief summary
 
 - **samples:** ```12```
 - **length:** ```26bp``` or ```57bp``` (**why?**)
@@ -94,10 +143,7 @@ fastqc --threads 16 ../Morris_2021/STINGseq_Morris_2021_raw/*.fastq.gz --outdir=
 - **overall quality:** good (within ```~40 bp```)
 
 
-### d. Other preliminary QC (will need to learn)
 
-#### Read some RNA-seq analysis reference(s)
-[Yalamanchili *et al.* 2017: RNA-seq analysis pipeline](https://chenh19.github.io/rotation2/refs/Yalamanchili_2017.pdf)
 
 
 
@@ -113,6 +159,13 @@ q()
 ```
 
 ### b. Import QC'ed data
+
+- cDNA, HTO (Hashing antibody-oligos), GDO (gRNAs)  
+- ECCITE-seq:  
+
+![](https://citeseq.files.wordpress.com/2018/11/eccite.png)
+
+
 ```{r,eval=FALSE}
 f_exp_matrix <- Seurat::ReadMtx(mtx = "../Morris_2021/GSM5225857_cDNA.mtx", 
                                 features = "../Morris_2021/GSM5225857_cDNA.features.txt", 
@@ -127,4 +180,3 @@ f_grna_matrix <- Seurat::ReadMtx(mtx = "../Morris_2021/GSM5225858_GDO.mtx",
                                  feature.column=1, 
                                  mtx.transpose=T)
 ```
-
