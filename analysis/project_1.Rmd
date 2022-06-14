@@ -33,7 +33,7 @@ knitr::opts_chunk$set(echo = TRUE)
 **Some data processing steps and results:**  
 
 * QC: remove cells with low total reads or excessive mitochondrial reads, gRNA assignment UMI>5 (9,343 cells after QC)
-* **Kallisto:** counting
+* **Kallisto:** counting [read more on the official website](https://pachterlab.github.io/kallisto/)
 * **Seurat:** QC and ```reference mapping?``` [read more on the official website](https://satijalab.org/seurat/)
 * **SCEPTRE:** gRNA_to_gene-expression pairwise test
 * non-targeting gRNA-gene pairs: not significant (negative ctrl)
@@ -161,8 +161,34 @@ fastqc --threads 16 ../Morris_2021/STINGseq_Morris_2021_raw/*.fastq.gz --outdir=
 * **depth:** ```30-35x```
 * **overall quality:** good (within ```~40 bp```)
 
+### d. Kallisto | bustools pipeline
 
+**Install kb package:**
+```{bash,eval=FALSE}
+# install via python3-pip (python3 is installed by default)
+sudo apt-get update && sudo apt install python3-pip -y
+sudo pip3 install kb-python
 
+# run
+kb
+```
+
+**Side note: conda install kallisto (not necessary for kb)**
+```{bash,eval=FALSE}
+# install anaconda
+[ ! -d ./shscript/ ] && mkdir ./shscript/
+wget -O ./shscript/Anaconda-latest-Linux-x86_64.sh https://repo.anaconda.com/archive/Anaconda3-2022.05-Linux-x86_64.sh
+bash ./shscript/Anaconda-latest-Linux-x86_64.sh && sleep 3
+conda update anaconda -y && conda update --all -y
+conda config --add channels defaults
+conda config --add channels bioconda
+conda config --add channels conda-forge
+conda install kallisto -y
+conda config --set auto_activate_base false # disable auto activate base in terminal
+#conda activate # activate base when needed
+#rm -rf ~/anaconda3/ # uninstall anaconda
+rm -rf ./shscript/
+```
 
 
 ## 3. Analyze QC'ed STING-seq data

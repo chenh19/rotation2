@@ -26,3 +26,12 @@ From [Morris *et al.* 2021: STING-Seq](https://chenh19.github.io/rotation2/refs/
 
 - [Katsevich-Lab/sceptre](https://github.com/Katsevich-Lab/sceptre)
 - [Katsevich-Lab/sceptre-manuscript](https://github.com/Katsevich-Lab/sceptre-manuscript)
+
+### c. Install the package
+
+```{bash,eval=FALSE}
+sudo -i R
+install.packages("devtools")
+devtools::install_github("katsevich-lab/sceptre")
+q()
+```
