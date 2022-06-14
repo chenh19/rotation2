@@ -172,7 +172,8 @@ fastqc --threads 16 ../Morris_2021/STINGseq_Morris_2021_raw/*.fastq.gz --outdir=
 * **cDNA**, **HTO** (Hashing antibody-oligos), **GDO** (gRNAs)
 * **ECCITE-seq:**  
 
-![](https://citeseq.files.wordpress.com/2018/11/eccite.png)
+<center>
+![](https://citeseq.files.wordpress.com/2018/11/eccite.png){width=70%}
 
 ### a. Install R packages
 
