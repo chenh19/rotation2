@@ -532,15 +532,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2treeeda2d56cfffef1a6ce08a094df11144ad9ae72fbtargetblankeda2d56a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2treed99912250a0ea59aa07a8d5269884837d130b9cftargetblankd999122a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/chenh19/rotation2/tree/eda2d56cfffef1a6ce08a094df11144ad9ae72fb" target="_blank">eda2d56</a>
+<a href="https://github.com/chenh19/rotation2/tree/d99912250a0ea59aa07a8d5269884837d130b9cf" target="_blank">d999122</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2treeeda2d56cfffef1a6ce08a094df11144ad9ae72fbtargetblankeda2d56a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2treed99912250a0ea59aa07a8d5269884837d130b9cftargetblankd999122a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -550,7 +550,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/chenh19/rotation2/tree/eda2d56cfffef1a6ce08a094df11144ad9ae72fb" target="_blank">eda2d56</a>.
+<a href="https://github.com/chenh19/rotation2/tree/d99912250a0ea59aa07a8d5269884837d130b9cf" target="_blank">d999122</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -612,6 +612,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/d99912250a0ea59aa07a8d5269884837d130b9cf/analysis/project_1.Rmd" target="_blank">d999122</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-15
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/0aff555e45990441cf409d19146e124beb4e0643/docs/project_1.html" target="_blank">0aff555</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-15
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -2540,17 +2574,28 @@ gRNA &lt;- Seurat::ReadMtx(mtx = &quot;../Morris_2021/GSM5225858_GDO.mtx&quot;,
                                  mtx.transpose=T)</code></pre>
 <pre class="r"><code>overall &lt;- function(mtx){
   cat(paste0(&#39;The [&#39;, deparse(substitute(mtx)), &#39;] matrix has: \n&#39;, 
-        &#39;- &#39;, format(mtx@Dim[1], big.mark=&quot;,&quot;, scientific=FALSE), &#39; rows/genes/targets and \n&#39;, 
-        &#39;- &#39;, format(mtx@Dim[2], big.mark=&quot;,&quot;, scientific=FALSE), &#39; columns/barcodes/cells \n&#39;,
-        &#39;- &#39;, format(length(mtx), big.mark=&quot;,&quot;, scientific=FALSE), &#39; values in total \n&#39;, 
-        &#39;- &#39;, format(sum(mtx != 0), big.mark=&quot;,&quot;, scientific=FALSE), &#39; values that are non-zero \n&#39;,
-        &#39;- &#39;, format(sum(mtx == 1), big.mark=&quot;,&quot;, scientific=FALSE), &#39; values that are 1 \n&#39;,
-        &#39;- &#39;, format(sum(mtx &gt; 1), big.mark=&quot;,&quot;, scientific=FALSE), &#39; values that are bigger than 1 \n&#39;,
-        &#39;- &#39;, format(sum(mtx &gt; 10), big.mark=&quot;,&quot;, scientific=FALSE), &#39; values that are bigger than 10 \n&#39;,
-        &#39;- &#39;, format(sum(mtx &gt; 100), big.mark=&quot;,&quot;, scientific=FALSE), &#39; values that are bigger than 100 \n&#39;,
-        &#39;- &#39;, format(sum(mtx &gt; 1000), big.mark=&quot;,&quot;, scientific=FALSE), &#39; values that are bigger than 1,000 \n&#39;,
-        &#39;- &#39;, format(sum(mtx &gt; 10000), big.mark=&quot;,&quot;, scientific=FALSE), &#39; values that are bigger than 10,000 \n&#39;,
-        &#39;- &#39;, format(sum(mtx &gt; 100000), big.mark=&quot;,&quot;, scientific=FALSE), &#39; values that are bigger than 100,000 \n&#39;,
+        &#39;- &#39;, format(mtx@Dim[1], big.mark=&quot;,&quot;, scientific=FALSE), 
+        &#39; rows/genes/targets and \n&#39;, 
+        &#39;- &#39;, format(mtx@Dim[2], big.mark=&quot;,&quot;, scientific=FALSE), 
+        &#39; columns/barcodes/cells \n&#39;, 
+        &#39;- &#39;, format(length(mtx), big.mark=&quot;,&quot;, scientific=FALSE), 
+        &#39; values in total \n&#39;, 
+        &#39;- &#39;, format(sum(mtx != 0), big.mark=&quot;,&quot;, scientific=FALSE), 
+        &#39; values that are non-zero \n&#39;, 
+        &#39;- &#39;, format(sum(mtx == 1), big.mark=&quot;,&quot;, scientific=FALSE), 
+        &#39; values that are 1 \n&#39;, 
+        &#39;- &#39;, format(sum(mtx &gt; 1), big.mark=&quot;,&quot;, scientific=FALSE), 
+        &#39; values that are bigger than 1 \n&#39;, 
+        &#39;- &#39;, format(sum(mtx &gt; 10), big.mark=&quot;,&quot;, scientific=FALSE), 
+        &#39; values that are bigger than 10 \n&#39;, 
+        &#39;- &#39;, format(sum(mtx &gt; 100), big.mark=&quot;,&quot;, scientific=FALSE), 
+        &#39; values that are bigger than 100 \n&#39;, 
+        &#39;- &#39;, format(sum(mtx &gt; 1000), big.mark=&quot;,&quot;, scientific=FALSE), 
+        &#39; values that are bigger than 1,000 \n&#39;, 
+        &#39;- &#39;, format(sum(mtx &gt; 10000), big.mark=&quot;,&quot;, scientific=FALSE), 
+        &#39; values that are bigger than 10,000 \n&#39;, 
+        &#39;- &#39;, format(sum(mtx &gt; 100000), big.mark=&quot;,&quot;, scientific=FALSE), 
+        &#39; values that are bigger than 100,000 \n&#39;, 
         &#39; \n&#39;))
 }
 
