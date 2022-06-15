@@ -104,3 +104,4 @@ sudo apt-get update && sudo apt install -f -y && sudo apt-get autoremove -y && s
 ## 5. Watering Ran's plant
 
 - [x] 6/13/22 10:30am
+- [x] 6/15/22 9:00am
