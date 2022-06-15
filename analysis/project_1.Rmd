@@ -223,10 +223,7 @@ Expression <- Seurat::ReadMtx(mtx = "../Morris_2021/GSM5225857_cDNA.mtx",
                                 cell.column=1, 
                                 feature.column=1, 
                                 mtx.transpose=T)
-```
 
-
-```{r,eval=FALSE}
 # load gRNA data
 gRNA <- Seurat::ReadMtx(mtx = "../Morris_2021/GSM5225858_GDO.mtx", 
                                  features = "../Morris_2021/GSM5225858_GDO.features.txt", 
@@ -234,13 +231,12 @@ gRNA <- Seurat::ReadMtx(mtx = "../Morris_2021/GSM5225858_GDO.mtx",
                                  cell.column=1, 
                                  feature.column=1, 
                                  mtx.transpose=T)
+
 ```
 
 
 ```{r,eval=FALSE}
 overall <- function(mtx){
-  # mtx <- Expression
-  
   cat(paste0('The [', deparse(substitute(mtx)), '] matrix has: \n', 
         '- ', format(mtx@Dim[1], big.mark=",", scientific=FALSE), ' rows/genes/targets and \n', 
         '- ', format(mtx@Dim[2], big.mark=",", scientific=FALSE), ' columns/barcodes/cells \n',
@@ -255,8 +251,10 @@ overall <- function(mtx){
         '- ', format(sum(mtx > 100000), big.mark=",", scientific=FALSE), ' values that are bigger than 100,000 \n',
         ' \n'))
 }
+
 overall(Expression)
 overall(gRNA)
+
 ```
 
 
