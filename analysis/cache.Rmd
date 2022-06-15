@@ -1,0 +1,73 @@
+---
+title: "Cache"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Cache
+
+```{r,eval=FALSE}
+
+mean_targets <- rowMeans(mtx)
+mean_targets <- c(target_names)
+
+barcode_seqs <- colnames(mtx)
+mean_barcodes <- c(barcode_seqs)
+
+png(file="./analysis/images/0_checking_QC'ed_data.png",
+width=600, height=350)
+plot(mtx_min_mean_target)
+plot(mtx_max_mean_target)
+plot(mtx_min_mean_barcode)
+plot(mtx_max_mean_barcode)
+
+dev.off()
+
+
+```
+
+
+
+```{r,eval=FALSE}
+lapply(c("foreach", "doParallel"), require, character.only = TRUE)
+numCores <- detectCores(all.tests = FALSE, logical = TRUE)
+
+foreach (file = files) %dopar% {
+  
+}
+```
+
+**try:**
+```{r,eval=FALSE}
+class(f_exp_matrix)
+attributes(f_exp_matrix)
+dim(f_exp_matrix)
+f_exp_matrix[1,1]
+summary(f_exp_matrix[,1])
+
+
+col_num <- 199
+test <- f_exp_matrix[,col_num]
+sum(test !=0)
+plot(test)
+
+row_num <- 199
+
+row_num <- 199
+test <- f_exp_matrix[row_num,]
+sum(test != 0)
+plot(test)
+
+sum(f_exp_matrix >= 1)
+sum(f_exp_matrix > 1)
+sum(f_exp_matrix == 1)
+```
+
+- gene by cell
+- check how many cells with non zero expression genes
+- check how many gene with non zero expression cells
+- hist()
+```
