@@ -344,6 +344,9 @@ plot(mtx[,min_barcode], main="The cell with lowest overall gRNAs", sub="",
 
 ![]()
 
+try histogram 
+show % etc
+
 
 
 
