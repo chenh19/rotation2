@@ -285,7 +285,7 @@ The [Expression] matrix has:
  
 > overall(gRNA)
 The [gRNA] matrix has: 
-- 210 rows/genes/targets
+- 210 rows/genes/targets 
 - 137,347 columns/barcodes/cells 
 - 28,842,870 values in total 
 - 2,506,474 values that are non-zero 
@@ -298,54 +298,6 @@ The [gRNA] matrix has:
 - 0 values that are bigger than 100,000 
 
 ```
-
-
-
-```{r,eval=FALSE}
-mtx <- gRNA
-mtx <- mtx[,1:10000]
-
-target_names <- rownames(mtx)
-target_means <- c()
-for (target_name in target_names){
-  target_means <- c(target_means, mean(mtx[target_name,]))
-}
-target_means <- data.frame(target_names,target_means)
-colnames(target_means) <- c("target_name", "target_mean")
-
-barcode_seqs <- colnames(mtx)
-barcode_means <- c()
-for (barcode_seq in barcode_seqs){
-  barcode_means <- c(barcode_means, mean(mtx[,barcode_seq]))
-}
-barcode_means <- data.frame(barcode_seqs,barcode_means)
-colnames(barcode_means) <- c("barcode_seq", "barcode_mean")
-
-max_target <- target_means[which.max(target_means$target_mean), "target_name"]
-min_target <- target_means[which.min(target_means$target_mean), "target_name"]
-
-max_barcode <- barcode_means[which.max(barcode_means$barcode_mean), "barcode_seq"]
-min_barcode <- barcode_means[which.min(barcode_means$barcode_mean), "barcode_seq"]
-
-
-plot(mtx[max_target,])
-plot(mtx[,max_barcode])
-
-plot(mtx[max_target,], main="The highest gRNA in all cells", sub="",
-  xlab=paste0(max_target, " (gRNA)"), ylab="Expression level")
-plot(mtx[min_target,], main="The lowest gRNA in all cells", sub="",
-  xlab=paste0(min_target, " (gRNA)"), ylab="Expression level")
-
-plot(mtx[,max_barcode], main="The cell with highest overall gRNAs", sub="",
-  xlab=paste0(max_barcode, " (cell)"), ylab="Expression level")
-plot(mtx[,min_barcode], main="The cell with lowest overall gRNAs", sub="",
-  xlab=paste0(min_barcode, " (cell)"), ylab="Expression level")
-```
-
-![]()
-
-try histogram 
-show % etc
 
 
 

@@ -71,3 +71,109 @@ sum(f_exp_matrix == 1)
 - check how many gene with non zero expression cells
 - hist()
 ```
+
+TRASH
+
+```{r,eval=FALSE}
+
+
+#lab <- rep("", length(test))
+#lab[seq(1, length(test), by=5)] <-names(test)[seq(1, length(test), by=5)]
+
+
+
+test <- mtx[max_target,]
+number <- 1:ncol(mtx)
+test <- cbind(number, test)
+colnames(test) <- c("number","count")
+rownames(test) <- NULL
+
+test <- as.data.frame(test)
+as.numeric(test$number)
+as.numeric(test$count)
+#ggplot(test, aes(rownames(test), count)) + geom_bar(stat = "identity")
+
+
+ggplot(test, aes(x = number, y = count)) + geom_bar(stat = "identity")
+
+plot(as.factor(test$count))
+
+test <- mtx[max_target,]
+barplot(test)
+
+lab <- rep("", length(test))
+#lab[seq(1, length(test)] <-seq(0, length(test))
+barplot(test, names.arg=lab)
+
+
+
+
+number <- 1:ncol(mtx)
+test <- cbind(number, test)
+colnames(test) <- c("number","count")
+rownames(test) <- NULL
+test <- test[,count]
+
+
+
+
+
+
+
+
+
+
+
+
+
+lab <- rep("", length(test2))
+lab[seq(1, length(test2), by=1000)] <-names(test)[seq(1, length(test), by=1000)]
+barplot(dt, names.arg=lab)
+
+points <- seq(0, length(test2), by = 1000)   # create a sample curve
+names(test2) <- as.factor(seq(0, length(test2), by = 1000))
+
+
+
+barplot(test2)
+
+
+
+
+##################################3333
+
+
+number <- 1:ncol(mtx)
+max_target <- data.frame(number,mtx[max_target,])
+
+library(ggplot2)
+ggplot(max_target,geom="histogram")
+
+ggplot(data=max_target, aes(x=max_target[,1],y=max_target[,2])) + 
+  geom_histogram()
+
+
+hist(mtx[max_target,], main="The highest gRNA in all cells", sub="",
+  xlab=paste0(max_target, " (gRNA)"), ylab="Expression level", breaks = 100)
+
+png(file="C:/Datamentor/R-tutorial/saving_plot2.png",
+width=600, height=350)
+hist(Temperature, col="gold")
+dev.off()
+
+
+
+
+  breaks = seq(from = (mtx[max_target,1]), 
+               to = (mtx[max_target,length(mtx[max_target,])]), 
+               by = 10)
+
+
+
+
+
+
+
+
+
+```
