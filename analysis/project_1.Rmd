@@ -251,9 +251,13 @@ The [Hashtag] matrix has:
 [```Hashtag_matrix_barcodes_summary.csv```](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/Hashtag_matrix_barcodes_summary.csv)  
 [```Hashtag_matrix_targets_summary.csv```](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/Hashtag_matrix_targets_summary.csv)  
 
-### c. Expression dataset
+### c. Expression (cDNA) dataset
 
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/6_Expression_max_target.png)  
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/7_Expression_min_target.png)  
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/8_Expression_target_dist.png)  
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/9_Expression_target_dist_cdf.png)  
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/10_Expression_target_dist_pdf.png)  
 
 
 
