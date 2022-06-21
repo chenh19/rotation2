@@ -274,11 +274,11 @@ The [Hashtag] matrix has:
 
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/7_Expression_min_target.png)  
 
-**Comment:** Non-zero UMI counts for all genes (~35k, including mito genes)  
+**Comment:** Non-zero UMI counts for all genes (~35k, including mito genes; 686,612 cells intotal)  
 
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/8_Expression_target_dist.png)  
 
-**Comment:** CDF plot: ~80% genes have < ~5000 UMI counts in all cells (not all genes detected in each cell, but still a lot)  
+**Comment:** CDF plot: ~80% genes have < ~5000 UMI counts in all cells (not all genes captured in each cell, but I guess still a lot)  
 
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/9_Expression_target_dist_cdf.png)  
 
