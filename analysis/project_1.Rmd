@@ -256,11 +256,17 @@ The [Hashtag] matrix has:
 
 **Code:** [```Expression_barcode_dist_plot.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/3_dist_cdf/Expression_barcode_dist_plot.R)  
 
-**Comment:** 
+(Figures: pending)  
+
+#### ii) Expression targets
+
+**Code:** [```Expression_target_dist_plot.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/3_dist_cdf/Expression_target_dist_plot.R)  
+
+**Comment:** The highest expressed gene is *WDR45-like (WDR45L) pseudogene* (high UMI counts in all cells)  
 
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/6_Expression_max_target.png)  
 
-**Comment:** 
+**Comment:** The lowest expressed gene is *RP4-669L17.1 pseudogene* (zero UMI counts in all cells)  
 
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/7_Expression_min_target.png)  
 
@@ -276,11 +282,6 @@ The [Hashtag] matrix has:
 
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/10_Expression_target_dist_pdf.png)  
 
-#### ii) Expression targets
-
-**Code:** [```Expression_target_dist_plot.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/3_dist_cdf/Expression_target_dist_plot.R)  
-
-(Figures: pending)
 
 ### e. gRNA dataset
 
