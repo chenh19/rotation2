@@ -83,7 +83,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * [Cellular Indexing of Transcriptomes and Epitopes by Sequencing (CITE-seq)](https://cite-seq.com/)
 * [Expanded CRISPR-compatible CITE-seq (ECCITE-Seq)](https://cite-seq.com/eccite-seq/)
-* **cDNA**, **HTO** (Hashing antibody-oligos), **GDO** (gRNAs)
+* **cDNA**, **HTO** (Hashtag oligos), **GDO** (gRNAs)
 * **ECCITE-seq:**  
 
 <center>
