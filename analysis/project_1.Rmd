@@ -329,7 +329,7 @@ The [Hashtag] matrix has:
 
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/7_gRNA_min_target.png)  
 
-**Comment:** Non-zero UMI counst for all gRNAs (I'd say the transfection/transduction efficiency varies among gRNAs. The authors designed all the gRNAs within 200bp of the targeted variants,there must be limitations in terms of gRNA selection)  
+**Comment:** Non-zero UMI counst for all gRNAs (137,347 cells in total; I'd say the transfection/transduction efficiency varies among gRNAs. The authors designed all the gRNAs within 200bp of the targeted variants,there must be limitations in terms of gRNA options)  
 
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/8_gRNA_target_dist.png)  
 
