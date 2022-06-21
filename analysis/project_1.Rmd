@@ -251,7 +251,7 @@ The [Hashtag] matrix has:
 [```Hashtag_matrix_barcodes_summary.csv```](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/Hashtag_matrix_barcodes_summary.csv)  
 [```Hashtag_matrix_targets_summary.csv```](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/Hashtag_matrix_targets_summary.csv)  
 
-### c. Expression (cDNA) dataset
+### d. Expression (cDNA) dataset
 
 #### i) Expression barcodes
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/6_Expression_max_target.png)  
@@ -264,7 +264,7 @@ The [Hashtag] matrix has:
 
 
 
-### d. gRNA dataset
+### e. gRNA dataset
 
 #### i) gRNA barcodes
 
@@ -283,7 +283,7 @@ The [Hashtag] matrix has:
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/10_gRNA_target_dist_pdf.png)  
 
 
-### e. Hashtag dataset
+### f. Hashtag dataset
 
 #### i) Hashtag barcodes
 
