@@ -274,7 +274,7 @@ The [Hashtag] matrix has:
 
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/7_Expression_min_target.png)  
 
-**Comment:** Non-zero UMI counts for all genes (~35k)  
+**Comment:** Non-zero UMI counts for all genes (~35k, including mito genes)  
 
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/8_Expression_target_dist.png)  
 
