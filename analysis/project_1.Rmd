@@ -187,7 +187,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **Note: about [sparse matrix](https://slowkow.com/notes/sparse-matrix/)**
 
-
 ```
 The [Expression] matrix has: 
 - 35,606 rows/genes/targets 
@@ -229,6 +228,38 @@ The [Hashtag] matrix has:
 - 0 values that are bigger than 100,000 
 
 ```
+
+### c. Calculate means and sum non-zero UMI counts
+
+**Code:** [```Expression_barcode_stats.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/2_mean_non-zero/Expression_barcode_stats.R)  
+**Code:** [```Expression_target_stats.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/2_mean_non-zero/Expression_target_stats.R)  
+
+**Code:** [```gRNA_barcode_stats.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/2_mean_non-zero/gRNA_barcode_stats.R)  
+**Code:** [```gRNA_target_stats.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/2_mean_non-zero/gRNA_target_stats.R)  
+
+**Code:** [```Hashtag_barcode_stats.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/2_mean_non-zero/Hashtag_barcode_stats.R)  
+**Code:** [```Hashtag_target_stats.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/2_mean_non-zero/Hashtag_target_stats.R)  
+
+#### Output:
+
+[```Expression_matrix_barcodes_summary.csv```](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/Expression_matrix_barcodes_summary.csv) (pending)  
+[```Expression_matrix_targets_summary.csv```](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/Expression_matrix_targets_summary.csv)  
+
+[```gRNA_matrix_barcodes_summary.csv```](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/gRNA_matrix_barcodes_summary.csv)  
+[```gRNA_matrix_targets_summary.csv```](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/gRNA_matrix_targets_summary.csv)  
+
+[```Hashtag_matrix_barcodes_summary.csv```](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/Hashtag_matrix_barcodes_summary.csv)  
+[```Hashtag_matrix_targets_summary.csv```](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/Hashtag_matrix_targets_summary.csv)  
+
+### c. Expression dataset
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/6_Expression_max_target.tif)  
+
+
+### d. gRNA dataset
+
+
+### e. Hashtag dataset
 
 
 
