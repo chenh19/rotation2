@@ -296,7 +296,7 @@ The [Hashtag] matrix has:
 
 **Code:** [```gRNA_barcode_dist_plot.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/3_dist_cdf/gRNA_barcode_dist_plot.R)  
 
-**Comment:** The cell with highest overall (mean) gRNAs, and it has 15 gRNAs  
+**Comment:** The cell with highest overall (mean) gRNAs, and it has 15 highly expressed gRNAs  
 
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/1_gRNA_max_barcode.png)  
 
