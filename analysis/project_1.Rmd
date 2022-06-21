@@ -253,18 +253,54 @@ The [Hashtag] matrix has:
 
 ### c. Expression (cDNA) dataset
 
+#### i) Expression barcodes
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/6_Expression_max_target.png)  
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/7_Expression_min_target.png)  
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/8_Expression_target_dist.png)  
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/9_Expression_target_dist_cdf.png)  
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/10_Expression_target_dist_pdf.png)  
 
+#### ii) Expression targets
+
 
 
 ### d. gRNA dataset
 
+#### i) gRNA barcodes
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/1_gRNA_max_barcode.png)  
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/2_gRNA_min_barcode.png)  
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/3_gRNA_barcode_dist.png)  
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/4_gRNA_barcode_dist_cdf.png)  
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/5_gRNA_barcode_dist_pdf.png)  
+
+#### ii) gRNA targets
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/6_gRNA_max_target.png)  
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/7_gRNA_min_target.png)  
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/8_gRNA_target_dist.png)  
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/9_gRNA_target_dist_cdf.png)  
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/10_gRNA_target_dist_pdf.png)  
+
 
 ### e. Hashtag dataset
+
+#### i) Hashtag barcodes
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/1_Hashtag_max_barcode.png)  
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/2_Hashtag_min_barcode.png)  
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/3_Hashtag_barcode_dist.png)  
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/4_Hashtag_barcode_dist_cdf.png)  
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/5_Hashtag_barcode_dist_pdf.png)  
+
+
+#### i) Hashtag targets
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/6_Hashtag_max_target.png)  
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/7_Hashtag_min_target.png)  
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/8_Hashtag_target_dist.png)  
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/9_Hashtag_target_dist_cdf.png)  
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/10_Hashtag_target_dist_pdf.png)  
 
 
 
