@@ -19,7 +19,7 @@ editor_options:
 - [x] read Yalamanchili *et al.* 2017
 - [x] perform fastqc on demuxed fastq files
 - [x] know what else QC should be done (roughly)
-- [ ] overview
+- [x] overview before QC
 - [ ] perform QC (learn Seurat functions, such as filtering out mito genes)
 - [ ] check QC'ed scRNA-seq data (expression distribution)
 - [ ] perform association analysis (*cis*-regulation)
