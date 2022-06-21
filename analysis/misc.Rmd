@@ -65,37 +65,10 @@ git push -u origin main
 
 ## 3. Git SSH configuration
 
-```{bash,eval=FALSE}
-# check for existing keys
-#ls -al ~/.ssh
-
-# create a key if does not exist
-ssh-keygen -t ed25519 -C "your_email@example.com"
-# when asked "Enter a file in which to save the key," press Enter (default file location)
-# input a passphrase (anything you can remember)
-
-# add SSH key to ssh-agent-
-eval `ssh-agent -s`
-ssh-add ~/.ssh/id_ed25519
-
-# get the key
-cat ~/.ssh/id_ed25519.pub
-# copy the output key, then navigate to Github account and add the ssh key
-```
-
 - Ref: [YouTube](https://youtu.be/YnSMYgIybFU)
 
 
 ## 4. Canon printer configuration
-
-```{bash, eval=FALSE}
-# Canon Color ImageCLASS MF735Cdw driver for linux
-cd ~/Downloads
-wget -q -O linux-UFRII-drv-v550-us-00.tar.gz https://pdisp01.c-wss.com/gdl/WWUFORedirectTarget.do?id=MDEwMDAwOTIzNjEx&cmp=ABR&lang=EN && sleep 10 && 
-tar -xf linux-UFRII-drv-v550-us-00.tar.gz && sleep 1 && rm linux-UFRII-drv-v550-us-00.tar.gz
-sudo bash ./linux-UFRII-drv-v550-us/install.sh && sleep 1 && rm -rf ./linux-UFRII-drv-v550-us/
-sudo apt-get update && sudo apt install -f -y && sudo apt-get autoremove -y && sudo apt-get clean
-```
 
 - Note: the private IP address is labeled on the printer.
 - Ref: [Canon Support](https://www.usa.canon.com/internet/portal/us/home/support/details/printers/color-laser/color-imageclass-mf735cdw)

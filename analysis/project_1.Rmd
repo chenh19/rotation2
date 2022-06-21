@@ -12,44 +12,8 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 1. Understand STING-seq
+## 1. Understand RNA-seq and STING-seq
 
-### a. Read the Morris paper
-
-[Morris *et al.* 2021: STING-Seq](https://chenh19.github.io/rotation2/refs/Morris_2020.pdf)
-
-#### Some key points:
-
-**Some key ideas:**  
-
-* STING-seq: Systematic Targeting and Inbition of Noncoding GWAS loci with scRNA-seq
-* prioritizes candidate *cis*-regulatory elements (cCREs, 1kb<distance to TSS<1Mb) using fine-mapped GWAS
-* selected 88 variants (in 56 loci) with enhancer activity
-* dual CRISPR inhibition: dCas9 as the GPS, MeCP2 and KRAB as the repressors
-* confirming dual CRISPRi efficacy: gRNAs target TSS of *MRPS23*, *CTSB*, *FSCN1*
-* CRIPSRi on the 88 variants: two gRNAs for each variant, both within 200bp of the variant
-* ECCITE-seq: captures gRNAs and epitopes
-
-**Some data processing steps and results:**  
-
-* QC: remove cells with low total reads or excessive mitochondrial reads, gRNA assignment UMI>5 (9,343 cells after QC)
-* **Kallisto:** counting [read more on the official website](https://pachterlab.github.io/kallisto/)
-* **Seurat:** QC and ```reference mapping?``` [read more on the official website](https://satijalab.org/seurat/)
-* **SCEPTRE:** gRNA_to_gene-expression pairwise test
-* non-targeting gRNA-gene pairs: not significant (negative ctrl)
-* TSS-targeting gRNA-gene pairs: expression significantly decreased (positive ctrl)
-* 37 of the 88 variants were significant
-* *Trans*-regulatory elements: ```I'll come back later```
-
-**Note:**  
-
-* [Expanded CRISPR-compatible CITE-seq (ECCITE-Seq)](https://cite-seq.com/eccite-seq/)
-* [Cellular Indexing of Transcriptomes and Epitopes by Sequencing (CITE-seq)](https://cite-seq.com/)
-
-
-
-
-## 2. Prelim QC for STING-seq data
 
 ### a. Read about RNA-seq analysis
 
@@ -79,7 +43,62 @@ knitr::opts_chunk$set(echo = TRUE)
 * detect differential junstions (CrypSplice)
 
 
-### c. Perform FastQC on all fastq files
+
+### b. Read more about RNA-seq analysis
+
+[Luecken *et al.* 2019: RNA-seq analysis pipeline](https://chenh19.github.io/rotation2/refs/Luecken_2019.pdf) 
+
+#### Some key points:
+
+
+
+### c. Read the Morris paper
+
+[Morris *et al.* 2021: STING-Seq](https://chenh19.github.io/rotation2/refs/Morris_2020.pdf)
+
+#### Some key points:
+
+**Some key ideas:**  
+
+* STING-seq: Systematic Targeting and Inbition of Noncoding GWAS loci with scRNA-seq
+* prioritizes candidate *cis*-regulatory elements (cCREs, 1kb<distance to TSS<1Mb) using fine-mapped GWAS
+* selected 88 variants (in 56 loci) with enhancer activity
+* dual CRISPR inhibition: dCas9 as the GPS, MeCP2 and KRAB as the repressors
+* confirming dual CRISPRi efficacy: gRNAs target TSS of *MRPS23*, *CTSB*, *FSCN1*
+* CRIPSRi on the 88 variants: two gRNAs for each variant, both within 200bp of the variant
+* ECCITE-seq: captures gRNAs and epitopes
+
+**Some data processing steps and results:**  
+
+* QC: remove cells with low total reads or excessive mitochondrial reads, gRNA assignment UMI>5 (9,343 cells after QC)
+* **Kallisto:** counting [read more on the official website](https://pachterlab.github.io/kallisto/)
+* **Seurat:** QC and ```reference mapping?``` [read more on the official website](https://satijalab.org/seurat/)
+* **SCEPTRE:** gRNA_to_gene-expression pairwise test
+* non-targeting gRNA-gene pairs: not significant (negative ctrl)
+* TSS-targeting gRNA-gene pairs: expression significantly decreased (positive ctrl)
+* 37 of the 88 variants were significant
+* *Trans*-regulatory elements: ```I'll come back later```
+
+**Note:**  
+
+* [Cellular Indexing of Transcriptomes and Epitopes by Sequencing (CITE-seq)](https://cite-seq.com/)
+* [Expanded CRISPR-compatible CITE-seq (ECCITE-Seq)](https://cite-seq.com/eccite-seq/)
+* **cDNA**, **HTO** (Hashing antibody-oligos), **GDO** (gRNAs)
+* **ECCITE-seq:**  
+
+<center>
+![](https://citeseq.files.wordpress.com/2018/11/eccite.png){width=70%}
+</center>
+
+
+
+## 2. Prelim QC for raw STING-seq data
+
+### a. Download all data
+
+**Code:** [```download.sh```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/download.sh)
+
+### b. Perform FastQC on all fastq files
 
 **SRR14141135:**  
 
@@ -150,26 +169,16 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### d. Kallisto | bustools pipeline
 
+[**pip3-kb.sh**](https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/pip3-kb.sh)
+
+
+
 
 ## 3. Analyze QC'ed STING-seq data
 
-**Note:**  
-
-* **cDNA**, **HTO** (Hashing antibody-oligos), **GDO** (gRNAs)
-* **ECCITE-seq:**  
-
-<center>
-![](https://citeseq.files.wordpress.com/2018/11/eccite.png){width=70%}
-</center>
+[**overview.R**](https://raw.githubusercontent.com/chenh19/rotation2/main/code/1_overview/overview,R)
 
 ### a. Install R packages
-
-```{bash,eval=FALSE}
-sudo apt-get update && sudo apt-get install libgeos-dev -y
-sudo -i R
-installe.packages("Seurat")
-q()
-```
 
 ### b. Import QC'ed data
 

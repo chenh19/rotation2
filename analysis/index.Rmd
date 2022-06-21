@@ -19,6 +19,8 @@ editor_options:
 - [x] read Yalamanchili *et al.* 2017
 - [x] perform fastqc on demuxed fastq files
 - [x] know what else QC should be done (roughly)
+- [ ] overview
+- [ ] perform QC
 - [ ] check QC'ed scRNA-seq data (expression distribution)
 - [ ] perform association analysis (*cis*-regulation)
 
@@ -29,3 +31,4 @@ editor_options:
 [**Miscellaneous:**](https://chenh19.github.io/rotation2/misc.html)
 
 - [x] organize all logistics
+- [x] organize all code into separate scripts
