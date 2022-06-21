@@ -27,3 +27,6 @@ From [Morris *et al.* 2021: STING-Seq](https://chenh19.github.io/rotation2/refs/
 - [Katsevich-Lab/sceptre](https://github.com/Katsevich-Lab/sceptre)
 - [Katsevich-Lab/sceptre-manuscript](https://github.com/Katsevich-Lab/sceptre-manuscript)
 
+### c. Install the package
+
+**Code:** [```sceptre.sh```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/sceptre.sh)  

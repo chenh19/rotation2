@@ -46,7 +46,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### b. Read more about RNA-seq analysis
 
-[Luecken *et al.* 2019: RNA-seq analysis pipeline](https://chenh19.github.io/rotation2/refs/Luecken_2019.pdf) 
+[Luecken *et al.* 2019: RNA-seq analysis pipeline](https://chenh19.github.io/rotation2/refs/Luecken_2019.pdf)  
 
 #### Some key points:
 
@@ -54,7 +54,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### c. Read the Morris paper
 
-[Morris *et al.* 2021: STING-Seq](https://chenh19.github.io/rotation2/refs/Morris_2020.pdf)
+[Morris *et al.* 2021: STING-Seq](https://chenh19.github.io/rotation2/refs/Morris_2020.pdf)  
 
 #### Some key points:
 
@@ -96,9 +96,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### a. Download all data
 
-**Code:** [```download.sh```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/download.sh)
+**Code:** [```download.sh```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/download.sh)  
 
 ### b. Perform FastQC on all fastq files
+
+**Code:** [```fastqc.sh```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/fastqc.sh)  
 
 **SRR14141135:**  
 
@@ -169,18 +171,19 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### d. Kallisto | bustools pipeline
 
-[**pip3-kb.sh**](https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/pip3-kb.sh)
-
-
+**Code:** [```pip3-kb.sh```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/pip3-kb.sh)  
+**Code:** [```anaconda_kallisto.sh```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/anaconda_kallisto.sh)  
 
 
 ## 3. Analyze QC'ed STING-seq data
 
-[**overview.R**](https://raw.githubusercontent.com/chenh19/rotation2/main/code/1_overview/overview,R)
+**Code:** [```overview.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/1_overview/overview.R)  
 
-### a. Install R packages
+### a. Install packages
 
-### b. Import QC'ed data
+**Code:** [```seurat.sh```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/seurat.sh)  
+
+### b. Data overview
 
 **Note: about [sparse matrix](https://slowkow.com/notes/sparse-matrix/)**
 

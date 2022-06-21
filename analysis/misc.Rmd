@@ -65,10 +65,14 @@ git push -u origin main
 
 ## 3. Git SSH configuration
 
+**Code:** [```git_ssh_config.sh```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/git_ssh_config.sh)  
+
 - Ref: [YouTube](https://youtu.be/YnSMYgIybFU)
 
 
 ## 4. Canon printer configuration
+
+**Code:** [```canon_printer.sh```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/canon_printer.sh)  
 
 - Note: the private IP address is labeled on the printer.
 - Ref: [Canon Support](https://www.usa.canon.com/internet/portal/us/home/support/details/printers/color-laser/color-imageclass-mf735cdw)
