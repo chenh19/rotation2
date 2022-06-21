@@ -253,7 +253,7 @@ The [Hashtag] matrix has:
 
 ### c. Expression dataset
 
-![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/6_Expression_max_target.tif)  
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/6_Expression_max_target.png)  
 
 
 
