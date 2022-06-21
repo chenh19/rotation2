@@ -304,7 +304,7 @@ The [Hashtag] matrix has:
 
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/2_gRNA_min_barcode.png)  
 
-**Comment:** Non-zero UMI counts in all cells  
+**Comment:** Non-zero UMI counts in all cells (I'd say the transfection/transduction relatively even across all cells)  
 
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/3_gRNA_barcode_dist.png)  
 
