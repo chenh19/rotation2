@@ -176,15 +176,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## 3. Analyze QC'ed STING-seq data
 
-**Code:** [```overview.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/1_overview/overview.R)  
-
 ### a. Install packages
 
 **Code:** [```seurat.sh```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/seurat.sh)  
 
 ### b. Data overview
 
-**Note: about [sparse matrix](https://slowkow.com/notes/sparse-matrix/)**
+**Code:** [```overview.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/1_overview/overview.R)  
+**Note: about [sparse matrix](https://slowkow.com/notes/sparse-matrix/)**  
 
 ```
 The [Expression] matrix has: 
