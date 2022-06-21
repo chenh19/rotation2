@@ -401,7 +401,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-06-20
+<strong>Last updated:</strong> 2022-06-21
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -532,15 +532,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree6d7819804c4fb4096df50dbe8b66acfa5b0fd935targetblank6d78198a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree4a8f7ee0d2951edf4dfe859a7854d7fda03f9a66targetblank4a8f7eea">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/chenh19/rotation2/tree/6d7819804c4fb4096df50dbe8b66acfa5b0fd935" target="_blank">6d78198</a>
+<a href="https://github.com/chenh19/rotation2/tree/4a8f7ee0d2951edf4dfe859a7854d7fda03f9a66" target="_blank">4a8f7ee</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree6d7819804c4fb4096df50dbe8b66acfa5b0fd935targetblank6d78198a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree4a8f7ee0d2951edf4dfe859a7854d7fda03f9a66targetblank4a8f7eea"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -550,7 +550,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/chenh19/rotation2/tree/6d7819804c4fb4096df50dbe8b66acfa5b0fd935" target="_blank">6d78198</a>.
+<a href="https://github.com/chenh19/rotation2/tree/4a8f7ee0d2951edf4dfe859a7854d7fda03f9a66" target="_blank">4a8f7ee</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -564,22 +564,28 @@ depends on. Below is the status of the Git repository when the results
 were generated:
 </p>
 <pre><code>
-Ignored files:
-    Ignored:    analysis/cache/
-    Ignored:    data/genes/
-
 Untracked files:
-    Untracked:  analysis/results/
-    Untracked:  code/1_mean_non-zero/
-    Untracked:  code/2_dist_cdf/
-    Untracked:  test.mtx
+    Untracked:  analysis/cache/
+    Untracked:  code/0_prepare/
+    Untracked:  code/1_overview/
+    Untracked:  code/2_mean_non-zero/
+    Untracked:  code/3_dist_cdf/
+    Untracked:  output/Expression/
+    Untracked:  output/Hashtag/
+    Untracked:  output/gRNA/
 
 Unstaged changes:
+    Modified:   .RData
     Modified:   .Rhistory
+    Deleted:    analysis/cache.Rmd
     Deleted:    analysis/images/gRNAs/gRNA_1.png
     Deleted:    analysis/images/gRNAs/gRNA_2.png
     Deleted:    analysis/images/gRNAs/gRNA_3.png
     Deleted:    analysis/images/gRNAs/gRNA_4.png
+    Deleted:    code/README.md
+    Deleted:    data/README.md
+    Deleted:    data/test.txt
+    Deleted:    output/README.md
 
 </code></pre>
 <p>
@@ -625,6 +631,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/4a8f7ee0d2951edf4dfe859a7854d7fda03f9a66/analysis/project_1.Rmd" target="_blank">4a8f7ee</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/b002776e81b7202b9986fa4ed9be2373d5f276f2/docs/project_1.html" target="_blank">b002776</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-20
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -2487,19 +2527,8 @@ ranger</a></strong>)</li>
 </ul>
 </div>
 </div>
-<div id="b.-download-data" class="section level3">
-<h3>b. Download data</h3>
-<pre class="bash"><code>rsync -a hchen131@midway2.rcc.uchicago.edu:/project2/xuanyao/data/Morris_2021 ~/Desktop</code></pre>
-</div>
 <div id="c.-perform-fastqc-on-all-fastq-files" class="section level3">
 <h3>c. Perform FastQC on all fastq files</h3>
-<pre class="bash"><code># install fastqc
-sudo apt-get update &amp;&amp; sudo apt-get install fastqc -y
-
-# run fastqc in parallel
-cd ~/rotation2/
-[ ! -d ../Morris_2021/fastqc_results/ ] &amp;&amp; mkdir ../Morris_2021/fastqc_results/
-fastqc --threads 16 ../Morris_2021/STINGseq_Morris_2021_raw/*.fastq.gz --outdir=../Morris_2021/fastqc_results/</code></pre>
 <p><strong>SRR14141135:</strong></p>
 <ul>
 <li><a
@@ -2607,28 +2636,6 @@ href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141146_GDO_Homo_sa
 </div>
 <div id="d.-kallisto-bustools-pipeline" class="section level3">
 <h3>d. Kallisto | bustools pipeline</h3>
-<p><strong>Install package: pip3 install kb:</strong></p>
-<pre class="bash"><code># install via python3-pip (python3 is installed by default)
-sudo apt-get update &amp;&amp; sudo apt install python3-pip -y
-sudo pip3 install kb-python
-
-# run
-kb</code></pre>
-<p><strong>Side note: conda install kallisto (not necessary for
-kb):</strong></p>
-<pre class="bash"><code># install anaconda
-[ ! -d ./shscript/ ] &amp;&amp; mkdir ./shscript/
-wget -O ./shscript/Anaconda-latest-Linux-x86_64.sh https://repo.anaconda.com/archive/Anaconda3-2022.05-Linux-x86_64.sh
-bash ./shscript/Anaconda-latest-Linux-x86_64.sh &amp;&amp; sleep 3
-conda update anaconda -y &amp;&amp; conda update --all -y
-conda config --add channels defaults
-conda config --add channels bioconda
-conda config --add channels conda-forge
-conda install kallisto -y
-conda config --set auto_activate_base false # disable auto activate base in terminal
-#conda activate # activate base when needed
-#rm -rf ~/anaconda3/ # uninstall anaconda
-rm -rf ./shscript/</code></pre>
 </div>
 </div>
 <div id="analyze-qced-sting-seq-data" class="section level2">
@@ -2655,52 +2662,7 @@ q()</code></pre>
 <p><strong>Note: about <a
 href="https://slowkow.com/notes/sparse-matrix/">sparse
 matrix</a></strong></p>
-<pre class="r"><code># load expression data
-Expression &lt;- Seurat::ReadMtx(mtx = &quot;../Morris_2021/GSM5225857_cDNA.mtx&quot;, 
-                                features = &quot;../Morris_2021/GSM5225857_cDNA.features.txt&quot;, 
-                                cells = &quot;../Morris_2021/GSM5225857_cDNA.barcodes.txt&quot;, 
-                                cell.column=1, 
-                                feature.column=1, 
-                                mtx.transpose=T)
-
-# load gRNA data
-gRNA &lt;- Seurat::ReadMtx(mtx = &quot;../Morris_2021/GSM5225858_GDO.mtx&quot;, 
-                                 features = &quot;../Morris_2021/GSM5225858_GDO.features.txt&quot;, 
-                                 cells = &quot;../Morris_2021/GSM5225858_GDO.barcodes.txt&quot;, 
-                                 cell.column=1, 
-                                 feature.column=1, 
-                                 mtx.transpose=T)</code></pre>
-<pre class="r"><code>overall &lt;- function(mtx){
-  cat(paste0(&#39;The [&#39;, deparse(substitute(mtx)), &#39;] matrix has: \n&#39;, 
-        &#39;- &#39;, format(mtx@Dim[1], big.mark=&quot;,&quot;, scientific=FALSE), 
-        &#39; rows/genes/targets \n&#39;, 
-        &#39;- &#39;, format(mtx@Dim[2], big.mark=&quot;,&quot;, scientific=FALSE), 
-        &#39; columns/barcodes/cells \n&#39;, 
-        &#39;- &#39;, format(length(mtx), big.mark=&quot;,&quot;, scientific=FALSE), 
-        &#39; values in total \n&#39;, 
-        &#39;- &#39;, format(sum(mtx != 0), big.mark=&quot;,&quot;, scientific=FALSE), 
-        &#39; values that are non-zero \n&#39;, 
-        &#39;- &#39;, format(sum(mtx == 1), big.mark=&quot;,&quot;, scientific=FALSE), 
-        &#39; values that are 1 \n&#39;, 
-        &#39;- &#39;, format(sum(mtx &gt; 1), big.mark=&quot;,&quot;, scientific=FALSE), 
-        &#39; values that are bigger than 1 \n&#39;, 
-        &#39;- &#39;, format(sum(mtx &gt; 10), big.mark=&quot;,&quot;, scientific=FALSE), 
-        &#39; values that are bigger than 10 \n&#39;, 
-        &#39;- &#39;, format(sum(mtx &gt; 100), big.mark=&quot;,&quot;, scientific=FALSE), 
-        &#39; values that are bigger than 100 \n&#39;, 
-        &#39;- &#39;, format(sum(mtx &gt; 1000), big.mark=&quot;,&quot;, scientific=FALSE), 
-        &#39; values that are bigger than 1,000 \n&#39;, 
-        &#39;- &#39;, format(sum(mtx &gt; 10000), big.mark=&quot;,&quot;, scientific=FALSE), 
-        &#39; values that are bigger than 10,000 \n&#39;, 
-        &#39;- &#39;, format(sum(mtx &gt; 100000), big.mark=&quot;,&quot;, scientific=FALSE), 
-        &#39; values that are bigger than 100,000 \n&#39;, 
-        &#39; \n&#39;))
-}
-
-overall(Expression)
-overall(gRNA)</code></pre>
-<pre><code>&gt; overall(Expression)
-The [Expression] matrix has: 
+<pre><code>The [Expression] matrix has: 
 - 35,606 rows/genes/targets 
 - 686,612 columns/barcodes/cells 
 - 24,447,506,872 values in total 
@@ -2713,7 +2675,6 @@ The [Expression] matrix has:
 - 0 values that are bigger than 10,000 
 - 0 values that are bigger than 100,000 
  
-&gt; overall(gRNA)
 The [gRNA] matrix has: 
 - 210 rows/genes/targets 
 - 137,347 columns/barcodes/cells 
@@ -2725,6 +2686,19 @@ The [gRNA] matrix has:
 - 41,071 values that are bigger than 100 
 - 2,232 values that are bigger than 1,000 
 - 20 values that are bigger than 10,000 
+- 0 values that are bigger than 100,000 
+ 
+The [Hashtag] matrix has: 
+- 4 rows/genes/targets 
+- 410,228 columns/barcodes/cells 
+- 1,640,912 values in total 
+- 739,820 values that are non-zero 
+- 409,830 values that are 1 
+- 329,990 values that are bigger than 1 
+- 218,280 values that are bigger than 10 
+- 8,155 values that are bigger than 100 
+- 282 values that are bigger than 1,000 
+- 46 values that are bigger than 10,000 
 - 0 values that are bigger than 100,000 
 </code></pre>
 <br>
