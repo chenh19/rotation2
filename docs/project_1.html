@@ -532,15 +532,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree4a8f7ee0d2951edf4dfe859a7854d7fda03f9a66targetblank4a8f7eea">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree356550c44776a8a85c8e874d45a949866f77791ctargetblank356550ca">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/chenh19/rotation2/tree/4a8f7ee0d2951edf4dfe859a7854d7fda03f9a66" target="_blank">4a8f7ee</a>
+<a href="https://github.com/chenh19/rotation2/tree/356550c44776a8a85c8e874d45a949866f77791c" target="_blank">356550c</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree4a8f7ee0d2951edf4dfe859a7854d7fda03f9a66targetblank4a8f7eea"
+id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree356550c44776a8a85c8e874d45a949866f77791ctargetblank356550ca"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -550,7 +550,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/chenh19/rotation2/tree/4a8f7ee0d2951edf4dfe859a7854d7fda03f9a66" target="_blank">4a8f7ee</a>.
+<a href="https://github.com/chenh19/rotation2/tree/356550c44776a8a85c8e874d45a949866f77791c" target="_blank">356550c</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -631,6 +631,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/356550c44776a8a85c8e874d45a949866f77791c/analysis/project_1.Rmd" target="_blank">356550c</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/21e9501b5edb27c58a7a5416e4978352a99e4423/docs/project_1.html" target="_blank">21e9501</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -2440,14 +2474,56 @@ update
 </div>
 </div>
 </div>
-<div id="understand-sting-seq" class="section level2">
-<h2>1. Understand STING-seq</h2>
-<div id="a.-read-the-morris-paper" class="section level3">
-<h3>a. Read the Morris paper</h3>
+<div id="understand-rna-seq-and-sting-seq" class="section level2">
+<h2>1. Understand RNA-seq and STING-seq</h2>
+<div id="a.-read-about-rna-seq-analysis" class="section level3">
+<h3>a. Read about RNA-seq analysis</h3>
+<p><a
+href="https://chenh19.github.io/rotation2/refs/Yalamanchili_2017.pdf">Yalamanchili
+<em>et al.</em> 2017: RNA-seq analysis pipeline</a></p>
+<div id="some-key-points" class="section level4">
+<h4>Some key points:</h4>
+<p><strong>Protocol-1 (differential expression of genes):</strong></p>
+<ul>
+<li>demuxed raw reads (FastQC)</li>
+<li>trimming reads (awk)</li>
+<li>aligning reads (TopHat2)</li>
+<li>counting reads (HTSeq; may filter out genes with low counts before
+next step)</li>
+<li>detect DE using counted reads (DEseq2)</li>
+<li>more QC (PCA/correlation heatmap)</li>
+</ul>
+<p><strong>Protocol-2 (differential usage of isoforms):</strong></p>
+<ul>
+<li>Protocol-1</li>
+<li>counting isoforms (Kallisto, <strong>also check <a
+href="https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger">cell
+ranger</a></strong>)</li>
+<li>detect DU using counted isoforms (Sleuth)</li>
+<li>more QC (aslo PCA/correlation heatmap)</li>
+</ul>
+<p><strong>Protocol-3 (crypic splicing):</strong></p>
+<ul>
+<li>Protocol-1</li>
+<li>detect differential junstions (CrypSplice)</li>
+</ul>
+</div>
+</div>
+<div id="b.-read-more-about-rna-seq-analysis" class="section level3">
+<h3>b. Read more about RNA-seq analysis</h3>
+<p><a
+href="https://chenh19.github.io/rotation2/refs/Luecken_2019.pdf">Luecken
+<em>et al.</em> 2019: RNA-seq analysis pipeline</a></p>
+<div id="some-key-points-1" class="section level4">
+<h4>Some key points:</h4>
+</div>
+</div>
+<div id="c.-read-the-morris-paper" class="section level3">
+<h3>c. Read the Morris paper</h3>
 <p><a
 href="https://chenh19.github.io/rotation2/refs/Morris_2020.pdf">Morris
 <em>et al.</em> 2021: STING-Seq</a></p>
-<div id="some-key-points" class="section level4">
+<div id="some-key-points-2" class="section level4">
 <h4>Some key points:</h4>
 <p><strong>Some key ideas:</strong></p>
 <ul>
@@ -2484,51 +2560,30 @@ website</a></li>
 </ul>
 <p><strong>Note:</strong></p>
 <ul>
-<li><a href="https://cite-seq.com/eccite-seq/">Expanded
-CRISPR-compatible CITE-seq (ECCITE-Seq)</a></li>
 <li><a href="https://cite-seq.com/">Cellular Indexing of Transcriptomes
 and Epitopes by Sequencing (CITE-seq)</a></li>
+<li><a href="https://cite-seq.com/eccite-seq/">Expanded
+CRISPR-compatible CITE-seq (ECCITE-Seq)</a></li>
+<li><strong>cDNA</strong>, <strong>HTO</strong> (Hashing
+antibody-oligos), <strong>GDO</strong> (gRNAs)</li>
+<li><strong>ECCITE-seq:</strong></li>
 </ul>
+<center>
+<img src="https://citeseq.files.wordpress.com/2018/11/eccite.png"
+style="width:70.0%" />
+</center>
 </div>
 </div>
 </div>
-<div id="prelim-qc-for-sting-seq-data" class="section level2">
-<h2>2. Prelim QC for STING-seq data</h2>
-<div id="a.-read-about-rna-seq-analysis" class="section level3">
-<h3>a. Read about RNA-seq analysis</h3>
-<p><a
-href="https://chenh19.github.io/rotation2/refs/Yalamanchili_2017.pdf">Yalamanchili
-<em>et al.</em> 2017: RNA-seq analysis pipeline</a></p>
-<div id="some-key-points-1" class="section level4">
-<h4>Some key points:</h4>
-<p><strong>Protocol-1 (differential expression of genes):</strong></p>
-<ul>
-<li>demuxed raw reads (FastQC)</li>
-<li>trimming reads (awk)</li>
-<li>aligning reads (TopHat2)</li>
-<li>counting reads (HTSeq; may filter out genes with low counts before
-next step)</li>
-<li>detect DE using counted reads (DEseq2)</li>
-<li>more QC (PCA/correlation heatmap)</li>
-</ul>
-<p><strong>Protocol-2 (differential usage of isoforms):</strong></p>
-<ul>
-<li>Protocol-1</li>
-<li>counting isoforms (Kallisto, <strong>also check <a
-href="https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger">cell
-ranger</a></strong>)</li>
-<li>detect DU using counted isoforms (Sleuth)</li>
-<li>more QC (aslo PCA/correlation heatmap)</li>
-</ul>
-<p><strong>Protocol-3 (crypic splicing):</strong></p>
-<ul>
-<li>Protocol-1</li>
-<li>detect differential junstions (CrypSplice)</li>
-</ul>
+<div id="prelim-qc-for-raw-sting-seq-data" class="section level2">
+<h2>2. Prelim QC for raw STING-seq data</h2>
+<div id="a.-download-all-data" class="section level3">
+<h3>a. Download all data</h3>
+<p><strong>Code:</strong> <a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/download.sh"><code>download.sh</code></a></p>
 </div>
-</div>
-<div id="c.-perform-fastqc-on-all-fastq-files" class="section level3">
-<h3>c. Perform FastQC on all fastq files</h3>
+<div id="b.-perform-fastqc-on-all-fastq-files" class="section level3">
+<h3>b. Perform FastQC on all fastq files</h3>
 <p><strong>SRR14141135:</strong></p>
 <ul>
 <li><a
@@ -2636,26 +2691,16 @@ href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141146_GDO_Homo_sa
 </div>
 <div id="d.-kallisto-bustools-pipeline" class="section level3">
 <h3>d. Kallisto | bustools pipeline</h3>
+<p><a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/pip3-kb.sh"><strong>pip3-kb.sh</strong></a></p>
 </div>
 </div>
 <div id="analyze-qced-sting-seq-data" class="section level2">
 <h2>3. Analyze QC’ed STING-seq data</h2>
-<p><strong>Note:</strong></p>
-<ul>
-<li><strong>cDNA</strong>, <strong>HTO</strong> (Hashing
-antibody-oligos), <strong>GDO</strong> (gRNAs)</li>
-<li><strong>ECCITE-seq:</strong></li>
-</ul>
-<center>
-<img src="https://citeseq.files.wordpress.com/2018/11/eccite.png"
-style="width:70.0%" />
-</center>
+<p><a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/1_overview/overview,R"><strong>overview.R</strong></a></p>
 <div id="a.-install-r-packages" class="section level3">
 <h3>a. Install R packages</h3>
-<pre class="bash"><code>sudo apt-get update &amp;&amp; sudo apt-get install libgeos-dev -y
-sudo -i R
-installe.packages(&quot;Seurat&quot;)
-q()</code></pre>
 </div>
 <div id="b.-import-qced-data" class="section level3">
 <h3>b. Import QC’ed data</h3>

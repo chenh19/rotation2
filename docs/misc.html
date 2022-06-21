@@ -532,15 +532,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree4a8f7ee0d2951edf4dfe859a7854d7fda03f9a66targetblank4a8f7eea">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree356550c44776a8a85c8e874d45a949866f77791ctargetblank356550ca">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/chenh19/rotation2/tree/4a8f7ee0d2951edf4dfe859a7854d7fda03f9a66" target="_blank">4a8f7ee</a>
+<a href="https://github.com/chenh19/rotation2/tree/356550c44776a8a85c8e874d45a949866f77791c" target="_blank">356550c</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree4a8f7ee0d2951edf4dfe859a7854d7fda03f9a66targetblank4a8f7eea"
+id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree356550c44776a8a85c8e874d45a949866f77791ctargetblank356550ca"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -550,7 +550,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/chenh19/rotation2/tree/4a8f7ee0d2951edf4dfe859a7854d7fda03f9a66" target="_blank">4a8f7ee</a>.
+<a href="https://github.com/chenh19/rotation2/tree/356550c44776a8a85c8e874d45a949866f77791c" target="_blank">356550c</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -630,6 +630,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/356550c44776a8a85c8e874d45a949866f77791c/analysis/misc.Rmd" target="_blank">356550c</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/21e9501b5edb27c58a7a5416e4978352a99e4423/docs/misc.html" target="_blank">21e9501</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -2109,33 +2143,12 @@ clubs)</li>
 </div>
 <div id="git-ssh-configuration" class="section level2">
 <h2>3. Git SSH configuration</h2>
-<pre class="bash"><code># check for existing keys
-#ls -al ~/.ssh
-
-# create a key if does not exist
-ssh-keygen -t ed25519 -C &quot;your_email@example.com&quot;
-# when asked &quot;Enter a file in which to save the key,&quot; press Enter (default file location)
-# input a passphrase (anything you can remember)
-
-# add SSH key to ssh-agent-
-eval `ssh-agent -s`
-ssh-add ~/.ssh/id_ed25519
-
-# get the key
-cat ~/.ssh/id_ed25519.pub
-# copy the output key, then navigate to Github account and add the ssh key</code></pre>
 <ul>
 <li>Ref: <a href="https://youtu.be/YnSMYgIybFU">YouTube</a></li>
 </ul>
 </div>
 <div id="canon-printer-configuration" class="section level2">
 <h2>4. Canon printer configuration</h2>
-<pre class="bash"><code># Canon Color ImageCLASS MF735Cdw driver for linux
-cd ~/Downloads
-wget -q -O linux-UFRII-drv-v550-us-00.tar.gz https://pdisp01.c-wss.com/gdl/WWUFORedirectTarget.do?id=MDEwMDAwOTIzNjEx&amp;cmp=ABR&amp;lang=EN &amp;&amp; sleep 10 &amp;&amp; 
-tar -xf linux-UFRII-drv-v550-us-00.tar.gz &amp;&amp; sleep 1 &amp;&amp; rm linux-UFRII-drv-v550-us-00.tar.gz
-sudo bash ./linux-UFRII-drv-v550-us/install.sh &amp;&amp; sleep 1 &amp;&amp; rm -rf ./linux-UFRII-drv-v550-us/
-sudo apt-get update &amp;&amp; sudo apt install -f -y &amp;&amp; sudo apt-get autoremove -y &amp;&amp; sudo apt-get clean</code></pre>
 <ul>
 <li>Note: the private IP address is labeled on the printer.</li>
 <li>Ref: <a
