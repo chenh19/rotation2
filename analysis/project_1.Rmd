@@ -78,21 +78,8 @@ knitr::opts_chunk$set(echo = TRUE)
 * Protocol-1
 * detect differential junstions (CrypSplice)
 
-### b. Download data
-```{bash,eval=FALSE}
-rsync -a hchen131@midway2.rcc.uchicago.edu:/project2/xuanyao/data/Morris_2021 ~/Desktop
-```
 
 ### c. Perform FastQC on all fastq files
-```{bash,eval=FALSE}
-# install fastqc
-sudo apt-get update && sudo apt-get install fastqc -y
-
-# run fastqc in parallel
-cd ~/rotation2/
-[ ! -d ../Morris_2021/fastqc_results/ ] && mkdir ../Morris_2021/fastqc_results/
-fastqc --threads 16 ../Morris_2021/STINGseq_Morris_2021_raw/*.fastq.gz --outdir=../Morris_2021/fastqc_results/
-```
 
 **SRR14141135:**  
 
@@ -163,33 +150,6 @@ fastqc --threads 16 ../Morris_2021/STINGseq_Morris_2021_raw/*.fastq.gz --outdir=
 
 ### d. Kallisto | bustools pipeline
 
-**Install package: pip3 install kb:**
-```{bash,eval=FALSE}
-# install via python3-pip (python3 is installed by default)
-sudo apt-get update && sudo apt install python3-pip -y
-sudo pip3 install kb-python
-
-# run
-kb
-```
-
-**Side note: conda install kallisto (not necessary for kb):**
-```{bash,eval=FALSE}
-# install anaconda
-[ ! -d ./shscript/ ] && mkdir ./shscript/
-wget -O ./shscript/Anaconda-latest-Linux-x86_64.sh https://repo.anaconda.com/archive/Anaconda3-2022.05-Linux-x86_64.sh
-bash ./shscript/Anaconda-latest-Linux-x86_64.sh && sleep 3
-conda update anaconda -y && conda update --all -y
-conda config --add channels defaults
-conda config --add channels bioconda
-conda config --add channels conda-forge
-conda install kallisto -y
-conda config --set auto_activate_base false # disable auto activate base in terminal
-#conda activate # activate base when needed
-#rm -rf ~/anaconda3/ # uninstall anaconda
-rm -rf ./shscript/
-```
-
 
 ## 3. Analyze QC'ed STING-seq data
 
@@ -215,61 +175,8 @@ q()
 
 **Note: about [sparse matrix](https://slowkow.com/notes/sparse-matrix/)**
 
-```{r,eval=FALSE}
-# load expression data
-Expression <- Seurat::ReadMtx(mtx = "../Morris_2021/GSM5225857_cDNA.mtx", 
-                                features = "../Morris_2021/GSM5225857_cDNA.features.txt", 
-                                cells = "../Morris_2021/GSM5225857_cDNA.barcodes.txt", 
-                                cell.column=1, 
-                                feature.column=1, 
-                                mtx.transpose=T)
-
-# load gRNA data
-gRNA <- Seurat::ReadMtx(mtx = "../Morris_2021/GSM5225858_GDO.mtx", 
-                                 features = "../Morris_2021/GSM5225858_GDO.features.txt", 
-                                 cells = "../Morris_2021/GSM5225858_GDO.barcodes.txt", 
-                                 cell.column=1, 
-                                 feature.column=1, 
-                                 mtx.transpose=T)
 
 ```
-
-
-```{r,eval=FALSE}
-overall <- function(mtx){
-  cat(paste0('The [', deparse(substitute(mtx)), '] matrix has: \n', 
-        '- ', format(mtx@Dim[1], big.mark=",", scientific=FALSE), 
-        ' rows/genes/targets \n', 
-        '- ', format(mtx@Dim[2], big.mark=",", scientific=FALSE), 
-        ' columns/barcodes/cells \n', 
-        '- ', format(length(mtx), big.mark=",", scientific=FALSE), 
-        ' values in total \n', 
-        '- ', format(sum(mtx != 0), big.mark=",", scientific=FALSE), 
-        ' values that are non-zero \n', 
-        '- ', format(sum(mtx == 1), big.mark=",", scientific=FALSE), 
-        ' values that are 1 \n', 
-        '- ', format(sum(mtx > 1), big.mark=",", scientific=FALSE), 
-        ' values that are bigger than 1 \n', 
-        '- ', format(sum(mtx > 10), big.mark=",", scientific=FALSE), 
-        ' values that are bigger than 10 \n', 
-        '- ', format(sum(mtx > 100), big.mark=",", scientific=FALSE), 
-        ' values that are bigger than 100 \n', 
-        '- ', format(sum(mtx > 1000), big.mark=",", scientific=FALSE), 
-        ' values that are bigger than 1,000 \n', 
-        '- ', format(sum(mtx > 10000), big.mark=",", scientific=FALSE), 
-        ' values that are bigger than 10,000 \n', 
-        '- ', format(sum(mtx > 100000), big.mark=",", scientific=FALSE), 
-        ' values that are bigger than 100,000 \n', 
-        ' \n'))
-}
-
-overall(Expression)
-overall(gRNA)
-
-```
-
-```
-> overall(Expression)
 The [Expression] matrix has: 
 - 35,606 rows/genes/targets 
 - 686,612 columns/barcodes/cells 
@@ -283,7 +190,6 @@ The [Expression] matrix has:
 - 0 values that are bigger than 10,000 
 - 0 values that are bigger than 100,000 
  
-> overall(gRNA)
 The [gRNA] matrix has: 
 - 210 rows/genes/targets 
 - 137,347 columns/barcodes/cells 
@@ -295,6 +201,19 @@ The [gRNA] matrix has:
 - 41,071 values that are bigger than 100 
 - 2,232 values that are bigger than 1,000 
 - 20 values that are bigger than 10,000 
+- 0 values that are bigger than 100,000 
+ 
+The [Hashtag] matrix has: 
+- 4 rows/genes/targets 
+- 410,228 columns/barcodes/cells 
+- 1,640,912 values in total 
+- 739,820 values that are non-zero 
+- 409,830 values that are 1 
+- 329,990 values that are bigger than 1 
+- 218,280 values that are bigger than 10 
+- 8,155 values that are bigger than 100 
+- 282 values that are bigger than 1,000 
+- 46 values that are bigger than 10,000 
 - 0 values that are bigger than 100,000 
 
 ```
