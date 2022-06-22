@@ -242,7 +242,7 @@ The [Hashtag] matrix has:
 
 #### Output:
 
-[```Expression_matrix_barcodes_summary.csv```](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/Expression_matrix_barcodes_summary.csv) (pending)  
+[```Expression_matrix_barcodes_summary.csv```](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/Expression_matrix_barcodes_summary.csv)  
 [```Expression_matrix_targets_summary.csv```](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/Expression_matrix_targets_summary.csv)  
 
 [```gRNA_matrix_barcodes_summary.csv```](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/gRNA_matrix_barcodes_summary.csv)  
@@ -260,7 +260,27 @@ The [Hashtag] matrix has:
 
 **Code:** [```Expression_barcode_dist_plot.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/3_dist_cdf/Expression_barcode_dist_plot.R)  
 
-(Figures: pending)  
+**Comment:** 
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/1_Expression_max_barcode.png)
+
+**Comment:** 
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/2_Expression_min_barcode.png)
+
+**Comment:** 
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/3_Expression_barcode_dist.png)
+
+**Comment:** 
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/4_Expression_barcode_dist_cdf.png)
+
+**Comment:** 
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/5_Expression_barcode_dist_pdf.png)
+
+
 
 #### ii) Expression targets
 
