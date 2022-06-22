@@ -260,23 +260,23 @@ The [Hashtag] matrix has:
 
 **Code:** [```Expression_barcode_dist_plot.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/3_dist_cdf/Expression_barcode_dist_plot.R)  
 
-**Comment:** 
+**Comment:** The cell with highest overall detected gene expression  
 
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/1_Expression_max_barcode.png)
 
-**Comment:** 
+**Comment:** The cell with lowest overall detected gene expression  
 
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/2_Expression_min_barcode.png)
 
-**Comment:** 
+**Comment:** As Xuanyao said, this kind bar plot is too dense and can't really see the overall distribution, the CDF plot below is more clear
 
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/3_Expression_barcode_dist.png)
 
-**Comment:** 
+**Comment:** From this CDF figure I kind of know why there were only ~9000 cells used after Qc'ing with UMI>=850 filter. Less than 10% cells have UMI>=850. But still, **why exactly 850 is still a question for me to explore**
 
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/4_Expression_barcode_dist_cdf.png)
 
-**Comment:** 
+**Comment:** Many zeros (consistent with the observation that the matrix was very sparse); UMI>850 is invisible in this plot. As Xuanyao said, I should exclude the outliers or add y-axis break
 
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/5_Expression_barcode_dist_pdf.png)
 
