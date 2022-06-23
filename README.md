@@ -1,2 +1,4 @@
 # Rotation2
-![](https://raw.githubusercontent.com/chenh19/rotation2/main/analysis/images/fun.jpg)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/chenh19/rotation2/main/analysis/images/fun.jpg" width=85%>
+</p>
