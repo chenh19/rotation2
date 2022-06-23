@@ -46,6 +46,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ### b. Read more about RNA-seq analysis
 
 [Luecken *et al.* 2019: RNA-seq analysis pipeline](https://chenh19.github.io/rotation2/refs/Luecken_2019.pdf)  
+[Supplementary code](https://github.com/theislab/single-cell-tutorial)  
 
 #### Some key points:
 
