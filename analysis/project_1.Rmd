@@ -50,6 +50,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #### Some key points:
 
+- [Seurat](https://github.com/satijalab/seurat)
+- [Scater](https://github.com/jimhester/scater)
+- [Scanpy](https://github.com/scverse/scanpy)
 
 
 ### c. Read the Morris paper
