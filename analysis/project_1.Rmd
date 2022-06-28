@@ -419,15 +419,15 @@ The [Hashtag] matrix has:
 
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/10_Hashtag_target_dist_pdf.png)  
 
-### QC filtering
+### g. QC filtering
 
 - After preliminary filtering, the authors got ```14,775 cells``` with ```3,875 median genes per cell```.
 
 **Previous question:**  
 
-1. why percent-mito < 20%?
-2. why UMI > 850?
-3. why no UMI upper limit?
+1. why ```percent-mito < 20%```?
+2. why ```UMI > 850```?
+3. why ```no UMI upper limit```?
 
 **My understanding:**  
 
@@ -436,7 +436,6 @@ The [Hashtag] matrix has:
 3. Doublets was not filtered out by UMI, but by HTO demuxing, therefore the authors didn't set an upper limit.
 
 **Notes:**  
-
 
 - In the original cDNA feature txt file, there are only Ensembl gene IDs. To calculate percent-mito, I tried to convert the IDs to symbols using both [this web tool](https://www.biotools.fr/human/ensembl_symbol_converter) and biomaRT package in R.
 - If I directly use the gene symbols from these two methods and the same filters by Nikita, I get exactly [the same results as Nikita]((https://1onic.github.io/lab-notes/sceptre.html#372022)) (14,813 cells retained).
