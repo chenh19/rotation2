@@ -438,7 +438,7 @@ The [Hashtag] matrix has:
 **Notes:**  
 
 - In the original cDNA feature txt file, there are only Ensembl gene IDs. To calculate percent-mito, I tried to convert the IDs to symbols using both [this web tool](https://www.biotools.fr/human/ensembl_symbol_converter) and biomaRT package in R.
-- If I directly use the gene symbols from these two methods and the same filters by Nikita, I get exactly [the same results as Nikita]((https://1onic.github.io/lab-notes/sceptre.html#372022)) (```14,813 cells``` retained).
+- If I directly use the gene symbols from these two methods and the same filters by Nikita, I get exactly [the same results as Nikita](https://1onic.github.io/lab-notes/sceptre.html#372022) (```14,813 cells``` retained).
 - However, after taking a closer look at the converted gene lists, there are still many "**Mitochondrially Encoded**" genes starting with "```MT```" rather than "```MT-```", so I wrote a script to convert all these genes.
 - Then I performed filtering again and got ```14,675 cells``` with ```3,917 median genes per cell```.
 - I don't think we'll know exactly how the authors filtered the cells unless they release their code.
