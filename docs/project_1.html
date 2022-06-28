@@ -532,15 +532,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree82fce8f5d30f828c251920346590b77af25a1033targetblank82fce8fa">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree1c8bb9aaf2443998cfb4096220626ba1b1d481e7targetblank1c8bb9aa">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/chenh19/rotation2/tree/82fce8f5d30f828c251920346590b77af25a1033" target="_blank">82fce8f</a>
+<a href="https://github.com/chenh19/rotation2/tree/1c8bb9aaf2443998cfb4096220626ba1b1d481e7" target="_blank">1c8bb9a</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree82fce8f5d30f828c251920346590b77af25a1033targetblank82fce8fa"
+id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree1c8bb9aaf2443998cfb4096220626ba1b1d481e7targetblank1c8bb9aa"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -550,7 +550,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/chenh19/rotation2/tree/82fce8f5d30f828c251920346590b77af25a1033" target="_blank">82fce8f</a>.
+<a href="https://github.com/chenh19/rotation2/tree/1c8bb9aaf2443998cfb4096220626ba1b1d481e7" target="_blank">1c8bb9a</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -611,6 +611,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/1c8bb9aaf2443998cfb4096220626ba1b1d481e7/analysis/project_1.Rmd" target="_blank">1c8bb9a</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-28
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/7cfb685ac493a850128b3a233134cfd875327bde/docs/project_1.html" target="_blank">7cfb685</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-28
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -4084,47 +4118,46 @@ src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/10_
 </ol>
 <p><strong>My understanding:</strong></p>
 <ol style="list-style-type: decimal">
-<li>Previously, 5% was usually the default threshold. But <a
-href="https://doi.org/10.1093%2Fbioinformatics%2Fbtaa751">a recent
-paper</a> did systematic evaluation and proposed a default cutoff of
-<strong>10% for human cells</strong>. Also, according to <a
+<li>Previously, <strong>5%</strong> was usually the default threshold.
+But <a href="https://doi.org/10.1093%2Fbioinformatics%2Fbtaa751">a
+recent paper</a> did systematic evaluation and proposed a default cutoff
+of <strong>10% for human cells</strong>. Also, according to <a
 href="https://chenh19.github.io/rotation2/refs/Luecken_2019.pdf">Luecken
 <em>et al.</em> 2019</a>, we can use a relatively loose QC cutoff at the
 beginning. Since the percent-mito was just in the <strong>first</strong>
 QC filtering step and the author further filtered by HTO and GDO, I
-think 20% makes sense to me.</li>
+think <strong>20%</strong> makes sense.</li>
 <li>Again, according to <a
 href="https://chenh19.github.io/rotation2/refs/Luecken_2019.pdf">Luecken
 <em>et al.</em> 2019</a>, the dying/dead cells would be a small peak
 with low UMI counts. By the zoomed-in plot below, we can see 850 is a
 reasonable cutoff to remove the entire peak.</li>
-<li>Doublets was not filtered out by UMI, but by HTO demuxing, therefore
-the authors didn’t set an upper limit.</li>
+<li>Doublets was <strong>not</strong> filtered out by UMI, but by HTO
+demuxing, therefore the authors didn’t set an upper limit.</li>
 </ol>
 <p><strong>Notes:</strong></p>
 <ul>
-<li><p>In the original cDNA feature txt file, there are only Ensembl
-gene IDs. To calculate percent-mito, I tried to convert the IDs to
-symbols using both <a
+<li>In the original cDNA feature txt file, there are only Ensembl gene
+IDs. To calculate percent-mito, I tried to convert the IDs to symbols
+using both <a
 href="https://www.biotools.fr/human/ensembl_symbol_converter">this web
-tool</a> and biomaRT package in R.</p></li>
-<li><p>If I directly use the gene symbols from these two methods and the
+tool</a> and biomaRT package in R.</li>
+<li>If I directly use the gene symbols from these two methods and the
 same filters by Nikita, I get exactly <a
 href="(https://1onic.github.io/lab-notes/sceptre.html#372022)">the same
-results as Nikita</a> (14,813 cells retained).</p></li>
-<li><p>However, after taking a closer look at the converted gene lists,
-there are still many “Mitochondrially Encoded” genes starting with “MT”
-rather than “MT-”, so I wrote the below script to convert all these
-genes.</p></li>
-<li><p>Then I performed filtering again and got 14,675 cells with 3,917
-median genes per cell.</p></li>
-<li><p>I don’t think we’ll know exactly how the authors filtered the
-cells, but I think I’ll stick to my manually converted gene
-list.</p></li>
-<li><p>For HTO, 14,626 cells were found, and then 9,401 singlets were
-determined</p></li>
-<li><p>After GDO filtering, there were 9,391 cells retained (9,343 cells
-by the authors in comparison)</p></li>
+results as Nikita</a> (<code>14,813 cells</code> retained).</li>
+<li>However, after taking a closer look at the converted gene lists,
+there are still many “<strong>Mitochondrially Encoded</strong>” genes
+starting with “<code>MT</code>” rather than “<code>MT-</code>”, so I
+wrote a script to convert all these genes.</li>
+<li>Then I performed filtering again and got <code>14,675 cells</code>
+with <code>3,917 median genes per cell</code>.</li>
+<li>I don’t think we’ll know exactly how the authors filtered the cells
+unless they release their code.</li>
+<li>After QC filtering, there were <code>9,391 cells</code> retained
+(<code>9,343 cells</code> by the authors in comparison,</li>
+<li>I did cross comparison. There are <code>508 cells</code> from
+authors’ list not in my list.</li>
 </ul>
 <p><strong>Code:</strong> <a
 href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/4_filter/QC_filter.R"><code>QC_filter.R</code></a><br />
@@ -4133,36 +4166,44 @@ href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/4_filter/UMI
 <p><strong>Before UMI count filtering:</strong></p>
 <p><img
 src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/1_Expression_barcode_dist_qc_cdf.png"
-alt="1" /> <img
+alt="1" /><br />
+<img
 src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/2_Expression_barcode_dist_qc_pdf.png"
 alt="2" /></p>
 <p><strong>After UMI count filtering:</strong></p>
 <p><img
 src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/3_Expression_barcode_dist_qc_cdf.png"
-alt="3" /> <img
+alt="3" /><br />
+<img
 src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/4_Expression_barcode_dist_qc_pdf.png"
 alt="4" /></p>
-<p><strong>Before percent-mito filtering:</strong></p>
+<p><strong>Before percent-mito filtering (generated by Seurat):
+</strong></p>
 <p><img
 src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/5_violin_before_QC.png"
-alt="5" /> <img
+alt="5" /><br />
+<img
 src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/6_percent_mt_before_QC.png"
-alt="6" /> <img
+alt="6" /><br />
+<img
 src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/7_nFeature_before_QC.png"
 alt="7" /></p>
-<p><strong>After percent-mito filtering:</strong></p>
+<p><strong>After percent-mito filtering (generated by Seurat):
+</strong></p>
 <p><img
 src="https://github.com/chenh19/rotation2/raw/main/output/QC/8_violin_after_QC.png"
-alt="8" /> <img
+alt="8" /><br />
+<img
 src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/9_percent_mt_after_QC.png"
-alt="9" /> <img
+alt="9" /><br />
+<img
 src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/10_nFeature_after_QC.png"
 alt="10" /></p>
 <p><strong>Barcodes comparison:</strong></p>
 <p><strong>Code:</strong> <a
 href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/4_filter/QC_compare.R"><code>QC_compare.R</code></a><br />
 <a
-href="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/QC_by_author.txt"><code>QC_by_author.txt</code></a>
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/QC_by_author.txt"><code>QC_by_author.txt</code></a><br />
 <a
 href="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/QC_by_hang.txt"><code>QC_by_hang.txt</code></a></p>
 <p><strong>Comparison result:</strong></p>
