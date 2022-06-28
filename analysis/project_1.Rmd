@@ -447,6 +447,9 @@ The [Hashtag] matrix has:
 - For HTO, 14,626 cells were found, and then 9,401 singlets were determined
 - After GDO filtering, there were 9,391 cells retained (9,343 cells by the authors in comparison)
 
+**Code:** [```QC_filter.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/4_filter/QC_filter.R)  
+**Code:** [```UMI_plot.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/4_filter/UMI_plot.R)  
+
 **Before UMI count filtering:**
 
 ![1]()
@@ -471,6 +474,7 @@ The [Hashtag] matrix has:
 
 **Barcodes comparison:**
 
+**Code:** [```QC_compare.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/4_filter/QC_compare.R)  
 [```QC_by_author.txt```]()
 [```QC_by_hang.txt```]()
 
