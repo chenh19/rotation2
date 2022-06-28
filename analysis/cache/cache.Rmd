@@ -15,5 +15,24 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Cache
 
 ```{r,eval=FALSE}
+library(readxl)
+library(tidyverse)
+stingseq_paper_supp_table_S3B = read_excel(path = paste0('/project2/xuanyao/nikita/SCEPTRE/data_matrixes/Morris_2021/TableS3.xlsx'), sheet = 2, skip = 2)
+paper_cbcs = stingseq_paper_supp_table_S3B %>% pull('Cell Barcode') # 9343
+```
 
+```{bash,eval=FALSE}
+rsync -a hchen131@midway2.rcc.uchicago.edu:/project2/xuanyao/nikita/SCEPTRE/data_matrixes/Morris_2021/ ~/data_matrix
+```
+
+
+```{r,eval=FALSE}
+library(dplyr)
+gene_names <- read.table("../Morris_2021/cDNA_name_conversion.csv", sep=",", na.strings=c(''))
+#gene_names$V3 <- ifelse(!is.na(gene_names$V2), gene_names$V2, gene_names$V1)
+writeLines(gene_names$V3, "../Morris_2021/cDNA_test.txt")
+
+mito_genes <- read.csv("../Morris_2021/GeneCards-SearchResults.csv")[,1:2]
+#mito_gene2 <- filter(mito_genes, grepl('^MT',mito_genes$Gene.Symbol))
+mito_genes2 <- filter(mito_genes, grepl('Mitochondrially Encoded', mito_genes$Description))
 ```
