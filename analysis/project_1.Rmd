@@ -452,31 +452,31 @@ The [Hashtag] matrix has:
 
 **Before UMI count filtering:**
 
-![1]()
-![2]()
+![1](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/1_Expression_barcode_dist_qc_cdf.png)
+![2](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/2_Expression_barcode_dist_qc_pdf.png)
 
 **After UMI count filtering:**
 
-![3]()
-![4]()
+![3](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/3_Expression_barcode_dist_qc_cdf.png)
+![4](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/4_Expression_barcode_dist_qc_pdf.png)
 
 **Before percent-mito filtering:**
 
-![5]()
-![6]()
-![7]()
+![5](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/5_violin_before_QC.png)
+![6](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/6_percent_mt_before_QC.png)
+![7](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/7_nFeature_before_QC.png)
 
 **After percent-mito filtering:**
 
-![8]()
-![9]()
-![10]()
+![8](https://github.com/chenh19/rotation2/raw/main/output/QC/8_violin_after_QC.png)
+![9](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/9_percent_mt_after_QC.png)
+![10](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/10_nFeature_after_QC.png)
 
 **Barcodes comparison:**
 
 **Code:** [```QC_compare.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/4_filter/QC_compare.R)  
-[```QC_by_author.txt```]()
-[```QC_by_hang.txt```]()
+[```QC_by_author.txt```](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/QC_by_author.txt)
+[```QC_by_hang.txt```](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/QC_by_hang.txt)
 
 **Comparison result:**  
 
