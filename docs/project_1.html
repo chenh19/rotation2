@@ -401,7 +401,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-06-23
+<strong>Last updated:</strong> 2022-06-28
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -532,15 +532,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2treecc257bcba019dbe645bd8ed89f556d970551af19targetblankcc257bca">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree754150e611ad09f684663edb234400431c658793targetblank754150ea">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/chenh19/rotation2/tree/cc257bcba019dbe645bd8ed89f556d970551af19" target="_blank">cc257bc</a>
+<a href="https://github.com/chenh19/rotation2/tree/754150e611ad09f684663edb234400431c658793" target="_blank">754150e</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2treecc257bcba019dbe645bd8ed89f556d970551af19targetblankcc257bca"
+id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree754150e611ad09f684663edb234400431c658793targetblank754150ea"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -550,7 +550,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/chenh19/rotation2/tree/cc257bcba019dbe645bd8ed89f556d970551af19" target="_blank">cc257bc</a>.
+<a href="https://github.com/chenh19/rotation2/tree/754150e611ad09f684663edb234400431c658793" target="_blank">754150e</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -566,6 +566,10 @@ were generated:
 <pre><code>
 Ignored files:
     Ignored:    data/
+
+Untracked files:
+    Untracked:  code/4_filter/
+    Untracked:  output/QC/
 
 Unstaged changes:
     Modified:   .RData
@@ -616,6 +620,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/754150e611ad09f684663edb234400431c658793/analysis/project_1.Rmd" target="_blank">754150e</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-28
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/968a4b6911ad048a4b83cd1c17a9bec29cdb5089/docs/project_1.html" target="_blank">968a4b6</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-23
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -3936,6 +3974,80 @@ src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/9_H
 <p><strong>Comment:</strong> PDF plot: same conclusion as above</p>
 <p><img
 src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/10_Hashtag_target_dist_pdf.png" /></p>
+</div>
+</div>
+<div id="qc-filtering" class="section level3">
+<h3>QC filtering</h3>
+<ul>
+<li>After preliminary filtering, the authors got
+<code>14,775 cells</code> with
+<code>3,875 median genes per cell</code>.</li>
+</ul>
+<p><strong>Previous question:</strong></p>
+<ol style="list-style-type: decimal">
+<li>why percent-mito &lt; 20%?</li>
+<li>why UMI &gt; 850?</li>
+<li>why no UMI upper limit?</li>
+</ol>
+<p><strong>My understanding:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Previously, 5% was usually the default threshold. But <a
+href="https://doi.org/10.1093%2Fbioinformatics%2Fbtaa751">a recent
+paper</a> did systematic evaluation and proposed a default cutoff of
+<strong>10% for human cells</strong>. Also, according to <a
+href="https://chenh19.github.io/rotation2/refs/Luecken_2019.pdf">Luecken
+<em>et al.</em> 2019</a>, we can use a relatively loose QC cutoff at the
+beginning. Since the percent-mito was just in the <strong>first</strong>
+QC filtering step and the author further filtered by HTO and GDO, I
+think 20% makes sense to me.</li>
+<li>Again, according to <a
+href="https://chenh19.github.io/rotation2/refs/Luecken_2019.pdf">Luecken
+<em>et al.</em> 2019</a>, the dying/dead cells would be a small peak
+with low UMI counts. By the zoomed-in plot below, we can see 850 is a
+reasonable cutoff to remove the entire peak.</li>
+<li>Doublets was not filtered out by UMI, but by HTO demuxing, therefore
+the authors didn’t set an upper limit.</li>
+</ol>
+<p><strong>Notes:</strong></p>
+<ul>
+<li><p>In the original cDNA feature txt file, there are only Ensembl
+gene IDs. To calculate percent-mito, I tried to convert the IDs to
+symbols using both <a
+href="https://www.biotools.fr/human/ensembl_symbol_converter">this web
+tool</a> and biomaRT package in R.</p></li>
+<li><p>If I directly use the gene symbols from these two methods and the
+same filters by Nikita, I get exactly <a
+href="(https://1onic.github.io/lab-notes/sceptre.html#372022)">the same
+results as Nikita</a> (14,813 cells retained).</p></li>
+<li><p>However, after taking a closer look at the converted gene lists,
+there are still many “Mitochondrially Encoded” genes starting with “MT”
+rather than “MT-”, so I wrote the below script to convert all these
+genes.</p></li>
+<li><p>Then I performed filtering again and got 14,675 cells with 3,917
+median genes per cell.</p></li>
+<li><p>I don’t think we’ll know exactly how the authors filtered the
+cells, but I think I’ll stick to my manually converted gene
+list.</p></li>
+<li><p>For HTO, 14,626 cells were found, and then 9,401 singlets were
+determined</p></li>
+<li><p>After GDO filtering, there were 9,391 cells retained (9,343 cells
+by the authors in comparison)</p></li>
+</ul>
+<p><strong>Before UMI count filtering:</strong></p>
+<p><img src="" alt="1" /> <img src="" alt="2" /></p>
+<p><strong>After UMI count filtering:</strong></p>
+<p><img src="" alt="3" /> <img src="" alt="4" /></p>
+<p><strong>Before percent-mito filtering:</strong></p>
+<p><img src="" alt="5" /> <img src="" alt="6" /> <img src=""
+alt="7" /></p>
+<p><strong>After percent-mito filtering:</strong></p>
+<p><img src="" alt="8" /> <img src="" alt="9" /> <img src=""
+alt="10" /></p>
+<p><strong>Barcodes comparison:</strong></p>
+<p><a href=""><code>QC_by_author.txt</code></a> <a
+href=""><code>QC_by_hang.txt</code></a></p>
+<p><strong>Comparison result:</strong></p>
+<pre><code>[1] &quot;There are 508 cells filtered out in comparison to authors&#39; list.&quot;</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -3945,7 +4057,7 @@ Session information
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.2.0 (2022-04-22)
+<pre><code>R version 4.2.1 (2022-06-23)
 Platform: x86_64-pc-linux-gnu (64-bit)
 Running under: Ubuntu 22.04 LTS
 
@@ -3968,18 +4080,17 @@ other attached packages:
 [1] workflowr_1.7.0
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.8.3     bslib_0.3.1      compiler_4.2.0   pillar_1.7.0    
- [5] later_1.3.0      git2r_0.30.1     jquerylib_0.1.4  tools_4.2.0     
+ [1] Rcpp_1.0.8.3     bslib_0.3.1      compiler_4.2.1   pillar_1.7.0    
+ [5] later_1.3.0      git2r_0.30.1     jquerylib_0.1.4  tools_4.2.1     
  [9] getPass_0.2-2    digest_0.6.29    jsonlite_1.8.0   evaluate_0.15   
 [13] tibble_3.1.7     lifecycle_1.0.1  pkgconfig_2.0.3  rlang_1.0.2     
 [17] cli_3.3.0        rstudioapi_0.13  yaml_2.3.5       xfun_0.31       
 [21] fastmap_1.1.0    httr_1.4.3       stringr_1.4.0    knitr_1.39      
 [25] sass_0.4.1       fs_1.5.2         vctrs_0.4.1      rprojroot_2.0.3 
-[29] glue_1.6.2       R6_2.5.1         processx_3.6.0   fansi_1.0.3     
+[29] glue_1.6.2       R6_2.5.1         processx_3.6.1   fansi_1.0.3     
 [33] rmarkdown_2.14   callr_3.7.0      magrittr_2.0.3   whisker_0.4     
-[37] ps_1.7.0         promises_1.2.0.1 htmltools_0.5.2  ellipsis_0.3.2  
+[37] ps_1.7.1         promises_1.2.0.1 htmltools_0.5.2  ellipsis_0.3.2  
 [41] httpuv_1.6.5     utf8_1.2.2       stringi_1.7.6    crayon_1.5.1    </code></pre>
-</div>
 </div>
 </div>
 </div>
