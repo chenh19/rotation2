@@ -525,10 +525,10 @@ Didn't bother to do calculus, just very roughly calculated ```1.5e-04 x 7000 = 1
 
 ### h. zero-inflated plot & regression
 
-**Code:** [```zero-flated.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/5_zero-flated/zero-flated.R)  
+**Code:** [```zero-flated.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/5_zero-inflated/zero-inflated.R)  
 
-![1](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Zero-flated/1_zero_proportions(Poisson).png)  
-![2](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Zero-flated/2_zero_proportions(negative_binomial).png)  
+![1](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Zero-inflated/1_zero_proportions(Poisson).png)  
+![2](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Zero-inflated/2_zero_proportions(negative_binomial).png)  
 
 #### regression summary
 
