@@ -41,3 +41,103 @@ mito_genes2 <- filter(mito_genes, grepl('Mitochondrially Encoded', mito_genes$De
 plot(whichmodel_10$target_mean,whichmodel_10$zero_prop, main="Zero Proportions",
    xlab="Genes", ylab="Zero Proportions", pch=19, cex=0.5, col="dodgerblue3")
 ```
+
+
+
+################################################################################
+
+```{r,eval=FALSE}
+setwd("./rotation2/")
+
+library(Seurat)
+library(dplyr)
+library(ggplot2)
+library(ggeasy)
+Expression <- readRDS("../Morris_2021/filter/Expression.rds", refhook = NULL)
+
+if (dir.exists("./analysis/cache/")==FALSE){
+  dir.create("./analysis/cache/")
+}
+
+# count means and non-zeros for the filtered Seurat subject
+target_stats <- function(mtx){
+  target_names <- rownames(mtx)
+  target_means <- c()
+  target_sums <- c()
+  total <- nrow(mtx)
+  i = 1
+  for (target_name in target_names){
+    target_means <- c(target_means, mean(mtx[target_name,]))
+    target_sums <- c(target_sums, sum(mtx[target_name,] != 0 ))
+    if(i%%100 == 0){
+      print(paste0("Processed ",
+                   format(i, big.mark=",", scientific=FALSE), " of ",
+                   format(total, big.mark=",", scientific=FALSE), " targets."))
+    }
+    i = i+1
+  }
+  target_stats <- data.frame(target_names,target_means,target_sums)
+  colnames(target_stats) <- c("target_name", "target_mean", "target_non_zero_count")
+  filename <- paste0("./analysis/cache/Expression_filtered_means_non-zeros.csv")
+  write.table(target_stats, file=filename, sep=",", row.names = FALSE)
+}
+target_stats(Expression@assays$RNA@counts)
+
+# calculate zero proportions & expectations
+whichmodel <- read.csv("./analysis/cache/Expression_filtered_means_non-zeros.csv", header = TRUE)
+whichmodel <- dplyr::mutate(whichmodel, zero_prop = 1 - target_non_zero_count / ncol(Expression@assays$RNA@counts) )
+whichmodel_10 <- dplyr::filter(whichmodel, target_mean <= 10)
+
+# plot
+filename <- paste0("./analysis/cache/0_zero_proportions.tif")
+tiff(file=filename, width=8, height=5, units="in", res=600)
+ggplot(data = whichmodel_10, aes(x= target_mean, y=zero_prop)) + 
+  geom_jitter(width=0.05, height=0.05) + 
+  theme_light() + 
+  geom_smooth(method="glm", method.args=list(family="poisson")) + 
+  labs(title = "Zero Proportions", x = "Gene Mean", y = "Zero Proportion") + 
+  ggeasy::easy_center_title()
+dev.off()
+
+```
+
+##### expected pois
+```{r,eval=FALSE}
+lambda_exp = sum(Expression@assays$RNA@counts) / (nrow(Expression@assays$RNA@counts) * ncol(Expression@assays$RNA@counts))
+
+pois_exp <- data.frame(1:10 ,dpois(X, lambda_exp))
+colnames(pois_exp) <- c("X","Y")
+
+
+ggplot(pois_exp) + 
+  stat_smooth(aes(y=Y, x=X), method = "lm", formula = y ~ poly(x, 9.9), se = FALSE)
+
+```
+
+
+
+```
+The [Expression@assays$RNA@counts] matrix has: 
+- 35,606 rows/genes/targets 
+- 9,391 columns/barcodes/cells 
+- 334,375,946 values in total 
+- 36,844,288 values that are non-zero 
+- 18,620,321 values that are 1 
+- 18,223,967 values that are bigger than 1 
+- 2,230,437 values that are bigger than 10 
+- 181,020 values that are bigger than 100 
+- 1,512 values that are bigger than 1,000 
+- 0 values that are bigger than 10,000 
+- 0 values that are bigger than 100,000 
+
+```
+
+```
+# calculate means (these means are different from manually calcualted means, not sure why, not used)
+#mean <- as.data.frame(Seurat::AverageExpression(Expression, assays = "RNA"))
+#filename <- paste0("./analysis/cache/Expression_filtered_means.csv")
+#write.table(mean, file=filename, sep=",", row.names = TRUE, col.names = FALSE)
+```
+
+Note: according to Kim *et al.* 2020, for single cell type RNAseq, UMI data can be effectively modeled by the Poisson distribution.
+
