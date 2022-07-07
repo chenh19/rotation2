@@ -523,5 +523,77 @@ Didn't bother to do calculus, just very roughly calculated ```1.5e-04 x 7000 = 1
 
 
 
-### h. zero-inflated plot
+### h. zero-inflated plot & regression
 
+**Code:** [```zero-flated.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/5_zero-flated/zero-flated.R)  
+
+![1](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Zero-flated/1_zero_proportions(Poisson).png)  
+![2](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Zero-flated/2_zero_proportions(negative_binomial).png)  
+
+#### regression summary
+
+```{r,reval=FALSE}
+summary(glm(zero_prop ~ target_mean, family = poisson, data = whichmodel_10)) # poisson
+```
+
+```
+Call:
+glm(formula = zero_prop ~ target_mean, family = poisson, data = whichmodel_10)
+
+Deviance Residuals: 
+     Min        1Q    Median        3Q       Max  
+-0.13432  -0.00250   0.01255   0.01294   1.08289  
+
+Coefficients:
+             Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -0.012969   0.005915  -2.193   0.0283 *  
+target_mean -0.672805   0.019706 -34.141   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for poisson family taken to be 1)
+
+    Null deviance: 2256.629  on 35374  degrees of freedom
+Residual deviance:   88.113  on 35373  degrees of freedom
+AIC: Inf
+
+Number of Fisher Scoring iterations: 5
+```
+
+```{r,eval=FALSE}
+summary(glm.nb(zero_prop ~ target_mean, data = whichmodel_10)) # negative binomial
+```
+
+```
+Call:
+glm.nb(formula = zero_prop ~ target_mean, data = whichmodel_10, 
+    init.theta = 18539.38634, link = log)
+
+Deviance Residuals: 
+     Min        1Q    Median        3Q       Max  
+-0.86791  -0.31620   0.01294   0.06140   1.32706  
+
+Coefficients:
+             Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -0.012969   0.005915  -2.193   0.0283 *  
+target_mean -0.672803   0.019707 -34.141   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for Negative Binomial(18539.39) family taken to be 1)
+
+    Null deviance: 6991.6  on 35374  degrees of freedom
+Residual deviance: 4823.2  on 35373  degrees of freedom
+AIC: 66516
+
+Number of Fisher Scoring iterations: 1
+
+
+              Theta:  18539 
+          Std. Err.:  7723 
+Warning while fitting theta: iteration limit reached 
+
+ 2 x log-likelihood:  -66509.53 
+```
+
+**Note:** negative binomial regression doesn't seem to allow zeros.
