@@ -380,7 +380,7 @@ div.tocify {
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-workflowr <span class="glyphicon glyphicon-ok text-success"
+workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger"
 aria-hidden="true"></span>
 </button>
 </p>
@@ -391,8 +391,8 @@ aria-hidden="true"></span>
 </li>
 <li>
 <a data-toggle="tab" href="#checks"> Checks <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-</a>
+class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -401,13 +401,13 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-06-28
+<strong>Last updated:</strong> 2022-07-07
 </p>
 <p>
 <strong>Checks:</strong> <span
-class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6
 <span class="glyphicon glyphicon-exclamation-sign text-danger"
-aria-hidden="true"></span> 0
+aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>rotation2/</code> <span
@@ -517,30 +517,56 @@ run.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
-<span class="glyphicon glyphicon-ok text-success"
-aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongabsolute">
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> <strong>File paths:</strong> absolute </a>
 </p>
 </div>
-<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div id="strongFilepathsstrongabsolute" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great job! Using relative paths to the files within your workflowr
-project makes it easier to run your code on other machines.</p>
+<p>
+Using absolute paths to the files within your workflowr project makes it
+difficult for you and others to run your code on a different machine.
+Change the absolute path(s) below to the suggested relative path(s) to
+make your code more reproducible.
+</p>
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th style="text-align:left;">
+absolute
+</th>
+<th style="text-align:left;">
+relative
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+~/rotation2/
+</td>
+<td style="text-align:left;">
+.
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2treeac33ff0ffa2a94c4760700a4614b9ae1fb0d6c42targetblankac33ff0a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree608cdf80f0022f199a1ab422d4e686508d99d481targetblank608cdf8a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/chenh19/rotation2/tree/ac33ff0ffa2a94c4760700a4614b9ae1fb0d6c42" target="_blank">ac33ff0</a>
+<a href="https://github.com/chenh19/rotation2/tree/608cdf80f0022f199a1ab422d4e686508d99d481" target="_blank">608cdf8</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2treeac33ff0ffa2a94c4760700a4614b9ae1fb0d6c42targetblankac33ff0a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree608cdf80f0022f199a1ab422d4e686508d99d481targetblank608cdf8a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -550,7 +576,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/chenh19/rotation2/tree/ac33ff0ffa2a94c4760700a4614b9ae1fb0d6c42" target="_blank">ac33ff0</a>.
+<a href="https://github.com/chenh19/rotation2/tree/608cdf80f0022f199a1ab422d4e686508d99d481" target="_blank">608cdf8</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -566,6 +592,17 @@ were generated:
 <pre><code>
 Ignored files:
     Ignored:    data/
+
+Untracked files:
+    Untracked:  analysis/cache/3_Expression_barcode_dist_qc_cdf.tif
+    Untracked:  analysis/cache/4_Expression_barcode_dist_qc_pdf(EnvStats_epdfPlot).tif
+    Untracked:  analysis/cache/4_Expression_barcode_dist_qc_pdf.tif
+    Untracked:  analysis/cache/Expression_matrix_barcodes_summary.csv
+    Untracked:  analysis/cache/Hashtag_matrix_barcodes_summary.csv
+    Untracked:  output/QC/4_Expression_barcode_dist_qc_pdf(EnvStats_epdfPlot).png
+
+Unstaged changes:
+    Modified:   analysis/cache/cache.Rmd
 
 </code></pre>
 <p>
@@ -611,6 +648,57 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/608cdf80f0022f199a1ab422d4e686508d99d481/analysis/project_1.Rmd" target="_blank">608cdf8</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-07
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/c6393893369f935b81ea2e26060d7b6e60094fd7/analysis/project_1.Rmd" target="_blank">c639389</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-06
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/e0cb7a207f96f5e2358b2b4a94598764407853cd/docs/project_1.html" target="_blank">e0cb7a2</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-28
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -4242,6 +4330,125 @@ href="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/QC_by_a
 href="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/QC_by_hang.txt"><code>QC_by_hang.txt</code></a></p>
 <p><strong>Comparison result:</strong></p>
 <pre><code>[1] &quot;There are 508 cells filtered out in comparison to authors&#39; list.&quot;</code></pre>
+</div>
+<div id="g2.-pdf-y-axis-issue" class="section level3">
+<h3>g2. PDF y axis issue</h3>
+<p><strong>Previous question:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Is the small values in the previous PDF plot wrong?</li>
+</ol>
+<pre><code>My understanding: probably NOT wrong.</code></pre>
+<div id="point-1-similar-results-by-a-package-for-epdf"
+class="section level4">
+<h4>Point 1: similar results by a package for epdf</h4>
+<p>Plotted with base R:</p>
+<pre class="r"><code>hist(barcode_dist, freq=F, breaks=150, main=&quot;PDF: UMI counts in each barcode (cell)&quot;, xlab=&quot;UMI counts in each barcode (cell)&quot;, ylab=&quot;PDF&quot;)</code></pre>
+<div class="figure">
+<img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/4_Expression_barcode_dist_qc_pdf.png"
+alt="" />
+<p class="caption">4</p>
+</div>
+<p>Plotted with package:</p>
+<pre class="r"><code>EnvStats::epdfPlot(barcode_dist, epdf.col = &quot;red&quot;)</code></pre>
+<div class="figure">
+<img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/4_Expression_barcode_dist_qc_pdf(EnvStats_epdfPlot)"
+alt="" />
+<p class="caption">4</p>
+</div>
+</div>
+<div id="point-2-area-of-the-plot-is-1-by-eye" class="section level4">
+<h4>Point 2: area of the plot is ~1 by eye</h4>
+<p>Didn’t bother to do Calculus, just very roughly calculated
+<code>1.5e-04 x 7000 = 1.05</code></p>
+</div>
+</div>
+<div id="h.-zero-inflated-plot" class="section level3">
+<h3>h. zero-inflated plot</h3>
+<pre class="r"><code>setwd(&quot;~/rotation2/&quot;)
+
+library(Seurat)
+library(dplyr)
+library(ggplot2)
+library(ggeasy)
+Expression &lt;- readRDS(&quot;../Morris_2021/filter/Expression.rds&quot;, refhook = NULL)
+
+if (dir.exists(&quot;./analysis/cache/&quot;)==FALSE){
+  dir.create(&quot;./analysis/cache/&quot;)
+}
+
+# count means and non-zeros for the filtered Seurat subject
+target_stats &lt;- function(mtx){
+  target_names &lt;- rownames(mtx)
+  target_means &lt;- c()
+  target_sums &lt;- c()
+  total &lt;- nrow(mtx)
+  i = 1
+  for (target_name in target_names){
+    target_means &lt;- c(target_means, mean(mtx[target_name,]))
+    target_sums &lt;- c(target_sums, sum(mtx[target_name,] != 0 ))
+    if(i%%100 == 0){
+      print(paste0(&quot;Processed &quot;,
+                   format(i, big.mark=&quot;,&quot;, scientific=FALSE), &quot; of &quot;,
+                   format(total, big.mark=&quot;,&quot;, scientific=FALSE), &quot; targets.&quot;))
+    }
+    i = i+1
+  }
+  target_stats &lt;- data.frame(target_names,target_means,target_sums)
+  colnames(target_stats) &lt;- c(&quot;target_name&quot;, &quot;target_mean&quot;, &quot;target_non_zero_count&quot;)
+  filename &lt;- paste0(&quot;./analysis/cache/Expression_filtered_means_non-zeros.csv&quot;)
+  write.table(target_stats, file=filename, sep=&quot;,&quot;, row.names = FALSE)
+}
+target_stats(Expression@assays$RNA@counts)
+
+# calculate zero proportions &amp; expectations
+whichmodel &lt;- read.csv(&quot;./analysis/cache/Expression_filtered_means_non-zeros.csv&quot;, header = TRUE)
+whichmodel &lt;- dplyr::mutate(whichmodel, zero_prop = 1 - target_non_zero_count / ncol(Expression@assays$RNA@counts) )
+whichmodel_10 &lt;- dplyr::filter(whichmodel, target_mean &lt;= 10)
+
+# plot
+filename &lt;- paste0(&quot;./analysis/cache/0_zero_proportions.tif&quot;)
+tiff(file=filename, width=8, height=5, units=&quot;in&quot;, res=600)
+ggplot(data = whichmodel_10, aes(x= target_mean, y=zero_prop)) + 
+  geom_jitter(width=0.05, height=0.05) + 
+  theme_light() + 
+  geom_smooth(method=&quot;glm&quot;, method.args=list(family=&quot;poisson&quot;)) + 
+  labs(title = &quot;Zero Proportions&quot;, x = &quot;Gene Mean&quot;, y = &quot;Zero Proportion&quot;) + 
+  ggeasy::easy_center_title()
+dev.off()</code></pre>
+</div>
+</div>
+<div id="expected-pois" class="section level1">
+<h1>expected pois</h1>
+<pre class="r"><code>lambda_exp = sum(Expression@assays$RNA@counts) / (nrow(Expression@assays$RNA@counts) * ncol(Expression@assays$RNA@counts))
+
+pois_exp &lt;- data.frame(1:10 ,dpois(X, lambda_exp))
+colnames(pois_exp) &lt;- c(&quot;X&quot;,&quot;Y&quot;)
+
+
+ggplot(pois_exp) + 
+  stat_smooth(aes(y=Y, x=X), method = &quot;lm&quot;, formula = y ~ poly(x, 9.9), se = FALSE)</code></pre>
+<pre><code>The [Expression@assays$RNA@counts] matrix has: 
+- 35,606 rows/genes/targets 
+- 9,391 columns/barcodes/cells 
+- 334,375,946 values in total 
+- 36,844,288 values that are non-zero 
+- 18,620,321 values that are 1 
+- 18,223,967 values that are bigger than 1 
+- 2,230,437 values that are bigger than 10 
+- 181,020 values that are bigger than 100 
+- 1,512 values that are bigger than 1,000 
+- 0 values that are bigger than 10,000 
+- 0 values that are bigger than 100,000 
+</code></pre>
+<pre><code># calculate means (these means are different from manually calcualted means, not sure why, not used)
+#mean &lt;- as.data.frame(Seurat::AverageExpression(Expression, assays = &quot;RNA&quot;))
+#filename &lt;- paste0(&quot;./analysis/cache/Expression_filtered_means.csv&quot;)
+#write.table(mean, file=filename, sep=&quot;,&quot;, row.names = TRUE, col.names = FALSE)</code></pre>
+<p>Note: according to Kim <em>et al.</em> 2020, for single cell type
+RNAseq, UMI data can be effectively modeled by the Poisson
+distribution.</p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -4274,18 +4481,18 @@ other attached packages:
 [1] workflowr_1.7.0
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.8.3     bslib_0.3.1      compiler_4.2.1   pillar_1.7.0    
- [5] later_1.3.0      git2r_0.30.1     jquerylib_0.1.4  tools_4.2.1     
- [9] getPass_0.2-2    digest_0.6.29    jsonlite_1.8.0   evaluate_0.15   
-[13] tibble_3.1.7     lifecycle_1.0.1  pkgconfig_2.0.3  rlang_1.0.2     
-[17] cli_3.3.0        rstudioapi_0.13  yaml_2.3.5       xfun_0.31       
-[21] fastmap_1.1.0    httr_1.4.3       stringr_1.4.0    knitr_1.39      
-[25] sass_0.4.1       fs_1.5.2         vctrs_0.4.1      rprojroot_2.0.3 
-[29] glue_1.6.2       R6_2.5.1         processx_3.6.1   fansi_1.0.3     
-[33] rmarkdown_2.14   callr_3.7.0      magrittr_2.0.3   whisker_0.4     
-[37] ps_1.7.1         promises_1.2.0.1 htmltools_0.5.2  ellipsis_0.3.2  
-[41] httpuv_1.6.5     utf8_1.2.2       stringi_1.7.6    crayon_1.5.1    </code></pre>
-</div>
+ [1] Rcpp_1.0.8.3     highr_0.9        bslib_0.3.1      compiler_4.2.1  
+ [5] pillar_1.7.0     later_1.3.0      git2r_0.30.1     jquerylib_0.1.4 
+ [9] tools_4.2.1      getPass_0.2-2    digest_0.6.29    jsonlite_1.8.0  
+[13] evaluate_0.15    tibble_3.1.7     lifecycle_1.0.1  pkgconfig_2.0.3 
+[17] rlang_1.0.2      cli_3.3.0        rstudioapi_0.13  yaml_2.3.5      
+[21] xfun_0.31        fastmap_1.1.0    httr_1.4.3       stringr_1.4.0   
+[25] knitr_1.39       sass_0.4.1       fs_1.5.2         vctrs_0.4.1     
+[29] rprojroot_2.0.3  glue_1.6.2       R6_2.5.1         processx_3.6.1  
+[33] fansi_1.0.3      rmarkdown_2.14   callr_3.7.0      magrittr_2.0.3  
+[37] whisker_0.4      ps_1.7.1         promises_1.2.0.1 htmltools_0.5.2 
+[41] ellipsis_0.3.2   httpuv_1.6.5     utf8_1.2.2       stringi_1.7.6   
+[45] crayon_1.5.1    </code></pre>
 </div>
 </div>
 
