@@ -508,7 +508,7 @@ hist(barcode_dist, freq=F, breaks=150, main="PDF: UMI counts in each barcode (ce
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/4_Expression_barcode_dist_qc_pdf.png)  
 
 
-Plotted with package:
+Plotted with ```EnvStats``` package:
 
 ```{r,eval=FALSE}
 EnvStats::epdfPlot(barcode_dist, epdf.col = "red")
