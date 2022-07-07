@@ -582,7 +582,7 @@ dev.off()
 
 ```
 
-# expected pois
+##### expected pois
 ```{r,eval=FALSE}
 lambda_exp = sum(Expression@assays$RNA@counts) / (nrow(Expression@assays$RNA@counts) * ncol(Expression@assays$RNA@counts))
 
