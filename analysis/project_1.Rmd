@@ -519,7 +519,7 @@ EnvStats::epdfPlot(barcode_dist, epdf.col = "red")
 
 #### Point 2: area of the plot is ~1 by eye
 
-Didn't bother to do Calculus, just very roughly calculated ```1.5e-04 x 7000 = 1.05```
+Didn't bother to do calculus, just very roughly calculated ```1.5e-04 x 7000 = 1.05```
 
 
 
