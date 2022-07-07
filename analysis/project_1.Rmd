@@ -491,7 +491,7 @@ The [Hashtag] matrix has:
 
 **Previous question:** 
 
-1. Is the small values in the previous PDF plot wrong?
+1. Is the small values in the Y-axis of the previous PDF plot wrong?
 
 ```
 My understanding: probably NOT wrong.
