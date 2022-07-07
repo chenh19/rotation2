@@ -482,7 +482,50 @@ The [Hashtag] matrix has:
 [1] "There are 508 cells filtered out in comparison to authors' list."
 ```
 
-### zero-inflated plot
+
+
+
+
+### g2. PDF y axis issue
+
+
+**Previous question:** 
+
+1. Is the small values in the previous PDF plot wrong?
+
+```
+My understanding: probably NOT wrong.
+```
+
+#### Point 1: similar results by a package for epdf
+
+Plotted with base R:
+
+```{r,eval=FALSE}
+hist(barcode_dist, freq=F, breaks=150, main="PDF: UMI counts in each barcode (cell)", xlab="UMI counts in each barcode (cell)", ylab="PDF")
+```
+
+![4](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/4_Expression_barcode_dist_qc_pdf.png)  
+
+
+Plotted with package:
+
+```{r,eval=FALSE}
+EnvStats::epdfPlot(barcode_dist, epdf.col = "red")
+```
+
+![4](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/4_Expression_barcode_dist_qc_pdf(EnvStats_epdfPlot))  
+
+
+#### Point 2: area of the plot is ~1 by eye
+
+Didn't bother to do Calculus, just very roughly calculated ```1.5e-04 x 7000 = 1.05```
+
+
+
+
+
+### h. zero-inflated plot
 
 ```{r,eval=FALSE}
 setwd("~/rotation2/")

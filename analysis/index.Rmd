@@ -15,14 +15,14 @@ editor_options:
 [**Project-1: STING-seq**](https://chenh19.github.io/rotation2/project_1.html)
 
 - [x] read Morris *et al.* 2021
-- [ ] read Morris *et al.* 2021 **again**
+- [x] read Morris *et al.* 2021 **again**
 - [x] read Yalamanchili *et al.* 2017
 - [x] perform fastqc on demuxed fastq files
 - [x] know what else QC should be done (roughly)
 - [x] overview before QC
-- [ ] read Luecken *et al.* 2019
-- [ ] perform QC (learn Seurat functions, such as filtering out mito genes)
-- [ ] check QC'ed scRNA-seq data (expression distribution)
+- [x] read Luecken *et al.* 2019
+- [x] perform QC (learn Seurat functions, such as filtering out mito genes)
+- [x] check QC'ed scRNA-seq data (expression distribution)
 - [ ] perform association analysis (*cis*-regulation)
 
 [**Project-2: SCEPTRE**](https://chenh19.github.io/rotation2/project_2.html)
