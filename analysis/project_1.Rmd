@@ -528,7 +528,7 @@ Didn't bother to do Calculus, just very roughly calculated ```1.5e-04 x 7000 = 1
 ### h. zero-inflated plot
 
 ```{r,eval=FALSE}
-setwd("~/rotation2/")
+setwd("./rotation2/")
 
 library(Seurat)
 library(dplyr)
