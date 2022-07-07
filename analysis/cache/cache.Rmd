@@ -36,3 +36,8 @@ mito_genes <- read.csv("../Morris_2021/GeneCards-SearchResults.csv")[,1:2]
 #mito_gene2 <- filter(mito_genes, grepl('^MT',mito_genes$Gene.Symbol))
 mito_genes2 <- filter(mito_genes, grepl('Mitochondrially Encoded', mito_genes$Description))
 ```
+
+```{r,eval=FALSE}
+plot(whichmodel_10$target_mean,whichmodel_10$zero_prop, main="Zero Proportions",
+   xlab="Genes", ylab="Zero Proportions", pch=19, cex=0.5, col="dodgerblue3")
+```
