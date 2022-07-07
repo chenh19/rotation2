@@ -532,15 +532,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree941e24b9d949219aa0725d8695628dd99801d200targetblank941e24ba">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree138b4feb9b639063aeceb8391a04124db6a4804btargetblank138b4fea">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/chenh19/rotation2/tree/941e24b9d949219aa0725d8695628dd99801d200" target="_blank">941e24b</a>
+<a href="https://github.com/chenh19/rotation2/tree/138b4feb9b639063aeceb8391a04124db6a4804b" target="_blank">138b4fe</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree941e24b9d949219aa0725d8695628dd99801d200targetblank941e24ba"
+id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree138b4feb9b639063aeceb8391a04124db6a4804btargetblank138b4fea"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -550,7 +550,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/chenh19/rotation2/tree/941e24b9d949219aa0725d8695628dd99801d200" target="_blank">941e24b</a>.
+<a href="https://github.com/chenh19/rotation2/tree/138b4feb9b639063aeceb8391a04124db6a4804b" target="_blank">138b4fe</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -622,6 +622,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/138b4feb9b639063aeceb8391a04124db6a4804b/analysis/project_1.Rmd" target="_blank">138b4fe</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-07
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/24d6bcf734840b164c617555ff8f1390b71e0bb8/docs/project_1.html" target="_blank">24d6bcf</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-07
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -4385,20 +4419,12 @@ class="section level4">
 <h4>Point 1: similar results by a package for epdf</h4>
 <p>Plotted with base R:</p>
 <pre class="r"><code>hist(barcode_dist, freq=F, breaks=150, main=&quot;PDF: UMI counts in each barcode (cell)&quot;, xlab=&quot;UMI counts in each barcode (cell)&quot;, ylab=&quot;PDF&quot;)</code></pre>
-<div class="figure">
-<img
-src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/4_Expression_barcode_dist_qc_pdf.png"
-alt="" />
-<p class="caption">4</p>
-</div>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/4_Expression_barcode_dist_qc_pdf.png" /></p>
 <p>Plotted with package:</p>
 <pre class="r"><code>EnvStats::epdfPlot(barcode_dist, epdf.col = &quot;red&quot;)</code></pre>
-<div class="figure">
-<img
-src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/4_Expression_barcode_dist_qc_pdf(EnvStats_epdfPlot)"
-alt="" />
-<p class="caption">4</p>
-</div>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/4_Expression_barcode_dist_qc_pdf(EnvStats_epdfPlot)" /></p>
 </div>
 <div id="point-2-area-of-the-plot-is-1-by-eye" class="section level4">
 <h4>Point 2: area of the plot is ~1 by eye</h4>
@@ -4408,87 +4434,6 @@ alt="" />
 </div>
 <div id="h.-zero-inflated-plot" class="section level3">
 <h3>h. zero-inflated plot</h3>
-<pre class="r"><code>setwd(&quot;./rotation2/&quot;)
-
-library(Seurat)
-library(dplyr)
-library(ggplot2)
-library(ggeasy)
-Expression &lt;- readRDS(&quot;../Morris_2021/filter/Expression.rds&quot;, refhook = NULL)
-
-if (dir.exists(&quot;./analysis/cache/&quot;)==FALSE){
-  dir.create(&quot;./analysis/cache/&quot;)
-}
-
-# count means and non-zeros for the filtered Seurat subject
-target_stats &lt;- function(mtx){
-  target_names &lt;- rownames(mtx)
-  target_means &lt;- c()
-  target_sums &lt;- c()
-  total &lt;- nrow(mtx)
-  i = 1
-  for (target_name in target_names){
-    target_means &lt;- c(target_means, mean(mtx[target_name,]))
-    target_sums &lt;- c(target_sums, sum(mtx[target_name,] != 0 ))
-    if(i%%100 == 0){
-      print(paste0(&quot;Processed &quot;,
-                   format(i, big.mark=&quot;,&quot;, scientific=FALSE), &quot; of &quot;,
-                   format(total, big.mark=&quot;,&quot;, scientific=FALSE), &quot; targets.&quot;))
-    }
-    i = i+1
-  }
-  target_stats &lt;- data.frame(target_names,target_means,target_sums)
-  colnames(target_stats) &lt;- c(&quot;target_name&quot;, &quot;target_mean&quot;, &quot;target_non_zero_count&quot;)
-  filename &lt;- paste0(&quot;./analysis/cache/Expression_filtered_means_non-zeros.csv&quot;)
-  write.table(target_stats, file=filename, sep=&quot;,&quot;, row.names = FALSE)
-}
-target_stats(Expression@assays$RNA@counts)
-
-# calculate zero proportions &amp; expectations
-whichmodel &lt;- read.csv(&quot;./analysis/cache/Expression_filtered_means_non-zeros.csv&quot;, header = TRUE)
-whichmodel &lt;- dplyr::mutate(whichmodel, zero_prop = 1 - target_non_zero_count / ncol(Expression@assays$RNA@counts) )
-whichmodel_10 &lt;- dplyr::filter(whichmodel, target_mean &lt;= 10)
-
-# plot
-filename &lt;- paste0(&quot;./analysis/cache/0_zero_proportions.tif&quot;)
-tiff(file=filename, width=8, height=5, units=&quot;in&quot;, res=600)
-ggplot(data = whichmodel_10, aes(x= target_mean, y=zero_prop)) + 
-  geom_jitter(width=0.05, height=0.05) + 
-  theme_light() + 
-  geom_smooth(method=&quot;glm&quot;, method.args=list(family=&quot;poisson&quot;)) + 
-  labs(title = &quot;Zero Proportions&quot;, x = &quot;Gene Mean&quot;, y = &quot;Zero Proportion&quot;) + 
-  ggeasy::easy_center_title()
-dev.off()</code></pre>
-<div id="expected-pois" class="section level5">
-<h5>expected pois</h5>
-<pre class="r"><code>lambda_exp = sum(Expression@assays$RNA@counts) / (nrow(Expression@assays$RNA@counts) * ncol(Expression@assays$RNA@counts))
-
-pois_exp &lt;- data.frame(1:10 ,dpois(X, lambda_exp))
-colnames(pois_exp) &lt;- c(&quot;X&quot;,&quot;Y&quot;)
-
-
-ggplot(pois_exp) + 
-  stat_smooth(aes(y=Y, x=X), method = &quot;lm&quot;, formula = y ~ poly(x, 9.9), se = FALSE)</code></pre>
-<pre><code>The [Expression@assays$RNA@counts] matrix has: 
-- 35,606 rows/genes/targets 
-- 9,391 columns/barcodes/cells 
-- 334,375,946 values in total 
-- 36,844,288 values that are non-zero 
-- 18,620,321 values that are 1 
-- 18,223,967 values that are bigger than 1 
-- 2,230,437 values that are bigger than 10 
-- 181,020 values that are bigger than 100 
-- 1,512 values that are bigger than 1,000 
-- 0 values that are bigger than 10,000 
-- 0 values that are bigger than 100,000 
-</code></pre>
-<pre><code># calculate means (these means are different from manually calcualted means, not sure why, not used)
-#mean &lt;- as.data.frame(Seurat::AverageExpression(Expression, assays = &quot;RNA&quot;))
-#filename &lt;- paste0(&quot;./analysis/cache/Expression_filtered_means.csv&quot;)
-#write.table(mean, file=filename, sep=&quot;,&quot;, row.names = TRUE, col.names = FALSE)</code></pre>
-<p>Note: according to Kim <em>et al.</em> 2020, for single cell type
-RNAseq, UMI data can be effectively modeled by the Poisson
-distribution.</p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -4532,7 +4477,6 @@ loaded via a namespace (and not attached):
 [33] rmarkdown_2.14   callr_3.7.0      magrittr_2.0.3   whisker_0.4     
 [37] ps_1.7.1         promises_1.2.0.1 htmltools_0.5.2  ellipsis_0.3.2  
 [41] httpuv_1.6.5     utf8_1.2.2       stringi_1.7.6    crayon_1.5.1    </code></pre>
-</div>
 </div>
 </div>
 </div>
