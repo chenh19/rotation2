@@ -514,7 +514,7 @@ Plotted with package:
 EnvStats::epdfPlot(barcode_dist, epdf.col = "red")
 ```
 
-![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/4_Expression_barcode_dist_qc_pdf(EnvStats_epdfPlot))  
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/4_Expression_barcode_dist_qc_pdf(EnvStats_epdfPlot).png)  
 
 
 #### Point 2: area of the plot is ~1 by eye
