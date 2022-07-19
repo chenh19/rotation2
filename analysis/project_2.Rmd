@@ -33,6 +33,9 @@ From [Morris *et al.* 2021: STING-Seq](https://chenh19.github.io/rotation2/refs/
 
 ### d. run sceptre
 
+- SCEPTRE [tutorial](https://katsevich-lab.github.io/sceptre/articles/using_sceptre_v2.html)
+- SCEPTRE [functions](https://katsevich-lab.github.io/sceptre/reference/index.html)
+
 ```{r,eval=FALSE}
 Expression <- readRDS("../Morris_2021/filter/Expression.rds", refhook = NULL)
 gRNA <- readRDS("../Morris_2021/filter/gRNA.rds", refhook = NULL)
