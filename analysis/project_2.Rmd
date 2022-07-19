@@ -30,3 +30,26 @@ From [Morris *et al.* 2021: STING-Seq](https://chenh19.github.io/rotation2/refs/
 ### c. Install the package
 
 **Code:** [```sceptre.sh```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/sceptre.sh)  
+
+### d. run sceptre
+
+```{r,eval=FALSE}
+Expression <- readRDS("../Morris_2021/filter/Expression.rds", refhook = NULL)
+gRNA <- readRDS("../Morris_2021/filter/gRNA.rds", refhook = NULL)
+
+gene_matrix <- Expression@assays$RNA@counts
+gRNA_matrix <- gRNA@assays$RNA@counts
+
+```
+
+```{r,eval=FALSE}
+#install.packages("devtools")
+#devtools::install_github("katsevich-lab/sceptre")
+#install.packages("tidyverse")
+#install.packages("cowplot")
+
+library(tidyverse)
+library(cowplot)
+library(Matrix)
+library(sceptre)
+```

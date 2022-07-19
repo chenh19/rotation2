@@ -599,27 +599,3 @@ Warning while fitting theta: iteration limit reached
 ```
 
 **Note:** negative binomial regression doesn't seem to allow zeros.
-
-
-### i. association
-
-```{r,eval=FALSE}
-Expression <- readRDS("../Morris_2021/filter/Expression.rds", refhook = NULL)
-gRNA <- readRDS("../Morris_2021/filter/gRNA.rds", refhook = NULL)
-
-gene_matrix <- Expression@assays$RNA@counts
-gRNA_matrix <- gRNA@assays$RNA@counts
-
-```
-
-```{r,eval=FALSE}
-#install.packages("devtools")
-#devtools::install_github("katsevich-lab/sceptre")
-#install.packages("tidyverse")
-#install.packages("cowplot")
-
-library(tidyverse)
-library(cowplot)
-library(Matrix)
-library(sceptre)
-```
