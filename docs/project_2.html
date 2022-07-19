@@ -532,15 +532,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree6307f5c099cb5683f2c9b3f2c3b89a3e1ab3464btargetblank6307f5ca">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2treea18fc1f85a6e1e14f2a70ca80c273ec75b2005e5targetblanka18fc1fa">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/chenh19/rotation2/tree/6307f5c099cb5683f2c9b3f2c3b89a3e1ab3464b" target="_blank">6307f5c</a>
+<a href="https://github.com/chenh19/rotation2/tree/a18fc1f85a6e1e14f2a70ca80c273ec75b2005e5" target="_blank">a18fc1f</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree6307f5c099cb5683f2c9b3f2c3b89a3e1ab3464btargetblank6307f5ca"
+id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2treea18fc1f85a6e1e14f2a70ca80c273ec75b2005e5targetblanka18fc1fa"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -550,7 +550,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/chenh19/rotation2/tree/6307f5c099cb5683f2c9b3f2c3b89a3e1ab3464b" target="_blank">6307f5c</a>.
+<a href="https://github.com/chenh19/rotation2/tree/a18fc1f85a6e1e14f2a70ca80c273ec75b2005e5" target="_blank">a18fc1f</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -566,11 +566,6 @@ were generated:
 <pre><code>
 Ignored files:
     Ignored:    data/
-
-Unstaged changes:
-    Modified:   .RData
-    Modified:   .Rhistory
-    Deleted:    code/0_prepare/git_ssh_config.sh
 
 </code></pre>
 <p>
@@ -616,6 +611,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/a18fc1f85a6e1e14f2a70ca80c273ec75b2005e5/analysis/project_2.Rmd" target="_blank">a18fc1f</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-19
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/870115fb1d701c41152b1a39cb251870c3d869ff/docs/project_2.html" target="_blank">870115f</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-19
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -2765,6 +2794,23 @@ href="https://github.com/Katsevich-Lab/sceptre-manuscript">Katsevich-Lab/sceptre
 <h3>c. Install the package</h3>
 <p><strong>Code:</strong> <a
 href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/sceptre.sh"><code>sceptre.sh</code></a></p>
+</div>
+<div id="d.-run-sceptre" class="section level3">
+<h3>d. run sceptre</h3>
+<pre class="r"><code>Expression &lt;- readRDS(&quot;../Morris_2021/filter/Expression.rds&quot;, refhook = NULL)
+gRNA &lt;- readRDS(&quot;../Morris_2021/filter/gRNA.rds&quot;, refhook = NULL)
+
+gene_matrix &lt;- Expression@assays$RNA@counts
+gRNA_matrix &lt;- gRNA@assays$RNA@counts</code></pre>
+<pre class="r"><code>#install.packages(&quot;devtools&quot;)
+#devtools::install_github(&quot;katsevich-lab/sceptre&quot;)
+#install.packages(&quot;tidyverse&quot;)
+#install.packages(&quot;cowplot&quot;)
+
+library(tidyverse)
+library(cowplot)
+library(Matrix)
+library(sceptre)</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
