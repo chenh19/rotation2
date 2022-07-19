@@ -68,7 +68,7 @@ git push -u origin main
 
 ## 3. Git SSH configuration
 
-**Code:** [```git_ssh_config.sh```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/git_ssh_config.sh)  
+**Code:** [```git_ssh_config.sh```](https://raw.githubusercontent.com/chenh19/MyWorkspace/main/src/cfg/0_gitssh.sh)  
 
 - Ref: [YouTube](https://youtu.be/YnSMYgIybFU)
 
