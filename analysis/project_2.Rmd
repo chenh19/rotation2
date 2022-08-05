@@ -1,0 +1,58 @@
+---
+title: "Project-2: SCEPTRE"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: true
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1. Understand SCEPTRE
+
+### a. Read the paper
+
+[Barry *et al.* 2021: SCEPTRE](https://chenh19.github.io/rotation2/refs/Barry_2021.pdf)
+
+> *First, SCEPTRE fits a **negative binomial distribution** to measure the effect of a single gRNA on a given gene via Z-score. Then, the distribution of gRNAs to cells is randomly sampled to build a gRNA-specific null distribution, recomputing a negative binomial Z-score. A skew-t distribution is fit to compare the test Z-score and the null distribution, and a two-sided p-value is derived, allowing for significance tests of increased or decreased gene expression.*  
+
+From [Morris *et al.* 2021: STING-Seq](https://chenh19.github.io/rotation2/refs/Morris_2020.pdf)
+
+### b. Check the package
+
+- [Katsevich-Lab/sceptre](https://github.com/Katsevich-Lab/sceptre)
+- [Katsevich-Lab/sceptre-manuscript](https://github.com/Katsevich-Lab/sceptre-manuscript)
+
+### c. Install the package
+
+**Code:** [```sceptre.sh```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/sceptre.sh)  
+
+### d. run sceptre
+
+- **SCEPTRE [tutorial](https://katsevich-lab.github.io/sceptre/articles/using_sceptre_v2.html)**
+- **SCEPTRE [functions](https://katsevich-lab.github.io/sceptre/reference/index.html)**
+
+```{r,eval=FALSE}
+Expression <- readRDS("../Morris_2021/filter/Expression.rds", refhook = NULL)
+gRNA <- readRDS("../Morris_2021/filter/gRNA.rds", refhook = NULL)
+
+gene_matrix <- Expression@assays$RNA@counts
+gRNA_matrix <- gRNA@assays$RNA@counts
+
+```
+
+```{r,eval=FALSE}
+#install.packages("devtools")
+#devtools::install_github("katsevich-lab/sceptre")
+#install.packages("tidyverse")
+#install.packages("cowplot")
+
+library(tidyverse)
+library(cowplot)
+library(Matrix)
+library(sceptre)
+```

@@ -1,0 +1,88 @@
+---
+title: "Miscellaneous"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: true
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1. Routine
+
+**Load:**
+
+```{r,eval=FALSE}
+# load
+setwd("./Developing/rotation2/")
+library(workflowr)
+```
+
+**WorkflowR publish:**
+
+```{r,eval=FALSE}
+# workflowR publish
+wflow_publish("./analysis/*.Rmd")
+```
+
+**Cleanup:**
+
+```{r,eval=FALSE}
+# cleanup environment
+rm(list = ls())
+```
+
+**Git commit and push:**
+
+```{bash,eval=FALSE}
+# git pull
+#mkdir ./Developing/rotation2/
+#cd ./Developing/rotation2/ 
+#git init
+#git pull git@github.com:chenh19/rotation2.git
+
+# git push
+#cd ./Developing/rotation2/
+#git remote add origin git@github.com:chenh19/rotation2.git
+git commit -a -m "update"
+git add --all
+git commit -a -m "update"
+git push -u origin main
+```
+
+**Environment: [Kubuntu 22.04 LTS](https://kubuntu.org/); [Setup Shell Scripts](https://github.com/chenh19/MyWorkspace)**
+
+## 2. Meetings
+
+- Xuanyao one-on-one: ```Tue 1pm``` and ```Thur 1pm```
+- Liu group meeting: ```Wed 1pm``` (Work-in-progress/Journal clubs)
+- Joint lab meeting (Andy & Haky groups): ```Thur 2pm``` (Work-in-progress/Journal clubs)
+- Yang lab journal club: ```Mon 1pm```
+- PBC serminar (Matthew & Xin & John groups): ```Fri 10:30am```
+- Group lunch: ```Wed 12pm```
+
+
+## 3. Git SSH configuration
+
+**Code:** [```git_ssh_config.sh```](https://raw.githubusercontent.com/chenh19/MyWorkspace/main/src/cfg/0_gitssh.sh)  
+
+- Ref: [YouTube](https://youtu.be/YnSMYgIybFU)
+
+
+## 4. Canon printer configuration
+
+**Code:** [```canon_printer.sh```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/canon_printer.sh)  
+
+- Note: the private IP address is labeled on the printer.
+- Ref: [Canon Support](https://www.usa.canon.com/internet/portal/us/home/support/details/printers/color-laser/color-imageclass-mf735cdw)
+
+
+## 5. Watering Ran's plant
+
+- [x] 6/13/22 10:30am
+- [x] 6/15/22 9:00am
+- [x] 6/20/22 8:00am

@@ -1,0 +1,601 @@
+---
+title: "Project-1: STING-seq"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: true
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1. Understand RNA-seq
+
+### a. Read about RNA-seq analysis
+
+[Yalamanchili *et al.* 2017: RNA-seq analysis pipeline](https://chenh19.github.io/rotation2/refs/Yalamanchili_2017.pdf)  
+
+#### Some key points:
+
+**Protocol-1 (differential expression of genes):**  
+
+* demuxed raw reads (FastQC)
+* trimming reads (awk)
+* aligning reads (TopHat2)
+* counting reads (HTSeq; may filter out genes with low counts before next step)
+* detect DE using counted reads (DEseq2)
+* more QC (PCA/correlation heatmap)
+
+**Protocol-2 (differential usage of isoforms):**  
+
+* Protocol-1
+* counting isoforms (Kallisto, **also check [cell ranger](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger)**)
+* detect DU using counted isoforms (Sleuth)
+* more QC (aslo PCA/correlation heatmap)
+
+**Protocol-3 (crypic splicing):**  
+
+* Protocol-1
+* detect differential junstions (CrypSplice)
+
+
+
+### b. Read more about RNA-seq analysis
+
+[Luecken *et al.* 2019: RNA-seq analysis pipeline](https://chenh19.github.io/rotation2/refs/Luecken_2019.pdf)  
+[Supplementary code](https://github.com/theislab/single-cell-tutorial)  
+
+#### Some key points:
+
+- [**Seurat**](https://github.com/satijalab/seurat) (R)
+- [**Scater**](https://github.com/jimhester/scater) (R)
+- [**Scanpy**](https://github.com/scverse/scanpy) (Python)
+
+
+### c. Read the Morris paper
+
+[Morris *et al.* 2021: STING-Seq](https://chenh19.github.io/rotation2/refs/Morris_2020.pdf)  
+
+#### Some key points:
+
+**Some key ideas:**  
+
+* STING-seq: Systematic Targeting and Inbition of Noncoding GWAS loci with scRNA-seq
+* prioritizes candidate *cis*-regulatory elements (cCREs, 1kb<distance to TSS<1Mb) using fine-mapped GWAS
+* selected 88 variants (in 56 loci) with enhancer activity
+* dual CRISPR inhibition: dCas9 as the GPS, MeCP2 and KRAB as the repressors
+* confirming dual CRISPRi efficacy: gRNAs target TSS of *MRPS23*, *CTSB*, *FSCN1*
+* CRIPSRi on the 88 variants: two gRNAs for each variant, both within 200bp of the variant
+* ECCITE-seq: captures gRNAs and epitopes
+
+**Some data processing steps and results:**  
+
+* QC: remove cells with low total reads or excessive mitochondrial reads, gRNA assignment UMI>5 (9,343 cells after QC)
+* **Kallisto:** counting [read more on the official website](https://pachterlab.github.io/kallisto/)
+* **Seurat:** QC and ```reference mapping?``` [read more on the official website](https://satijalab.org/seurat/)
+* **SCEPTRE:** gRNA_to_gene-expression pairwise test
+* non-targeting gRNA-gene pairs: not significant (negative ctrl)
+* TSS-targeting gRNA-gene pairs: expression significantly decreased (positive ctrl)
+* 37 of the 88 variants were significant
+* *Trans*-regulatory elements: ```I'll come back later```
+
+**Note:**  
+
+* [Cellular Indexing of Transcriptomes and Epitopes by Sequencing (CITE-seq)](https://cite-seq.com/)
+* [Expanded CRISPR-compatible CITE-seq (ECCITE-Seq)](https://cite-seq.com/eccite-seq/)
+* **cDNA**, **HTO** (Hashtag oligos), **GDO** (gRNAs)
+* **ECCITE-seq:**  
+
+<center>
+![](https://citeseq.files.wordpress.com/2018/11/eccite.png){width=70%}
+</center>
+
+
+
+## 2. Prelim QC for raw STING-seq data
+
+### a. Download all data
+
+**Code:** [```download.sh```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/download.sh)  
+
+### b. Perform FastQC on all fastq files
+
+**Code:** [```fastqc.sh```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/fastqc.sh)  
+
+**SRR14141135:**  
+
+* [SRR14141135_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141135_cDNA_Homo_sapiens_1_fastqc.html)  
+* [SRR14141135_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141135_cDNA_Homo_sapiens_2_fastqc.html)  
+  
+**SRR14141136:**  
+
+* [SRR14141136_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141136_cDNA_Homo_sapiens_1_fastqc.html)  
+* [SRR14141136_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141136_cDNA_Homo_sapiens_2_fastqc.html)  
+  
+**SRR14141137:**  
+
+* [SRR14141137_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141137_cDNA_Homo_sapiens_1_fastqc.html)  
+* [SRR14141137_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141137_cDNA_Homo_sapiens_2_fastqc.html)  
+  
+**SRR14141138:**  
+
+* [SRR14141138_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141138_cDNA_Homo_sapiens_1_fastqc.html)  
+* [SRR14141138_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141138_cDNA_Homo_sapiens_2_fastqc.html)  
+  
+**SRR14141139:**  
+
+* [SRR14141139_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141139_cDNA_Homo_sapiens_1_fastqc.html)  
+* [SRR14141139_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141139_cDNA_Homo_sapiens_2_fastqc.html)  
+  
+**SRR14141140:**  
+
+* [SRR14141140_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141140_cDNA_Homo_sapiens_1_fastqc.html)  
+* [SRR14141140_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141140_cDNA_Homo_sapiens_2_fastqc.html)  
+  
+**SRR14141141:**  
+
+* [SRR14141141_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141141_cDNA_Homo_sapiens_1_fastqc.html)  
+* [SRR14141141_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141141_cDNA_Homo_sapiens_2_fastqc.html)  
+  
+**SRR14141142:**  
+
+* [SRR14141142_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141142_cDNA_Homo_sapiens_1_fastqc.html)  
+* [SRR14141142_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141142_cDNA_Homo_sapiens_2_fastqc.html)  
+  
+**SRR14141143:**  
+
+* [SRR14141143_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141143_HTO_Homo_sapiens_1_fastqc.html)  
+* [SRR14141143_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141143_HTO_Homo_sapiens_2_fastqc.html)  
+  
+**SRR14141144:**  
+
+* [SRR14141144_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141144_HTO_Homo_sapiens_1_fastqc.html)  
+* [SRR14141144_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141144_HTO_Homo_sapiens_2_fastqc.html)  
+  
+**SRR14141145:**  
+
+* [SRR14141145_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141145_GDO_Homo_sapiens_1_fastqc.html)  
+* [SRR14141145_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141145_GDO_Homo_sapiens_2_fastqc.html)  
+  
+**SRR14141146:**  
+
+* [SRR14141146_1](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141146_GDO_Homo_sapiens_1_fastqc.html)  
+* [SRR14141146_2](https://chenh19.github.io/rotation2/fastqc_reports/SRR14141146_GDO_Homo_sapiens_2_fastqc.html)  
+  
+  
+**A brief summary:**  
+
+* **length:** ```26bp``` or ```57bp``` (**trimmed?**)
+* **depth:** ```30-35x```
+* **overall quality:** good (within ```~40 bp```)
+
+### d. Kallisto | bustools pipeline
+
+**Code:** [```pip3-kb.sh```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/pip3-kb.sh)  
+**Code:** [```anaconda_kallisto.sh```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/anaconda_kallisto.sh)  
+
+
+## 3. Analyze QC'ed STING-seq data
+
+### a. Install packages
+
+**Code:** [```seurat.sh```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/seurat.sh)  
+
+### b. Data overview
+
+**Code:** [```overview.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/1_overview/overview.R)  
+**Note: about [sparse matrix](https://slowkow.com/notes/sparse-matrix/)**  
+
+```
+The [Expression] matrix has: 
+- 35,606 rows/genes/targets 
+- 686,612 columns/barcodes/cells 
+- 24,447,506,872 values in total 
+- 82,507,471 values that are non-zero 
+- 50,421,358 values that are 1 
+- 32,086,113 values that are bigger than 1 
+- 3,370,699 values that are bigger than 10 
+- 259,734 values that are bigger than 100 
+- 2,515 values that are bigger than 1,000 
+- 0 values that are bigger than 10,000 
+- 0 values that are bigger than 100,000 
+ 
+The [gRNA] matrix has: 
+- 210 rows/genes/targets 
+- 137,347 columns/barcodes/cells 
+- 28,842,870 values in total 
+- 2,506,474 values that are non-zero 
+- 1,510,919 values that are 1 
+- 995,555 values that are bigger than 1 
+- 121,554 values that are bigger than 10 
+- 41,071 values that are bigger than 100 
+- 2,232 values that are bigger than 1,000 
+- 20 values that are bigger than 10,000 
+- 0 values that are bigger than 100,000 
+ 
+The [Hashtag] matrix has: 
+- 4 rows/genes/targets 
+- 410,228 columns/barcodes/cells 
+- 1,640,912 values in total 
+- 739,820 values that are non-zero 
+- 409,830 values that are 1 
+- 329,990 values that are bigger than 1 
+- 218,280 values that are bigger than 10 
+- 8,155 values that are bigger than 100 
+- 282 values that are bigger than 1,000 
+- 46 values that are bigger than 10,000 
+- 0 values that are bigger than 100,000 
+
+```
+
+
+
+### c. Calculate means and non-zeros
+
+**Code:** [```Expression_barcode_stats.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/2_mean_non-zero/Expression_barcode_stats.R)  
+**Code:** [```Expression_target_stats.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/2_mean_non-zero/Expression_target_stats.R)  
+
+**Code:** [```gRNA_barcode_stats.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/2_mean_non-zero/gRNA_barcode_stats.R)  
+**Code:** [```gRNA_target_stats.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/2_mean_non-zero/gRNA_target_stats.R)  
+
+**Code:** [```Hashtag_barcode_stats.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/2_mean_non-zero/Hashtag_barcode_stats.R)  
+**Code:** [```Hashtag_target_stats.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/2_mean_non-zero/Hashtag_target_stats.R)  
+
+#### Output:
+
+[```Expression_matrix_barcodes_summary.csv```](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/Expression_matrix_barcodes_summary.csv)  
+[```Expression_matrix_targets_summary.csv```](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/Expression_matrix_targets_summary.csv)  
+
+[```gRNA_matrix_barcodes_summary.csv```](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/gRNA_matrix_barcodes_summary.csv)  
+[```gRNA_matrix_targets_summary.csv```](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/gRNA_matrix_targets_summary.csv)  
+
+[```Hashtag_matrix_barcodes_summary.csv```](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/Hashtag_matrix_barcodes_summary.csv)  
+[```Hashtag_matrix_targets_summary.csv```](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/Hashtag_matrix_targets_summary.csv)  
+
+
+
+
+### d. Expression (cDNA) dataset
+
+#### i) Expression barcodes
+
+**Code:** [```Expression_barcode_dist_plot.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/3_dist_cdf/Expression_barcode_dist_plot.R)  
+
+**Comment:** The cell with highest overall detected gene expression  
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/1_Expression_max_barcode.png)
+
+**Comment:** The cell with lowest overall detected gene expression  
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/2_Expression_min_barcode.png)
+
+**Comment:** As Xuanyao said, this kind bar plot is too dense and can't really see the overall distribution, the CDF plot below is more clear
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/3_Expression_barcode_dist.png)
+
+**Comment:** From this CDF figure I kind of know why there were only ~9000 cells used after Qc'ing with UMI>=850 filter. Less than 10% cells have UMI>=850. But still, **why exactly 850 is still a question for me to explore**
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/4_Expression_barcode_dist_cdf.png)
+
+**Comment:** Many zeros (consistent with the observation that the matrix was very sparse); UMI>850 is invisible in this plot. As Xuanyao said, I should exclude the outliers or add y-axis break
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/5_Expression_barcode_dist_pdf.png)
+
+
+
+#### ii) Expression targets
+
+**Code:** [```Expression_target_dist_plot.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/3_dist_cdf/Expression_target_dist_plot.R)  
+
+**Comment:** The highest (mean) expressed gene is *WDR45-like (WDR45L) pseudogene* (high UMI counts in all cells)  
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/6_Expression_max_target.png)  
+
+**Comment:** The lowest (mean) expressed gene is *RP4-669L17.1 pseudogene* (zero UMI counts in all cells)  
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/7_Expression_min_target.png)  
+
+**Comment:** Non-zero UMI counts for all genes (~35k, including mito genes; 686,612 cells intotal)  
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/8_Expression_target_dist.png)  
+
+**Comment:** CDF plot: ~80% genes have < ~5000 UMI counts in all cells (not all genes captured in each cell, but I guess still a lot)  
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/9_Expression_target_dist_cdf.png)  
+
+**Comment:** PDF plot: same conclusion as above
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/10_Expression_target_dist_pdf.png)  
+
+
+
+
+
+### e. gRNA dataset
+
+#### i) gRNA barcodes
+
+**Code:** [```gRNA_barcode_dist_plot.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/3_dist_cdf/gRNA_barcode_dist_plot.R)  
+
+**Comment:** The cell with highest overall (mean) gRNAs, and it has 15 highly expressed gRNAs  
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/1_gRNA_max_barcode.png)  
+
+**Comment:** The cell with lowest overall (mean) gRNAs (transfection/transduction failed in this cell)  
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/2_gRNA_min_barcode.png)  
+
+**Comment:** Non-zero UMI counts in all cells (I'd say the transfection/transduction relatively even across all cells)  
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/3_gRNA_barcode_dist.png)  
+
+**Comment:** CDF plot: ~80% cells have < ~40 UMI counts for each gRNA (note: the authors mentioned MOI ~ 10)  
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/4_gRNA_barcode_dist_cdf.png)  
+
+**Comment:** PDF plot: same conclusion as above  
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/5_gRNA_barcode_dist_pdf.png)  
+
+
+#### ii) gRNA targets
+
+**Code:** [```gRNA_target_dist_plot.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/3_dist_cdf/gRNA_target_dist_plot.R)  
+
+**Comment:** The highest (mean) gRNA in all cells (gRNA targeting PPIA-2, which is a control)  
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/6_gRNA_max_target.png)  
+
+**Comment:** The lowest (mean) gRNA in all cells (likely it's a low score gRNA site but the authors didn't have better choices)  
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/7_gRNA_min_target.png)  
+
+**Comment:** Non-zero UMI counst for all gRNAs (137,347 cells in total; I'd say the transfection/transduction efficiency varies among gRNAs. The authors designed all the gRNAs within 200bp of the targeted variants,there must be limitations in terms of gRNA options)  
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/8_gRNA_target_dist.png)  
+
+**Comment:** CDF plot: ~80% gRNAs have < ~20,000 UMI counts in all cells (137,347 cells in total, ~15% transfection/transduction success rate, acceptable)  
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/9_gRNA_target_dist_cdf.png)  
+
+**Comment:** PDF plot: same conclusion as above  
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/10_gRNA_target_dist_pdf.png)  
+
+
+
+
+### f. Hashtag dataset
+
+#### i) Hashtag barcodes
+
+**Code:** [```Hashtag_barcode_dist_plot.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/3_dist_cdf/Hashtag_barcode_dist_plot.R)  
+
+**Comment:** The cell with highest (mean) Hashtags (note: the authors used only 4 Hashtags, I might check which antibodies they are when performing association)  
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/1_Hashtag_max_barcode.png)  
+
+**Comment:** The cell with lowest (mean) Hashtags (not tagged by any of the antibodies)  
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/2_Hashtag_min_barcode.png)  
+
+**Comment:** This figure is not an error. All cells have 1/2/3/4 UMI counts, and because many of them have 4, it looks like a block when it's such dense  
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/3_Hashtag_barcode_dist.png)  
+
+**Comment:** CDF plot: ~80% cells have < ~2 UMI counts for each Hashtag (It make sense to me because the authors are likely trying to label different cell types)  
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/4_Hashtag_barcode_dist_cdf.png)  
+
+**Comment:** PDF plot: same conclusion as above  
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/5_Hashtag_barcode_dist_pdf.png)  
+
+
+#### i) Hashtag targets
+
+**Code:** [```Hashtag_target_dist_plot.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/3_dist_cdf/Hashtag_target_dist_plot.R)  
+
+**Comment:** The highest (mean) Hashtag (HTO23) in all cells (I would guess this is the relatively more common cell type, also, there were some non-specific antibody binding)  
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/6_Hashtag_max_target.png)  
+
+**Comment:** The lowest (mean) Hashtag (HTO25) in all cells (I would guess this is the relatively less common cell type, also, it dosen't seem to overlap with HTO25, which is a good thing)  
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/7_Hashtag_min_target.png)  
+
+**Comment:** Non-zero UMI counts for the 4 Hashtags (I'd say the 4 cell types are relatively even)  
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/8_Hashtag_target_dist.png)  
+
+**Comment:** CDF plot: ~80% Hashtags have < ~200,000 UMI counts in all cells (410,228 cells in total, I thinking the antibody binding efficiency is pretty good)  
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/9_Hashtag_target_dist_cdf.png)  
+
+**Comment:** PDF plot: same conclusion as above  
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/10_Hashtag_target_dist_pdf.png)  
+
+### g. QC filtering
+
+- After preliminary filtering, the authors got ```14,775 cells``` with ```3,875 median genes per cell```.
+
+**Previous question:**  
+
+1. why ```percent-mito < 20%```?
+2. why ```UMI > 850```?
+3. why ```no UMI upper limit```?
+
+**My understanding:**  
+
+1. Previously, **5%** was usually the default threshold. But [a recent paper](https://doi.org/10.1093%2Fbioinformatics%2Fbtaa751) did systematic evaluation and proposed a default cutoff of **10% for human cells**. Also, according to [Luecken *et al.* 2019](https://chenh19.github.io/rotation2/refs/Luecken_2019.pdf), we can use a relatively loose QC cutoff at the beginning. Since the percent-mito was just in the **first** QC filtering step and the author further filtered by HTO and GDO, I think **20%** makes sense.
+2. Again, according to [Luecken *et al.* 2019](https://chenh19.github.io/rotation2/refs/Luecken_2019.pdf), the dying/dead cells would be a small peak with low UMI counts. By the zoomed-in plot below, we can see 850 is a reasonable cutoff to remove the entire peak.
+3. Doublets was **not** filtered out by UMI, but by HTO demuxing, therefore the authors didn't set an upper limit.
+
+**Notes:**  
+
+- In the original cDNA feature txt file, there are only Ensembl gene IDs. To calculate percent-mito, I tried to convert the IDs to symbols using both [this web tool](https://www.biotools.fr/human/ensembl_symbol_converter) and biomaRT package in R.
+- If I directly use the gene symbols from these two methods and the same filters by Nikita, I get exactly [the same results as Nikita](https://1onic.github.io/lab-notes/sceptre.html#372022) (```14,813 cells``` retained).
+- However, after taking a closer look at the converted gene lists, there are still many "**Mitochondrially Encoded**" genes starting with "```MT```" rather than "```MT-```", so I wrote a script to convert all these genes.
+- Then I performed filtering again and got ```14,675 cells``` with ```3,917 median genes per cell```.
+- I don't think we'll know exactly how the authors filtered the cells unless they release their code.
+- After QC filtering, there were ```9,391 cells``` retained (```9,343 cells``` by the authors in comparison, 
+- I did cross comparison. There are ```508 cells``` from authors' list not in my list.
+
+**Code:** [```QC_filter.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/4_filter/QC_filter.R)  
+**Code:** [```UMI_plot.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/4_filter/UMI_plot.R)  
+
+**Before UMI count filtering:**  
+
+![1](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/1_Expression_barcode_dist_qc_cdf.png)  
+![2](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/2_Expression_barcode_dist_qc_pdf.png)  
+
+**After UMI count filtering:**  
+
+![3](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/3_Expression_barcode_dist_qc_cdf.png)  
+![4](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/4_Expression_barcode_dist_qc_pdf.png)  
+
+**Before percent-mito filtering (generated by Seurat): **  
+
+![5](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/5_violin_before_QC.png)  
+![6](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/6_percent_mt_before_QC.png)  
+![7](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/7_nFeature_before_QC.png)  
+
+**After percent-mito filtering (generated by Seurat): **  
+
+![8](https://github.com/chenh19/rotation2/raw/main/output/QC/8_violin_after_QC.png)  
+![9](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/9_percent_mt_after_QC.png)  
+![10](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/10_nFeature_after_QC.png)  
+
+**Barcodes comparison:**  
+
+**Code:** [```QC_compare.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/4_filter/QC_compare.R)  
+[```QC_by_author.txt```](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/QC_by_author.txt)  
+[```QC_by_hang.txt```](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/QC_by_hang.txt)  
+
+**Comparison result:**  
+
+```
+[1] "There are 508 cells filtered out in comparison to authors' list."
+```
+
+
+
+
+
+### g2. PDF y axis issue
+
+
+**Previous question:** 
+
+1. Is the small values in the Y-axis of the previous PDF plot wrong?
+
+```
+My understanding: probably NOT wrong.
+```
+
+#### Point 1: similar results by a package for epdf
+
+Plotted with base R:
+
+```{r,eval=FALSE}
+hist(barcode_dist, freq=F, breaks=150, main="PDF: UMI counts in each barcode (cell)", xlab="UMI counts in each barcode (cell)", ylab="PDF")
+```
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/4_Expression_barcode_dist_qc_pdf.png)  
+
+
+Plotted with ```EnvStats``` package:
+
+```{r,eval=FALSE}
+EnvStats::epdfPlot(barcode_dist, epdf.col = "red")
+```
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/4_Expression_barcode_dist_qc_pdf(EnvStats_epdfPlot).png)  
+
+
+#### Point 2: area of the plot is ~1 by eye
+
+Didn't bother to do calculus, just very roughly calculated ```1.5e-04 x 7000 = 1.05```
+
+
+
+### h. zero-inflated plot & regression
+
+Ref: [Kim *et al.* 2020](https://chenh19.github.io/rotation2/refs/Kim_2020.pdf)
+
+**Code:** [```zero-flated.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/5_zero-inflated/zero-inflated.R)  
+
+![1](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Zero-inflated/1_zero_proportions(Poisson).png)  
+![2](https://raw.githubusercontent.com/chenh19/rotation2/main/output/Zero-inflated/2_zero_proportions(negative_binomial).png)  
+
+#### regression summary
+
+```{r,eval=FALSE}
+summary(glm(zero_prop ~ target_mean, family = poisson, data = whichmodel_10)) # poisson
+```
+
+```
+Call:
+glm(formula = zero_prop ~ target_mean, family = poisson, data = whichmodel_10)
+
+Deviance Residuals: 
+     Min        1Q    Median        3Q       Max  
+-0.13432  -0.00250   0.01255   0.01294   1.08289  
+
+Coefficients:
+             Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -0.012969   0.005915  -2.193   0.0283 *  
+target_mean -0.672805   0.019706 -34.141   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for poisson family taken to be 1)
+
+    Null deviance: 2256.629  on 35374  degrees of freedom
+Residual deviance:   88.113  on 35373  degrees of freedom
+AIC: Inf
+
+Number of Fisher Scoring iterations: 5
+```
+
+```{r,eval=FALSE}
+summary(glm.nb(zero_prop ~ target_mean, data = whichmodel_10)) # negative binomial
+```
+
+```
+Call:
+glm.nb(formula = zero_prop ~ target_mean, data = whichmodel_10, 
+    init.theta = 18539.38634, link = log)
+
+Deviance Residuals: 
+     Min        1Q    Median        3Q       Max  
+-0.86791  -0.31620   0.01294   0.06140   1.32706  
+
+Coefficients:
+             Estimate Std. Error z value Pr(>|z|)    
+(Intercept) -0.012969   0.005915  -2.193   0.0283 *  
+target_mean -0.672803   0.019707 -34.141   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for Negative Binomial(18539.39) family taken to be 1)
+
+    Null deviance: 6991.6  on 35374  degrees of freedom
+Residual deviance: 4823.2  on 35373  degrees of freedom
+AIC: 66516
+
+Number of Fisher Scoring iterations: 1
+
+
+              Theta:  18539 
+          Std. Err.:  7723 
+Warning while fitting theta: iteration limit reached 
+
+ 2 x log-likelihood:  -66509.53 
+```
+
+**Note:** negative binomial regression doesn't seem to allow zeros.

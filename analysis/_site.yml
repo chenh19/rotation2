@@ -1,0 +1,25 @@
+name: "rotation2"
+output_dir: ../docs
+navbar:
+  title: "Rotation2"
+  left:
+  - text: Home
+    href: index.html
+  - text: Projects
+    menu:
+    - text: Project-1
+      href: project_1.html
+    - text: Project-2
+      href: project_2.html 
+  - text: Misc.
+    href: misc.html
+  right:
+  - icon: fa-github
+    text: Source code
+    href: https://github.com/chenh19/rotation2
+output:
+  workflowr::wflow_html:
+    toc: yes
+    toc_float: yes
+    theme: bootstrap
+    highlight: textmate

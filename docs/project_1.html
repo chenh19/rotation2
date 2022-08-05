@@ -1,0 +1,5022 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Project-1: STING-seq</title>
+
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Rotation2</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Projects
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="project_1.html">Project-1</a>
+    </li>
+    <li>
+      <a href="project_2.html">Project-2</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="misc.html">Misc.</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/chenh19/rotation2">
+    <span class="fa fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Project-1: STING-seq</h1>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+workflowr <span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2022-08-04
+</p>
+<p>
+<strong>Checks:</strong> <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> 0
+</p>
+<p>
+<strong>Knit directory:</strong> <code>rotation2/</code> <span
+class="glyphicon glyphicon-question-sign" aria-hidden="true"
+title="This is the local directory in which the code in this file was executed.">
+</span>
+</p>
+<p>
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
+analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version
+1.7.0). The <em>Checks</em> tab describes the reproducibility checks
+that were applied when the results were created. The <em>Past
+versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguptodate"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the
+global environment can affect the analysis in your R Markdown file in
+unknown ways. For reproduciblity it’s best to always run the code in an
+empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20220607code">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Seed:</strong>
+<code>set.seed(20220607)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20220607code"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20220607)</code> was run prior to running
+the code in the R Markdown file. Setting a seed ensures that any results
+that rely on randomness, e.g. subsampling or permutations, are
+reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Session information:</strong>
+recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be
+confident that you successfully produced the results during this
+run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr
+project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrong3da8afa">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Repository version:</strong> 3da8afa
+</a>
+</p>
+</div>
+<div id="strongRepositoryversionstrong3da8afa"
+class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development
+and connecting the code version to the results is critical for
+reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version 3da8afa.
+See the <em>Past versions</em> tab to see a history of the changes made
+to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for
+the analysis have been committed to Git prior to generating the results
+(you can use <code>wflow_publish</code> or
+<code>wflow_git_commit</code>). workflowr only checks the R Markdown
+file, but you know if there are other scripts or data files that it
+depends on. Below is the status of the Git repository when the results
+were generated:
+</p>
+<pre><code>
+Unstaged changes:
+    Modified:   .RData
+    Modified:   .Rhistory
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not
+included in this status report because it is ok for generated content to
+have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the repository in which changes were
+made to the R Markdown (<code>analysis/project_1.Rmd</code>) and HTML
+(<code>docs/project_1.html</code>) files. If you’ve configured a remote
+Git repository (see <code>?wflow_git_remote</code>), click on the
+hyperlinks in the table below to view the files as they were in that
+past version.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+3da8afa
+</td>
+<td>
+Hang Chen
+</td>
+<td>
+2022-08-04
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+37d15c9
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-19
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+8f6816e
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-19
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+4a94b94
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-19
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+a18fc1f
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-19
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+870115f
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-19
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+6307f5c
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-19
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+9241fe6
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-08
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+abd8a0c
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-08
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+0a7633b
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-07
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+06d53d1
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-07
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+63535ad
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-07
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+fe2a82b
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-07
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+9898acd
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-07
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+feb5923
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-07
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+9eae283
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-07
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+c849244
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-07
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+29eb161
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-07
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+7ab5d71
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-07
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+2baffc8
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-07
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+625e7ca
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-07
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+bb3e1aa
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-07
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+0e1d92d
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-07
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+138b4fe
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-07
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+24d6bcf
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-07
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+941e24b
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-07
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+3a14766
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-07
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+d425ac9
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-07
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+ca77db2
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-07
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+608cdf8
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-07
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+c639389
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-07-06
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+e0cb7a2
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-28
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+ac33ff0
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-28
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+bf05c98
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-28
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+1c8bb9a
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-28
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+7cfb685
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-28
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+82fce8f
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-28
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+43dad9c
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-28
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+20718e9
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-28
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+7aa3172
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-28
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+e0425d8
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-28
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+2254608
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-28
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+754150e
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-28
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+968a4b6
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-23
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+229f924
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-23
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+c7847bd
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-23
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+9750134
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-23
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+0064ff3
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-23
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+4b38bf6
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-23
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+4eb11c9
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-23
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+8a7980d
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-23
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+3e1478e
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-22
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+5258612
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-22
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+ecfd58d
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-22
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+2382868
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-22
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+694470f
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-22
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+1144127
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-22
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+da2c0fe
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+8aa5960
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+3dea9b1
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+6783fa3
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+6699b8f
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+d9be701
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+f93179d
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+82e6e50
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+f753baa
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+d376ad0
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+4a9db6a
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+325a212
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+d54cc77
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+e14c55c
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+2ab041a
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+f971bbd
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+dca882f
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+3a80eaf
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+b6fb1d2
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+33829a5
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+a949aec
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+5b446cf
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+c4ad45d
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+28a06ee
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+53f2292
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+d5b4ff0
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+e982ac7
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+16400a7
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+d6aa5b2
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+a324166
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+ab8cbc3
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+27a4d51
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+624e791
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+f765024
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+bc55dbb
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+8b66c3b
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+b3b7ed6
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+405116a
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+405d57e
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+bbbaab0
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+c10a1a8
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+a8f7999
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+2443e38
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+8e0c8ad
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+5d192d2
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+356550c
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+21e9501
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+4a8f7ee
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-21
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+b002776
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-20
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+6d78198
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-20
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+0e1817a
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-19
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+6211c60
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-15
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+46e8cc3
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-15
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+0da18e2
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-15
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+d999122
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-15
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+0aff555
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-15
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+eda2d56
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-15
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+a4e1e73
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-15
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+7229c17
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-15
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+f0e98f9
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+e0aa022
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+eafa16b
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+69b29f1
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+dfd60ce
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+49f1922
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+fd7271e
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+1b4d12e
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+a6c402d
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+cedad99
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+6b3f021
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+e3b9788
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+aed5eed
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+c552123
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+45bb6ed
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+81fdf42
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+c23765a
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+b5fb71c
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+10f6641
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+152325b
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+1739dd9
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+543ef4c
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+9b6cb27
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+d8908c0
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+8674c8a
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+2972ce6
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+ada4068
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+7c5402e
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+0d08121
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+6226526
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+dd2046d
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+71f5d04
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+2c4cab1
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+6e73c04
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+d46eaab
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+be56d9d
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+02a0c26
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+e2c15c0
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+abad46e
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+68948e3
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+741027b
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+065d7e9
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+bb15812
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+b6e0993
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+93a27ae
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+b4a7331
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+27121a9
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+fce1ffd
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-14
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+44517c1
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+cc6a40a
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+da08f11
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+05ccc35
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+572f6ba
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+b8870d3
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+719925e
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+e7541fa
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+9d9615d
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+04feaa7
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+bbd8978
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+0ec2bfa
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+e5a5b52
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+c43ae1f
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+4d8bd72
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+3373521
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+af21ea8
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+6e56d75
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+f653f7b
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+2723e7f
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+d69c892
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+34d877d
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+e72400b
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+c411223
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+1daccd2
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+63f46d2
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+26adb45
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+a6022a8
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+1215832
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+9abc4b8
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+7efcfe0
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+f18d385
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+a7c1ce0
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+e991f56
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+3c9b1d9
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+ae1553a
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+34e0d02
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+e69aa83
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+9be31af
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+ead84c2
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+wflow_publish("analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+0f41de8
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+31ad035
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+bdf3b44
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+8d0890c
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+26f455b
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+26f455b
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-06-13
+</td>
+<td>
+update
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div id="understand-rna-seq" class="section level2">
+<h2>1. Understand RNA-seq</h2>
+<div id="a.-read-about-rna-seq-analysis" class="section level3">
+<h3>a. Read about RNA-seq analysis</h3>
+<p><a
+href="https://chenh19.github.io/rotation2/refs/Yalamanchili_2017.pdf">Yalamanchili
+<em>et al.</em> 2017: RNA-seq analysis pipeline</a></p>
+<div id="some-key-points" class="section level4">
+<h4>Some key points:</h4>
+<p><strong>Protocol-1 (differential expression of genes):</strong></p>
+<ul>
+<li>demuxed raw reads (FastQC)</li>
+<li>trimming reads (awk)</li>
+<li>aligning reads (TopHat2)</li>
+<li>counting reads (HTSeq; may filter out genes with low counts before
+next step)</li>
+<li>detect DE using counted reads (DEseq2)</li>
+<li>more QC (PCA/correlation heatmap)</li>
+</ul>
+<p><strong>Protocol-2 (differential usage of isoforms):</strong></p>
+<ul>
+<li>Protocol-1</li>
+<li>counting isoforms (Kallisto, <strong>also check <a
+href="https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/what-is-cell-ranger">cell
+ranger</a></strong>)</li>
+<li>detect DU using counted isoforms (Sleuth)</li>
+<li>more QC (aslo PCA/correlation heatmap)</li>
+</ul>
+<p><strong>Protocol-3 (crypic splicing):</strong></p>
+<ul>
+<li>Protocol-1</li>
+<li>detect differential junstions (CrypSplice)</li>
+</ul>
+</div>
+</div>
+<div id="b.-read-more-about-rna-seq-analysis" class="section level3">
+<h3>b. Read more about RNA-seq analysis</h3>
+<p><a
+href="https://chenh19.github.io/rotation2/refs/Luecken_2019.pdf">Luecken
+<em>et al.</em> 2019: RNA-seq analysis pipeline</a><br />
+<a href="https://github.com/theislab/single-cell-tutorial">Supplementary
+code</a></p>
+<div id="some-key-points-1" class="section level4">
+<h4>Some key points:</h4>
+<ul>
+<li><a
+href="https://github.com/satijalab/seurat"><strong>Seurat</strong></a>
+(R)</li>
+<li><a
+href="https://github.com/jimhester/scater"><strong>Scater</strong></a>
+(R)</li>
+<li><a
+href="https://github.com/scverse/scanpy"><strong>Scanpy</strong></a>
+(Python)</li>
+</ul>
+</div>
+</div>
+<div id="c.-read-the-morris-paper" class="section level3">
+<h3>c. Read the Morris paper</h3>
+<p><a
+href="https://chenh19.github.io/rotation2/refs/Morris_2020.pdf">Morris
+<em>et al.</em> 2021: STING-Seq</a></p>
+<div id="some-key-points-2" class="section level4">
+<h4>Some key points:</h4>
+<p><strong>Some key ideas:</strong></p>
+<ul>
+<li>STING-seq: Systematic Targeting and Inbition of Noncoding GWAS loci
+with scRNA-seq</li>
+<li>prioritizes candidate <em>cis</em>-regulatory elements (cCREs,
+1kb&lt;distance to TSS&lt;1Mb) using fine-mapped GWAS</li>
+<li>selected 88 variants (in 56 loci) with enhancer activity</li>
+<li>dual CRISPR inhibition: dCas9 as the GPS, MeCP2 and KRAB as the
+repressors</li>
+<li>confirming dual CRISPRi efficacy: gRNAs target TSS of
+<em>MRPS23</em>, <em>CTSB</em>, <em>FSCN1</em></li>
+<li>CRIPSRi on the 88 variants: two gRNAs for each variant, both within
+200bp of the variant</li>
+<li>ECCITE-seq: captures gRNAs and epitopes</li>
+</ul>
+<p><strong>Some data processing steps and results:</strong></p>
+<ul>
+<li>QC: remove cells with low total reads or excessive mitochondrial
+reads, gRNA assignment UMI&gt;5 (9,343 cells after QC)</li>
+<li><strong>Kallisto:</strong> counting <a
+href="https://pachterlab.github.io/kallisto/">read more on the official
+website</a></li>
+<li><strong>Seurat:</strong> QC and <code>reference mapping?</code> <a
+href="https://satijalab.org/seurat/">read more on the official
+website</a></li>
+<li><strong>SCEPTRE:</strong> gRNA_to_gene-expression pairwise test</li>
+<li>non-targeting gRNA-gene pairs: not significant (negative ctrl)</li>
+<li>TSS-targeting gRNA-gene pairs: expression significantly decreased
+(positive ctrl)</li>
+<li>37 of the 88 variants were significant</li>
+<li><em>Trans</em>-regulatory elements:
+<code>I'll come back later</code></li>
+</ul>
+<p><strong>Note:</strong></p>
+<ul>
+<li><a href="https://cite-seq.com/">Cellular Indexing of Transcriptomes
+and Epitopes by Sequencing (CITE-seq)</a></li>
+<li><a href="https://cite-seq.com/eccite-seq/">Expanded
+CRISPR-compatible CITE-seq (ECCITE-Seq)</a></li>
+<li><strong>cDNA</strong>, <strong>HTO</strong> (Hashtag oligos),
+<strong>GDO</strong> (gRNAs)</li>
+<li><strong>ECCITE-seq:</strong></li>
+</ul>
+<center>
+<img src="https://citeseq.files.wordpress.com/2018/11/eccite.png"
+style="width:70.0%" />
+</center>
+</div>
+</div>
+</div>
+<div id="prelim-qc-for-raw-sting-seq-data" class="section level2">
+<h2>2. Prelim QC for raw STING-seq data</h2>
+<div id="a.-download-all-data" class="section level3">
+<h3>a. Download all data</h3>
+<p><strong>Code:</strong> <a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/download.sh"><code>download.sh</code></a></p>
+</div>
+<div id="b.-perform-fastqc-on-all-fastq-files" class="section level3">
+<h3>b. Perform FastQC on all fastq files</h3>
+<p><strong>Code:</strong> <a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/fastqc.sh"><code>fastqc.sh</code></a></p>
+<p><strong>SRR14141135:</strong></p>
+<ul>
+<li><a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141135_cDNA_Homo_sapiens_1_fastqc.html">SRR14141135_1</a><br />
+</li>
+<li><a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141135_cDNA_Homo_sapiens_2_fastqc.html">SRR14141135_2</a></li>
+</ul>
+<p><strong>SRR14141136:</strong></p>
+<ul>
+<li><a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141136_cDNA_Homo_sapiens_1_fastqc.html">SRR14141136_1</a><br />
+</li>
+<li><a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141136_cDNA_Homo_sapiens_2_fastqc.html">SRR14141136_2</a></li>
+</ul>
+<p><strong>SRR14141137:</strong></p>
+<ul>
+<li><a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141137_cDNA_Homo_sapiens_1_fastqc.html">SRR14141137_1</a><br />
+</li>
+<li><a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141137_cDNA_Homo_sapiens_2_fastqc.html">SRR14141137_2</a></li>
+</ul>
+<p><strong>SRR14141138:</strong></p>
+<ul>
+<li><a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141138_cDNA_Homo_sapiens_1_fastqc.html">SRR14141138_1</a><br />
+</li>
+<li><a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141138_cDNA_Homo_sapiens_2_fastqc.html">SRR14141138_2</a></li>
+</ul>
+<p><strong>SRR14141139:</strong></p>
+<ul>
+<li><a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141139_cDNA_Homo_sapiens_1_fastqc.html">SRR14141139_1</a><br />
+</li>
+<li><a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141139_cDNA_Homo_sapiens_2_fastqc.html">SRR14141139_2</a></li>
+</ul>
+<p><strong>SRR14141140:</strong></p>
+<ul>
+<li><a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141140_cDNA_Homo_sapiens_1_fastqc.html">SRR14141140_1</a><br />
+</li>
+<li><a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141140_cDNA_Homo_sapiens_2_fastqc.html">SRR14141140_2</a></li>
+</ul>
+<p><strong>SRR14141141:</strong></p>
+<ul>
+<li><a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141141_cDNA_Homo_sapiens_1_fastqc.html">SRR14141141_1</a><br />
+</li>
+<li><a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141141_cDNA_Homo_sapiens_2_fastqc.html">SRR14141141_2</a></li>
+</ul>
+<p><strong>SRR14141142:</strong></p>
+<ul>
+<li><a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141142_cDNA_Homo_sapiens_1_fastqc.html">SRR14141142_1</a><br />
+</li>
+<li><a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141142_cDNA_Homo_sapiens_2_fastqc.html">SRR14141142_2</a></li>
+</ul>
+<p><strong>SRR14141143:</strong></p>
+<ul>
+<li><a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141143_HTO_Homo_sapiens_1_fastqc.html">SRR14141143_1</a><br />
+</li>
+<li><a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141143_HTO_Homo_sapiens_2_fastqc.html">SRR14141143_2</a></li>
+</ul>
+<p><strong>SRR14141144:</strong></p>
+<ul>
+<li><a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141144_HTO_Homo_sapiens_1_fastqc.html">SRR14141144_1</a><br />
+</li>
+<li><a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141144_HTO_Homo_sapiens_2_fastqc.html">SRR14141144_2</a></li>
+</ul>
+<p><strong>SRR14141145:</strong></p>
+<ul>
+<li><a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141145_GDO_Homo_sapiens_1_fastqc.html">SRR14141145_1</a><br />
+</li>
+<li><a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141145_GDO_Homo_sapiens_2_fastqc.html">SRR14141145_2</a></li>
+</ul>
+<p><strong>SRR14141146:</strong></p>
+<ul>
+<li><a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141146_GDO_Homo_sapiens_1_fastqc.html">SRR14141146_1</a><br />
+</li>
+<li><a
+href="https://chenh19.github.io/rotation2/fastqc_reports/SRR14141146_GDO_Homo_sapiens_2_fastqc.html">SRR14141146_2</a></li>
+</ul>
+<p><strong>A brief summary:</strong></p>
+<ul>
+<li><strong>length:</strong> <code>26bp</code> or <code>57bp</code>
+(<strong>trimmed?</strong>)</li>
+<li><strong>depth:</strong> <code>30-35x</code></li>
+<li><strong>overall quality:</strong> good (within
+<code>~40 bp</code>)</li>
+</ul>
+</div>
+<div id="d.-kallisto-bustools-pipeline" class="section level3">
+<h3>d. Kallisto | bustools pipeline</h3>
+<p><strong>Code:</strong> <a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/pip3-kb.sh"><code>pip3-kb.sh</code></a><br />
+<strong>Code:</strong> <a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/anaconda_kallisto.sh"><code>anaconda_kallisto.sh</code></a></p>
+</div>
+</div>
+<div id="analyze-qced-sting-seq-data" class="section level2">
+<h2>3. Analyze QC’ed STING-seq data</h2>
+<div id="a.-install-packages" class="section level3">
+<h3>a. Install packages</h3>
+<p><strong>Code:</strong> <a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/seurat.sh"><code>seurat.sh</code></a></p>
+</div>
+<div id="b.-data-overview" class="section level3">
+<h3>b. Data overview</h3>
+<p><strong>Code:</strong> <a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/1_overview/overview.R"><code>overview.R</code></a><br />
+<strong>Note: about <a
+href="https://slowkow.com/notes/sparse-matrix/">sparse
+matrix</a></strong></p>
+<pre><code>The [Expression] matrix has: 
+- 35,606 rows/genes/targets 
+- 686,612 columns/barcodes/cells 
+- 24,447,506,872 values in total 
+- 82,507,471 values that are non-zero 
+- 50,421,358 values that are 1 
+- 32,086,113 values that are bigger than 1 
+- 3,370,699 values that are bigger than 10 
+- 259,734 values that are bigger than 100 
+- 2,515 values that are bigger than 1,000 
+- 0 values that are bigger than 10,000 
+- 0 values that are bigger than 100,000 
+ 
+The [gRNA] matrix has: 
+- 210 rows/genes/targets 
+- 137,347 columns/barcodes/cells 
+- 28,842,870 values in total 
+- 2,506,474 values that are non-zero 
+- 1,510,919 values that are 1 
+- 995,555 values that are bigger than 1 
+- 121,554 values that are bigger than 10 
+- 41,071 values that are bigger than 100 
+- 2,232 values that are bigger than 1,000 
+- 20 values that are bigger than 10,000 
+- 0 values that are bigger than 100,000 
+ 
+The [Hashtag] matrix has: 
+- 4 rows/genes/targets 
+- 410,228 columns/barcodes/cells 
+- 1,640,912 values in total 
+- 739,820 values that are non-zero 
+- 409,830 values that are 1 
+- 329,990 values that are bigger than 1 
+- 218,280 values that are bigger than 10 
+- 8,155 values that are bigger than 100 
+- 282 values that are bigger than 1,000 
+- 46 values that are bigger than 10,000 
+- 0 values that are bigger than 100,000 
+</code></pre>
+</div>
+<div id="c.-calculate-means-and-non-zeros" class="section level3">
+<h3>c. Calculate means and non-zeros</h3>
+<p><strong>Code:</strong> <a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/2_mean_non-zero/Expression_barcode_stats.R"><code>Expression_barcode_stats.R</code></a><br />
+<strong>Code:</strong> <a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/2_mean_non-zero/Expression_target_stats.R"><code>Expression_target_stats.R</code></a></p>
+<p><strong>Code:</strong> <a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/2_mean_non-zero/gRNA_barcode_stats.R"><code>gRNA_barcode_stats.R</code></a><br />
+<strong>Code:</strong> <a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/2_mean_non-zero/gRNA_target_stats.R"><code>gRNA_target_stats.R</code></a></p>
+<p><strong>Code:</strong> <a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/2_mean_non-zero/Hashtag_barcode_stats.R"><code>Hashtag_barcode_stats.R</code></a><br />
+<strong>Code:</strong> <a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/2_mean_non-zero/Hashtag_target_stats.R"><code>Hashtag_target_stats.R</code></a></p>
+<div id="output" class="section level4">
+<h4>Output:</h4>
+<p><a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/Expression_matrix_barcodes_summary.csv"><code>Expression_matrix_barcodes_summary.csv</code></a><br />
+<a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/Expression_matrix_targets_summary.csv"><code>Expression_matrix_targets_summary.csv</code></a></p>
+<p><a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/gRNA_matrix_barcodes_summary.csv"><code>gRNA_matrix_barcodes_summary.csv</code></a><br />
+<a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/gRNA_matrix_targets_summary.csv"><code>gRNA_matrix_targets_summary.csv</code></a></p>
+<p><a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/Hashtag_matrix_barcodes_summary.csv"><code>Hashtag_matrix_barcodes_summary.csv</code></a><br />
+<a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/Hashtag_matrix_targets_summary.csv"><code>Hashtag_matrix_targets_summary.csv</code></a></p>
+</div>
+</div>
+<div id="d.-expression-cdna-dataset" class="section level3">
+<h3>d. Expression (cDNA) dataset</h3>
+<div id="i-expression-barcodes" class="section level4">
+<h4>i) Expression barcodes</h4>
+<p><strong>Code:</strong> <a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/3_dist_cdf/Expression_barcode_dist_plot.R"><code>Expression_barcode_dist_plot.R</code></a></p>
+<p><strong>Comment:</strong> The cell with highest overall detected gene
+expression</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/1_Expression_max_barcode.png" /></p>
+<p><strong>Comment:</strong> The cell with lowest overall detected gene
+expression</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/2_Expression_min_barcode.png" /></p>
+<p><strong>Comment:</strong> As Xuanyao said, this kind bar plot is too
+dense and can’t really see the overall distribution, the CDF plot below
+is more clear</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/3_Expression_barcode_dist.png" /></p>
+<p><strong>Comment:</strong> From this CDF figure I kind of know why
+there were only ~9000 cells used after Qc’ing with UMI&gt;=850 filter.
+Less than 10% cells have UMI&gt;=850. But still, <strong>why exactly 850
+is still a question for me to explore</strong></p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/4_Expression_barcode_dist_cdf.png" /></p>
+<p><strong>Comment:</strong> Many zeros (consistent with the observation
+that the matrix was very sparse); UMI&gt;850 is invisible in this plot.
+As Xuanyao said, I should exclude the outliers or add y-axis break</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/5_Expression_barcode_dist_pdf.png" /></p>
+</div>
+<div id="ii-expression-targets" class="section level4">
+<h4>ii) Expression targets</h4>
+<p><strong>Code:</strong> <a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/3_dist_cdf/Expression_target_dist_plot.R"><code>Expression_target_dist_plot.R</code></a></p>
+<p><strong>Comment:</strong> The highest (mean) expressed gene is
+<em>WDR45-like (WDR45L) pseudogene</em> (high UMI counts in all
+cells)</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/6_Expression_max_target.png" /></p>
+<p><strong>Comment:</strong> The lowest (mean) expressed gene is
+<em>RP4-669L17.1 pseudogene</em> (zero UMI counts in all cells)</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/7_Expression_min_target.png" /></p>
+<p><strong>Comment:</strong> Non-zero UMI counts for all genes (~35k,
+including mito genes; 686,612 cells intotal)</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/8_Expression_target_dist.png" /></p>
+<p><strong>Comment:</strong> CDF plot: ~80% genes have &lt; ~5000 UMI
+counts in all cells (not all genes captured in each cell, but I guess
+still a lot)</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/9_Expression_target_dist_cdf.png" /></p>
+<p><strong>Comment:</strong> PDF plot: same conclusion as above</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Expression/10_Expression_target_dist_pdf.png" /></p>
+</div>
+</div>
+<div id="e.-grna-dataset" class="section level3">
+<h3>e. gRNA dataset</h3>
+<div id="i-grna-barcodes" class="section level4">
+<h4>i) gRNA barcodes</h4>
+<p><strong>Code:</strong> <a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/3_dist_cdf/gRNA_barcode_dist_plot.R"><code>gRNA_barcode_dist_plot.R</code></a></p>
+<p><strong>Comment:</strong> The cell with highest overall (mean) gRNAs,
+and it has 15 highly expressed gRNAs</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/1_gRNA_max_barcode.png" /></p>
+<p><strong>Comment:</strong> The cell with lowest overall (mean) gRNAs
+(transfection/transduction failed in this cell)</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/2_gRNA_min_barcode.png" /></p>
+<p><strong>Comment:</strong> Non-zero UMI counts in all cells (I’d say
+the transfection/transduction relatively even across all cells)</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/3_gRNA_barcode_dist.png" /></p>
+<p><strong>Comment:</strong> CDF plot: ~80% cells have &lt; ~40 UMI
+counts for each gRNA (note: the authors mentioned MOI ~ 10)</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/4_gRNA_barcode_dist_cdf.png" /></p>
+<p><strong>Comment:</strong> PDF plot: same conclusion as above</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/5_gRNA_barcode_dist_pdf.png" /></p>
+</div>
+<div id="ii-grna-targets" class="section level4">
+<h4>ii) gRNA targets</h4>
+<p><strong>Code:</strong> <a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/3_dist_cdf/gRNA_target_dist_plot.R"><code>gRNA_target_dist_plot.R</code></a></p>
+<p><strong>Comment:</strong> The highest (mean) gRNA in all cells (gRNA
+targeting PPIA-2, which is a control)</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/6_gRNA_max_target.png" /></p>
+<p><strong>Comment:</strong> The lowest (mean) gRNA in all cells (likely
+it’s a low score gRNA site but the authors didn’t have better
+choices)</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/7_gRNA_min_target.png" /></p>
+<p><strong>Comment:</strong> Non-zero UMI counst for all gRNAs (137,347
+cells in total; I’d say the transfection/transduction efficiency varies
+among gRNAs. The authors designed all the gRNAs within 200bp of the
+targeted variants,there must be limitations in terms of gRNA
+options)</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/8_gRNA_target_dist.png" /></p>
+<p><strong>Comment:</strong> CDF plot: ~80% gRNAs have &lt; ~20,000 UMI
+counts in all cells (137,347 cells in total, ~15%
+transfection/transduction success rate, acceptable)</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/9_gRNA_target_dist_cdf.png" /></p>
+<p><strong>Comment:</strong> PDF plot: same conclusion as above</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/gRNA/10_gRNA_target_dist_pdf.png" /></p>
+</div>
+</div>
+<div id="f.-hashtag-dataset" class="section level3">
+<h3>f. Hashtag dataset</h3>
+<div id="i-hashtag-barcodes" class="section level4">
+<h4>i) Hashtag barcodes</h4>
+<p><strong>Code:</strong> <a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/3_dist_cdf/Hashtag_barcode_dist_plot.R"><code>Hashtag_barcode_dist_plot.R</code></a></p>
+<p><strong>Comment:</strong> The cell with highest (mean) Hashtags
+(note: the authors used only 4 Hashtags, I might check which antibodies
+they are when performing association)</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/1_Hashtag_max_barcode.png" /></p>
+<p><strong>Comment:</strong> The cell with lowest (mean) Hashtags (not
+tagged by any of the antibodies)</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/2_Hashtag_min_barcode.png" /></p>
+<p><strong>Comment:</strong> This figure is not an error. All cells have
+1/2/3/4 UMI counts, and because many of them have 4, it looks like a
+block when it’s such dense</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/3_Hashtag_barcode_dist.png" /></p>
+<p><strong>Comment:</strong> CDF plot: ~80% cells have &lt; ~2 UMI
+counts for each Hashtag (It make sense to me because the authors are
+likely trying to label different cell types)</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/4_Hashtag_barcode_dist_cdf.png" /></p>
+<p><strong>Comment:</strong> PDF plot: same conclusion as above</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/5_Hashtag_barcode_dist_pdf.png" /></p>
+</div>
+<div id="i-hashtag-targets" class="section level4">
+<h4>i) Hashtag targets</h4>
+<p><strong>Code:</strong> <a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/3_dist_cdf/Hashtag_target_dist_plot.R"><code>Hashtag_target_dist_plot.R</code></a></p>
+<p><strong>Comment:</strong> The highest (mean) Hashtag (HTO23) in all
+cells (I would guess this is the relatively more common cell type, also,
+there were some non-specific antibody binding)</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/6_Hashtag_max_target.png" /></p>
+<p><strong>Comment:</strong> The lowest (mean) Hashtag (HTO25) in all
+cells (I would guess this is the relatively less common cell type, also,
+it dosen’t seem to overlap with HTO25, which is a good thing)</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/7_Hashtag_min_target.png" /></p>
+<p><strong>Comment:</strong> Non-zero UMI counts for the 4 Hashtags (I’d
+say the 4 cell types are relatively even)</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/8_Hashtag_target_dist.png" /></p>
+<p><strong>Comment:</strong> CDF plot: ~80% Hashtags have &lt; ~200,000
+UMI counts in all cells (410,228 cells in total, I thinking the antibody
+binding efficiency is pretty good)</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/9_Hashtag_target_dist_cdf.png" /></p>
+<p><strong>Comment:</strong> PDF plot: same conclusion as above</p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Hashtag/10_Hashtag_target_dist_pdf.png" /></p>
+</div>
+</div>
+<div id="g.-qc-filtering" class="section level3">
+<h3>g. QC filtering</h3>
+<ul>
+<li>After preliminary filtering, the authors got
+<code>14,775 cells</code> with
+<code>3,875 median genes per cell</code>.</li>
+</ul>
+<p><strong>Previous question:</strong></p>
+<ol style="list-style-type: decimal">
+<li>why <code>percent-mito &lt; 20%</code>?</li>
+<li>why <code>UMI &gt; 850</code>?</li>
+<li>why <code>no UMI upper limit</code>?</li>
+</ol>
+<p><strong>My understanding:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Previously, <strong>5%</strong> was usually the default threshold.
+But <a href="https://doi.org/10.1093%2Fbioinformatics%2Fbtaa751">a
+recent paper</a> did systematic evaluation and proposed a default cutoff
+of <strong>10% for human cells</strong>. Also, according to <a
+href="https://chenh19.github.io/rotation2/refs/Luecken_2019.pdf">Luecken
+<em>et al.</em> 2019</a>, we can use a relatively loose QC cutoff at the
+beginning. Since the percent-mito was just in the <strong>first</strong>
+QC filtering step and the author further filtered by HTO and GDO, I
+think <strong>20%</strong> makes sense.</li>
+<li>Again, according to <a
+href="https://chenh19.github.io/rotation2/refs/Luecken_2019.pdf">Luecken
+<em>et al.</em> 2019</a>, the dying/dead cells would be a small peak
+with low UMI counts. By the zoomed-in plot below, we can see 850 is a
+reasonable cutoff to remove the entire peak.</li>
+<li>Doublets was <strong>not</strong> filtered out by UMI, but by HTO
+demuxing, therefore the authors didn’t set an upper limit.</li>
+</ol>
+<p><strong>Notes:</strong></p>
+<ul>
+<li>In the original cDNA feature txt file, there are only Ensembl gene
+IDs. To calculate percent-mito, I tried to convert the IDs to symbols
+using both <a
+href="https://www.biotools.fr/human/ensembl_symbol_converter">this web
+tool</a> and biomaRT package in R.</li>
+<li>If I directly use the gene symbols from these two methods and the
+same filters by Nikita, I get exactly <a
+href="https://1onic.github.io/lab-notes/sceptre.html#372022">the same
+results as Nikita</a> (<code>14,813 cells</code> retained).</li>
+<li>However, after taking a closer look at the converted gene lists,
+there are still many “<strong>Mitochondrially Encoded</strong>” genes
+starting with “<code>MT</code>” rather than “<code>MT-</code>”, so I
+wrote a script to convert all these genes.</li>
+<li>Then I performed filtering again and got <code>14,675 cells</code>
+with <code>3,917 median genes per cell</code>.</li>
+<li>I don’t think we’ll know exactly how the authors filtered the cells
+unless they release their code.</li>
+<li>After QC filtering, there were <code>9,391 cells</code> retained
+(<code>9,343 cells</code> by the authors in comparison,</li>
+<li>I did cross comparison. There are <code>508 cells</code> from
+authors’ list not in my list.</li>
+</ul>
+<p><strong>Code:</strong> <a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/4_filter/QC_filter.R"><code>QC_filter.R</code></a><br />
+<strong>Code:</strong> <a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/4_filter/UMI_plot.R"><code>UMI_plot.R</code></a></p>
+<p><strong>Before UMI count filtering:</strong></p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/1_Expression_barcode_dist_qc_cdf.png"
+alt="1" /><br />
+<img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/2_Expression_barcode_dist_qc_pdf.png"
+alt="2" /></p>
+<p><strong>After UMI count filtering:</strong></p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/3_Expression_barcode_dist_qc_cdf.png"
+alt="3" /><br />
+<img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/4_Expression_barcode_dist_qc_pdf.png"
+alt="4" /></p>
+<p><strong>Before percent-mito filtering (generated by Seurat):
+</strong></p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/5_violin_before_QC.png"
+alt="5" /><br />
+<img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/6_percent_mt_before_QC.png"
+alt="6" /><br />
+<img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/7_nFeature_before_QC.png"
+alt="7" /></p>
+<p><strong>After percent-mito filtering (generated by Seurat):
+</strong></p>
+<p><img
+src="https://github.com/chenh19/rotation2/raw/main/output/QC/8_violin_after_QC.png"
+alt="8" /><br />
+<img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/9_percent_mt_after_QC.png"
+alt="9" /><br />
+<img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/10_nFeature_after_QC.png"
+alt="10" /></p>
+<p><strong>Barcodes comparison:</strong></p>
+<p><strong>Code:</strong> <a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/4_filter/QC_compare.R"><code>QC_compare.R</code></a><br />
+<a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/QC_by_author.txt"><code>QC_by_author.txt</code></a><br />
+<a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/QC_by_hang.txt"><code>QC_by_hang.txt</code></a></p>
+<p><strong>Comparison result:</strong></p>
+<pre><code>[1] &quot;There are 508 cells filtered out in comparison to authors&#39; list.&quot;</code></pre>
+</div>
+<div id="g2.-pdf-y-axis-issue" class="section level3">
+<h3>g2. PDF y axis issue</h3>
+<p><strong>Previous question:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Is the small values in the Y-axis of the previous PDF plot
+wrong?</li>
+</ol>
+<pre><code>My understanding: probably NOT wrong.</code></pre>
+<div id="point-1-similar-results-by-a-package-for-epdf"
+class="section level4">
+<h4>Point 1: similar results by a package for epdf</h4>
+<p>Plotted with base R:</p>
+<pre class="r"><code>hist(barcode_dist, freq=F, breaks=150, main=&quot;PDF: UMI counts in each barcode (cell)&quot;, xlab=&quot;UMI counts in each barcode (cell)&quot;, ylab=&quot;PDF&quot;)</code></pre>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/4_Expression_barcode_dist_qc_pdf.png" /></p>
+<p>Plotted with <code>EnvStats</code> package:</p>
+<pre class="r"><code>EnvStats::epdfPlot(barcode_dist, epdf.col = &quot;red&quot;)</code></pre>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/4_Expression_barcode_dist_qc_pdf(EnvStats_epdfPlot).png" /></p>
+</div>
+<div id="point-2-area-of-the-plot-is-1-by-eye" class="section level4">
+<h4>Point 2: area of the plot is ~1 by eye</h4>
+<p>Didn’t bother to do calculus, just very roughly calculated
+<code>1.5e-04 x 7000 = 1.05</code></p>
+</div>
+</div>
+<div id="h.-zero-inflated-plot-regression" class="section level3">
+<h3>h. zero-inflated plot &amp; regression</h3>
+<p>Ref: <a
+href="https://chenh19.github.io/rotation2/refs/Kim_2020.pdf">Kim <em>et
+al.</em> 2020</a></p>
+<p><strong>Code:</strong> <a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/5_zero-inflated/zero-inflated.R"><code>zero-flated.R</code></a></p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Zero-inflated/1_zero_proportions(Poisson).png"
+alt="1" /><br />
+<img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/Zero-inflated/2_zero_proportions(negative_binomial).png"
+alt="2" /></p>
+<div id="regression-summary" class="section level4">
+<h4>regression summary</h4>
+<pre class="r"><code>summary(glm(zero_prop ~ target_mean, family = poisson, data = whichmodel_10)) # poisson</code></pre>
+<pre><code>Call:
+glm(formula = zero_prop ~ target_mean, family = poisson, data = whichmodel_10)
+
+Deviance Residuals: 
+     Min        1Q    Median        3Q       Max  
+-0.13432  -0.00250   0.01255   0.01294   1.08289  
+
+Coefficients:
+             Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept) -0.012969   0.005915  -2.193   0.0283 *  
+target_mean -0.672805   0.019706 -34.141   &lt;2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for poisson family taken to be 1)
+
+    Null deviance: 2256.629  on 35374  degrees of freedom
+Residual deviance:   88.113  on 35373  degrees of freedom
+AIC: Inf
+
+Number of Fisher Scoring iterations: 5</code></pre>
+<pre class="r"><code>summary(glm.nb(zero_prop ~ target_mean, data = whichmodel_10)) # negative binomial</code></pre>
+<pre><code>Call:
+glm.nb(formula = zero_prop ~ target_mean, data = whichmodel_10, 
+    init.theta = 18539.38634, link = log)
+
+Deviance Residuals: 
+     Min        1Q    Median        3Q       Max  
+-0.86791  -0.31620   0.01294   0.06140   1.32706  
+
+Coefficients:
+             Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept) -0.012969   0.005915  -2.193   0.0283 *  
+target_mean -0.672803   0.019707 -34.141   &lt;2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for Negative Binomial(18539.39) family taken to be 1)
+
+    Null deviance: 6991.6  on 35374  degrees of freedom
+Residual deviance: 4823.2  on 35373  degrees of freedom
+AIC: 66516
+
+Number of Fisher Scoring iterations: 1
+
+
+              Theta:  18539 
+          Std. Err.:  7723 
+Warning while fitting theta: iteration limit reached 
+
+ 2 x log-likelihood:  -66509.53 </code></pre>
+<p><strong>Note:</strong> negative binomial regression doesn’t seem to
+allow zeros.</p>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.2.1 (2022-06-23)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 22.04.1 LTS
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.10.0
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.10.0
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] workflowr_1.7.0
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.9       compiler_4.2.1   pillar_1.8.0     bslib_0.4.0     
+ [5] later_1.3.0      git2r_0.30.1     jquerylib_0.1.4  tools_4.2.1     
+ [9] getPass_0.2-2    digest_0.6.29    jsonlite_1.8.0   evaluate_0.15   
+[13] tibble_3.1.8     lifecycle_1.0.1  pkgconfig_2.0.3  rlang_1.0.4     
+[17] cli_3.3.0        rstudioapi_0.13  yaml_2.3.5       xfun_0.31       
+[21] fastmap_1.1.0    httr_1.4.3       stringr_1.4.0    knitr_1.39      
+[25] fs_1.5.2         vctrs_0.4.1      sass_0.4.2       rprojroot_2.0.3 
+[29] glue_1.6.2       R6_2.5.1         processx_3.7.0   fansi_1.0.3     
+[33] rmarkdown_2.14   callr_3.7.1      magrittr_2.0.3   whisker_0.4     
+[37] ps_1.7.1         promises_1.2.0.1 htmltools_0.5.3  httpuv_1.6.5    
+[41] utf8_1.2.2       stringi_1.7.8    cachem_1.0.6    </code></pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
