@@ -18,11 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r,eval=FALSE}
 # load
-<<<<<<< HEAD
 setwd("./Developing/rotation2/")
-=======
-setwd("./rotation2/")
->>>>>>> 37d15c9e90ebd440e24cbf0e45836e069685a838
 library(workflowr)
 ```
 
@@ -44,22 +40,13 @@ rm(list = ls())
 
 ```{bash,eval=FALSE}
 # git pull
-<<<<<<< HEAD
 #mkdir ./Developing/rotation2/
-#cd ./Developing/rotation2/ 
-=======
-#mkdir ./rotation2/
-#cd ./rotation2/ 
->>>>>>> 37d15c9e90ebd440e24cbf0e45836e069685a838
+#cd ./Developing/rotation2/
 #git init
 #git pull git@github.com:chenh19/rotation2.git
 
 # git push
-<<<<<<< HEAD
 #cd ./Developing/rotation2/
-=======
-#cd ./rotation2/
->>>>>>> 37d15c9e90ebd440e24cbf0e45836e069685a838
 #git remote add origin git@github.com:chenh19/rotation2.git
 git commit -a -m "update"
 git add --all
