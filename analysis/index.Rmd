@@ -23,11 +23,13 @@ editor_options:
 - [x] read Luecken *et al.* 2019
 - [x] perform QC (learn Seurat functions, such as filtering out mito genes)
 - [x] check QC'ed scRNA-seq data (expression distribution)
-- [ ] perform association analysis (*cis*-regulation)
+- [ ] re-do QC (UMI>1000)
 
 [**Project-2: SCEPTRE**](https://chenh19.github.io/rotation2/project_2.html)
 
-- [ ] read Barry *et al.* 2021
+- [x] read Barry *et al.* 2021
+- [ ] perform association analysis (*cis*-regulation; negative control; naive negative binomial)
+- [ ] debug SCEPTRE
 
 [**Miscellaneous:**](https://chenh19.github.io/rotation2/misc.html)
 
