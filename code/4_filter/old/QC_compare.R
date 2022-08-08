@@ -1,0 +1,10 @@
+setwd("~/rotation2/")
+QC_by_author <- read.table("../Morris_2021/QC_by_author.txt")
+colnames(QC_by_author) <- c("retained_barcode")
+QC_by_hang <- read.table("../Morris_2021/QC_by_hang.txt")
+colnames(QC_by_hang) <- c("retained_barcode")
+QC_by_hang <- mutate(QC_by_hang, check=QC_by_hang$retained_barcode)
+
+library(expss)
+QC_compare <- add_columns(QC_by_author, QC_by_hang, by="retained_barcode")
+print(paste0("There are ", sum(is.na(QC_compare$check)), " cells filtered out in comparison to authors' list."))
