@@ -23,7 +23,7 @@ editor_options:
 - [x] read Luecken *et al.* 2019
 - [x] perform QC (learn Seurat functions, such as filtering out mito genes)
 - [x] check QC'ed scRNA-seq data (expression distribution)
-- [x] re-do QC (UMI>1000)
+- [x] re-do QC (UMI>=1400)
 
 [**Project-2: SCEPTRE**](https://chenh19.github.io/rotation2/project_2.html)
 
