@@ -601,7 +601,7 @@ Warning while fitting theta: iteration limit reached
 
 ### i. re-QC
 
-**Aim: this is to remove the dead cells using a more stringent UMI cutoff (850 originally, 1400 here)**  
+**Note: this is to remove the dead cells using a more stringent UMI cutoff (850 originally, 1400 here)**  
 
 **Code:** [```QC_filter_2.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/4_filter/QC_filter.R)  
 **Code:** [```UMI_plot_2.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/4_filter/UMI_plot.R)  
