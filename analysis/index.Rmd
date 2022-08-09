@@ -28,7 +28,7 @@ editor_options:
 [**Project-2: SCEPTRE**](https://chenh19.github.io/rotation2/project_2.html)
 
 - [x] read Barry *et al.* 2021
-- [ ] perform association analysis (*cis*-regulation; negative control; naive negative binomial)
+- [x] perform association analysis (*cis*-regulation; negative control; naive negative binomial; with total_UMI cov)
 - [ ] debug SCEPTRE
 
 [**Miscellaneous:**](https://chenh19.github.io/rotation2/misc.html)

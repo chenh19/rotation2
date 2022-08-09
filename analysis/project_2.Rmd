@@ -45,7 +45,7 @@ Pipeline:
 **Code:** [```sceptre.sh```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/sceptre.sh)  
 
 
-## Manual regression
+## 2. Manual regression
 
 ### Naive NB regression
 
@@ -137,7 +137,7 @@ Pipeline:
 ```
 
 
-## SCEPTRE regression
+## 3. SCEPTRE regression
 
 - **SCEPTRE [tutorial](https://katsevich-lab.github.io/sceptre/articles/using_sceptre_v2.html)**
 - **SCEPTRE [functions](https://katsevich-lab.github.io/sceptre/reference/index.html)**
