@@ -49,8 +49,8 @@ Pipeline:
 
 ### a. Naive NB regression
 
-- no umi covariate
-- no empirical null distribution
+- No UMI covariate
+- No empirical null distribution
 
 **Code:** [```naive_NB.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/6_naive_NB/naive_NB.R)  
 
