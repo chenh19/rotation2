@@ -56,7 +56,7 @@ Pipeline:
 
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/naive_NB_qq.png)  
 
-### b. NB regression with total UMI covariate
+### b. NB regression w/ total UMI cov
 
 - total UMI counts for each cell in gene_matrix was used as a covariate
 
