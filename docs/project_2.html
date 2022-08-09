@@ -532,15 +532,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree74886cf716e1b6d75913549fec1cfdd045c60181targetblank74886cfa">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree9c70e057847bda5d4fc0ab5f1bd8d7ebb3f625cbtargetblank9c70e05a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/chenh19/rotation2/tree/74886cf716e1b6d75913549fec1cfdd045c60181" target="_blank">74886cf</a>
+<a href="https://github.com/chenh19/rotation2/tree/9c70e057847bda5d4fc0ab5f1bd8d7ebb3f625cb" target="_blank">9c70e05</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree74886cf716e1b6d75913549fec1cfdd045c60181targetblank74886cfa"
+id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree9c70e057847bda5d4fc0ab5f1bd8d7ebb3f625cbtargetblank9c70e05a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -550,7 +550,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/chenh19/rotation2/tree/74886cf716e1b6d75913549fec1cfdd045c60181" target="_blank">74886cf</a>.
+<a href="https://github.com/chenh19/rotation2/tree/9c70e057847bda5d4fc0ab5f1bd8d7ebb3f625cb" target="_blank">9c70e05</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -609,6 +609,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/9c70e057847bda5d4fc0ab5f1bd8d7ebb3f625cb/analysis/project_2.Rmd" target="_blank">9c70e05</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-08-09
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/60bb67031bb2f7b754c8f0e1b4293015f46af609/docs/project_2.html" target="_blank">60bb670</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-08-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -3772,29 +3806,29 @@ href="https://chenh19.github.io/rotation2/refs/Barry_2021.pdf">Barry
 <ul>
 <li>A key confounder for perturb-seq is the read depth:
 <code>total gRNA per cell</code> seems to show a non-linear increase as
-<code>total UMI per cell</code> increases</li>
+<code>total UMI per cell</code> increases.</li>
 </ul>
 <p><img
 src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/dispersion.png" /></p>
 <ul>
 <li>To overcome this, Barry <em>et al.</em> adopted two main strategies:
 <ul>
-<li>include depth as a covariate when doing negative binomial (NB)
-regression for gRNA and expression</li>
-<li>generate an empirical null distribution by randomization test</li>
+<li>Include depth as a covariate when doing negative binomial (NB)
+regression for gRNA and expression.</li>
+<li>Generate an empirical null distribution by randomization test.</li>
 </ul></li>
 </ul>
 <p>Pipeline:</p>
 <ul>
-<li>negative binomial regression to get z-values for each
-gRNA-Expression pairs</li>
-<li>logistic regression to get gRNA detection probabilities for each
-gRNA in each cell</li>
-<li>conditional randomization test to get the empirical null
+<li>Negative binomial regression to get z-values for each
+gRNA-Expression pairs.</li>
+<li>Logistic regression to get gRNA detection probabilities for each
+gRNA in each cell.</li>
+<li>Conditional randomization test to get the empirical null
 distribution (when doing randomization, use the gRNA detection
-probabilities as the conditions)</li>
-<li>fit a skew-t distribution to the null distribution and then
-calculate p-values from z-values</li>
+probabilities as the conditions).</li>
+<li>Fit a skew-t distribution to the null distribution and then
+calculate p-values from z-values.</li>
 </ul>
 </div>
 <div id="b.-check-the-package" class="section level3">
@@ -3825,8 +3859,8 @@ Sample: Generating QQ Plots in R</a></p>
 <div id="a.-naive-nb-regression" class="section level3">
 <h3>a. Naive NB regression</h3>
 <ul>
-<li>No UMI covariate</li>
-<li>No empirical null distribution</li>
+<li>No UMI covariate.</li>
+<li>No empirical null distribution.</li>
 </ul>
 <p><strong>Code:</strong> <a
 href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/6_naive_NB/naive_NB.R"><code>naive_NB.R</code></a></p>
@@ -3836,8 +3870,8 @@ src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/nai
 <div id="b.-nb-regression-w-total-umi-cov" class="section level3">
 <h3>b. NB regression w/ total UMI cov</h3>
 <ul>
-<li>total UMI counts for each cell in gene_matrix was used as a
-covariate</li>
+<li>Total UMI counts for each cell in gene_matrix was used as a
+covariate.</li>
 </ul>
 <p><strong>Code:</strong> <a
 href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/7_total_UMI_covariate/NB_with_covariate.R"><code>NB_with_covariate.R</code></a></p>
