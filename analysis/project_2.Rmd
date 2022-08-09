@@ -18,11 +18,12 @@ knitr::opts_chunk$set(echo = TRUE)
 
 [Barry *et al.* 2021: SCEPTRE](https://chenh19.github.io/rotation2/refs/Barry_2021.pdf)
 
-![dispersion](https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/dispersion.png)  
-
 **Some key ideas:**  
 
 - A key confounder for perturb-seq is the read depth: ```total gRNA per cell``` seems to show a non-linear increase as ```total UMI per cell``` increases
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/dispersion.png)  
+
 - To overcome this, Barry *et al.* adopted two main strategies:
   - include depth as a covariate when doing negative binomial (NB) regression for gRNA and expression
   - generate an empirical null distribution by randomization test
