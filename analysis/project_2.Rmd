@@ -20,20 +20,20 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **Some key ideas:**  
 
-- A key confounder for perturb-seq is the read depth: ```total gRNA per cell``` seems to show a non-linear increase as ```total UMI per cell``` increases
+- A key confounder for perturb-seq is the read depth: ```total gRNA per cell``` seems to show a non-linear increase as ```total UMI per cell``` increases.
 
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/dispersion.png)  
 
 - To overcome this, Barry *et al.* adopted two main strategies:
-  - include depth as a covariate when doing negative binomial (NB) regression for gRNA and expression
-  - generate an empirical null distribution by randomization test
+  - Include depth as a covariate when doing negative binomial (NB) regression for gRNA and expression.
+  - Generate an empirical null distribution by randomization test.
 
 Pipeline:
 
-  - negative binomial regression to get z-values for each gRNA-Expression pairs
-  - logistic regression to get gRNA detection probabilities for each gRNA in each cell
-  - conditional randomization test to get the empirical null distribution (when doing randomization, use the gRNA detection probabilities as the conditions)
-  - fit a skew-t distribution to the null distribution and then calculate p-values from z-values
+  - Negative binomial regression to get z-values for each gRNA-Expression pairs.
+  - Logistic regression to get gRNA detection probabilities for each gRNA in each cell.
+  - Conditional randomization test to get the empirical null distribution (when doing randomization, use the gRNA detection probabilities as the conditions).
+  - Fit a skew-t distribution to the null distribution and then calculate p-values from z-values.
 
 ### b. Check the package
 
@@ -54,8 +54,8 @@ Pipeline:
 
 ### a. Naive NB regression
 
-- No UMI covariate
-- No empirical null distribution
+- No UMI covariate.
+- No empirical null distribution.
 
 **Code:** [```naive_NB.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/6_naive_NB/naive_NB.R)  
 
@@ -63,7 +63,7 @@ Pipeline:
 
 ### b. NB regression w/ total UMI cov
 
-- total UMI counts for each cell in gene_matrix was used as a covariate
+- Total UMI counts for each cell in gene_matrix was used as a covariate.
 
 **Code:** [```NB_with_covariate.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/7_total_UMI_covariate/NB_with_covariate.R)  
 
