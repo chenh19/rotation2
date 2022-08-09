@@ -52,7 +52,7 @@ Pipeline:
 
 ## 2. Manual regression
 
-**Aim:** In this section, I'll perform naive negative binomial regression with and without total UMI as a covariate. This is mainly to check whether the negative controls have inflated p-values.
+**Aim:** To better understand SCEPTRE, I'll first perform naive negative binomial regression with and without total UMI as a covariate. This is mainly to check whether the negative controls have inflated p-values.
 
 ### a. Naive NB regression
 
