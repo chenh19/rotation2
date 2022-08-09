@@ -15,7 +15,7 @@ barcode_dist_plot_before_QC <- function(mtx){
   names(barcode_dist) <- 1:length(barcode_dist)
 
   # UMI counts for all cells (cdf)
-  filename <- paste0("./analysis/cache/1_", deparse(substitute(mtx)), "_barcode_dist_qc_cdf.tif")
+  filename <- paste0("./analysis/cache/21_", deparse(substitute(mtx)), "_barcode_dist_qc_cdf.tif")
   tiff(file=filename, width=8, height=5, units="in", res=600)
   plot(ecdf(barcode_dist), main="CDF: UMI counts in each barcode (cell)", xlab="UMI counts in each barcode (cell)", ylab="CDF")
   abline(v=850, col="darkgray", lwd=2, lty=2)
@@ -26,7 +26,7 @@ barcode_dist_plot_before_QC <- function(mtx){
   dev.off()
 
   # UMI counts for all cells (pdf)
-  filename <- paste0("./analysis/cache/2_", deparse(substitute(mtx)), "_barcode_dist_qc_pdf.tif")
+  filename <- paste0("./analysis/cache/22_", deparse(substitute(mtx)), "_barcode_dist_qc_pdf.tif")
   tiff(file=filename, width=8, height=5, units="in", res=600)
   PDF <- hist(barcode_dist, freq=F, breaks=150, main="PDF: UMI counts in each barcode (cell)", xlab="UMI counts in each barcode (cell)", ylab="PDF")
   abline(v=850, col="darkgray", lwd=2, lty=2)
@@ -50,7 +50,7 @@ barcode_dist_plot_after_QC <- function(mtx){
   names(barcode_dist) <- 1:length(barcode_dist)
 
   # UMI counts for all cells (cdf)
-  filename <- paste0("./analysis/cache/3_", deparse(substitute(mtx)), "_barcode_dist_qc_cdf.tif")
+  filename <- paste0("./analysis/cache/23_", deparse(substitute(mtx)), "_barcode_dist_qc_cdf.tif")
   tiff(file=filename, width=8, height=5, units="in", res=600)
   plot(ecdf(barcode_dist), main="CDF: UMI counts in each barcode (cell)", xlab="UMI counts in each barcode (cell)", ylab="CDF")
   #abline(v=850, col="red", lwd=2, lty=2)
@@ -59,7 +59,7 @@ barcode_dist_plot_after_QC <- function(mtx){
   dev.off()
 
   # UMI counts for all cells (pdf)
-  filename <- paste0("./analysis/cache/4_", deparse(substitute(mtx)), "_barcode_dist_qc_pdf.tif")
+  filename <- paste0("./analysis/cache/24_", deparse(substitute(mtx)), "_barcode_dist_qc_pdf.tif")
   tiff(file=filename, width=8, height=5, units="in", res=600)
   PDF <- hist(barcode_dist, freq=F, breaks=150, main="PDF: UMI counts in each barcode (cell)", xlab="UMI counts in each barcode (cell)", ylab="PDF")
   #abline(v=850, col="red", lwd=2, lty=2)

@@ -61,17 +61,17 @@ Expression <- Seurat::CreateSeuratObject(counts = Expression, project = "STING-s
 Expression[["percent.mt"]] <- Seurat::PercentageFeatureSet(Expression, pattern = "^MT-")
 
 # plot before QC
-filename <- "./analysis/cache/5_violin_before_QC.tif"
+filename <- "./analysis/cache/25_violin_before_QC.tif"
 tiff(file=filename, width=8, height=5, units="in", res=1200)
 Seurat::VlnPlot(Expression, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), ncol = 3)
 dev.off()
 
-filename <- "./analysis/cache/6_percent_mt_before_QC.tif"
+filename <- "./analysis/cache/26_percent_mt_before_QC.tif"
 tiff(file=filename, width=8, height=5, units="in", res=1200)
 Seurat::FeatureScatter(Expression, feature1 = "nCount_RNA", feature2 = "percent.mt")
 dev.off()
 
-filename <- "./analysis/cache/7_nFeature_before_QC.tif"
+filename <- "./analysis/cache/27_nFeature_before_QC.tif"
 tiff(file=filename, width=8, height=5, units="in", res=1200)
 Seurat::FeatureScatter(Expression, feature1 = "nCount_RNA", feature2 = "nFeature_RNA")
 dev.off()
@@ -132,17 +132,17 @@ Hashtag <- subset(x = Hashtag, cells = colnames(Hashtag)[(colnames(Hashtag) %in%
 dim(Hashtag)
 dim(gRNA)
 
-filename <- "./analysis/cache/8_violin_after_QC.tif"
+filename <- "./analysis/cache/28_violin_after_QC.tif"
 tiff(file=filename, width=8, height=5, units="in", res=1200)
 Seurat::VlnPlot(Expression, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), ncol = 3)
 dev.off()
 
-filename <- "./analysis/cache/9_percent_mt_after_QC.tif"
+filename <- "./analysis/cache/29_percent_mt_after_QC.tif"
 tiff(file=filename, width=8, height=5, units="in", res=1200)
 Seurat::FeatureScatter(Expression, feature1 = "nCount_RNA", feature2 = "percent.mt")
 dev.off()
 
-filename <- "./analysis/cache/10_nFeature_after_QC.tif"
+filename <- "./analysis/cache/210_nFeature_after_QC.tif"
 tiff(file=filename, width=8, height=5, units="in", res=1200)
 Seurat::FeatureScatter(Expression, feature1 = "nCount_RNA", feature2 = "nFeature_RNA")
 dev.off()
