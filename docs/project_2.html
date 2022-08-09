@@ -532,15 +532,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2treece281e35f8f9f9c3126ade18404b03969f1e1032targetblankce281e3a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree117a594fa99a4751a7f9cb3dffcf537a78141d1dtargetblank117a594a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/chenh19/rotation2/tree/ce281e35f8f9f9c3126ade18404b03969f1e1032" target="_blank">ce281e3</a>
+<a href="https://github.com/chenh19/rotation2/tree/117a594fa99a4751a7f9cb3dffcf537a78141d1d" target="_blank">117a594</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2treece281e35f8f9f9c3126ade18404b03969f1e1032targetblankce281e3a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree117a594fa99a4751a7f9cb3dffcf537a78141d1dtargetblank117a594a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -550,7 +550,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/chenh19/rotation2/tree/ce281e35f8f9f9c3126ade18404b03969f1e1032" target="_blank">ce281e3</a>.
+<a href="https://github.com/chenh19/rotation2/tree/117a594fa99a4751a7f9cb3dffcf537a78141d1d" target="_blank">117a594</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -609,6 +609,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/117a594fa99a4751a7f9cb3dffcf537a78141d1d/analysis/project_2.Rmd" target="_blank">117a594</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-08-09
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/0137730df70dce6f705dd91d1d5c3cb88df78b1c/docs/project_2.html" target="_blank">0137730</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-08-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -3674,6 +3708,14 @@ href="https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/p_
 <h4>QQ plot</h4>
 <p><strong>Code:</strong> <a
 href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/7_total_UMI_covariate/negative_control_qq.R"><code>negative_control_qq.R</code></a></p>
+<p><strong>Observation:</strong></p>
+<ul>
+<li>After introducing total UMI as a covariate, the inflation for
+negative controls was significantly reduced.</li>
+<li>However, inflation is still observed. SCEPTRE’s empirical null
+distribution for p-value calculation is expected to further reduce the
+inflation</li>
+</ul>
 <p><img
 src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/negative_controls_qq.png" /></p>
 </div>
@@ -3681,6 +3723,13 @@ src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/neg
 <h4>Smallest p-values</h4>
 <p><strong>Code:</strong> <a
 href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/7_total_UMI_covariate/head_pvalue.R"><code>head_pvalue.R</code></a></p>
+<p><strong>Observation:</strong></p>
+<ul>
+<li>For negative controls, the p-values increases after introducing the
+covariate in NB regression (less significant)</li>
+<li>For positive controls and candidates, the p_values decreases after
+introducing the covariate in NB regression (more significant)</li>
+</ul>
 <pre><code>[1] &quot;The smallest p-values in [negative_control_pvalues.csv] :&quot;
      Gene   gRNA      p_value
 1   TIMP1  NTC-2 1.893138e-14
