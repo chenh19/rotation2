@@ -632,7 +632,7 @@ Warning while fitting theta: iteration limit reached
 
 **Code:** [```QC_compare_2.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/4_filter/QC_compare_2.R)  
 [```QC_by_author.txt```](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/QC_by_author.txt)  
-[```QC_by_hang.txt```](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/QC_by_hang_2.txt)  
+[```QC_by_hang_2.txt```](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/QC_by_hang_2.txt)  
 
 **Comparison result:**  
 
