@@ -33,7 +33,7 @@ Pipeline:
   - negative binomial regression to get z-values for each gRNA-Expression pairs
   - logistic regression to get gRNA detection probabilities for each gRNA in each cell
   - conditional randomization test to get the empirical null distribution (when doing randomization, use the gRNA detection probabilities as the conditions)
-  - fit a skew-t distribution to calculate the p-values from z-values and the null distribution
+  - fit a skew-t distribution to the null distribution and calculate the p-values from z-values
 
 From [Morris *et al.* 2021: STING-Seq](https://chenh19.github.io/rotation2/refs/Morris_2020.pdf)
 
