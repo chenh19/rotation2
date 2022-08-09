@@ -606,10 +606,10 @@ Warning while fitting theta: iteration limit reached
 **Code:** [```QC_filter_2.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/4_filter/QC_filter_2.R)  
 **Code:** [```UMI_plot_2.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/4_filter/UMI_plot_2.R)  
 
-#**Before UMI count filtering:**  
+**Before UMI count filtering:**  
 
-#![21](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/21_Expression_barcode_dist_qc_cdf.png)  
-#![22](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/22_Expression_barcode_dist_qc_pdf.png)  
+![21](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/21_Expression_barcode_dist_qc_cdf.png)  
+![22](https://raw.githubusercontent.com/chenh19/rotation2/main/output/QC/22_Expression_barcode_dist_qc_pdf.png)  
 
 **After UMI count filtering:**  
 
