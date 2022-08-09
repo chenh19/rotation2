@@ -158,14 +158,6 @@ Pipeline:
 - **SCEPTRE [functions](https://katsevich-lab.github.io/sceptre/reference/index.html)**
 
 ```{r,eval=FALSE}
-Expression <- readRDS("../Morris_2021/filter/Expression.rds", refhook = NULL)
-gRNA <- readRDS("../Morris_2021/filter/gRNA.rds", refhook = NULL)
-
-gene_matrix <- Expression@assays$RNA@counts
-gRNA_matrix <- gRNA@assays$RNA@counts
-```
-
-```{r,eval=FALSE}
 #install.packages("devtools")
 #devtools::install_github("katsevich-lab/sceptre")
 #install.packages("tidyverse")
