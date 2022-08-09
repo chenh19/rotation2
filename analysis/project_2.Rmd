@@ -72,11 +72,21 @@ Pipeline:
 
 **Code:** [```negative_control_qq.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/7_total_UMI_covariate/negative_control_qq.R)  
 
+**Observation:**  
+
+- After introducing total UMI as a covariate, the inflation for negative controls was significantly reduced.
+- However, inflation is still observed. SCEPTRE's empirical null distribution for p-value calculation is expected to further reduce the inflation
+
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/negative_controls_qq.png)  
 
 #### Smallest p-values
 
 **Code:** [```head_pvalue.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/7_total_UMI_covariate/head_pvalue.R)  
+
+**Observation:**  
+
+- For negative controls, the p-values increases after introducing the covariate in NB regression (less significant)
+- For positive controls and candidates, the p_values decreases after introducing the covariate in NB regression (more significant)
 
 ```
 [1] "The smallest p-values in [negative_control_pvalues.csv] :"
