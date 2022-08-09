@@ -66,6 +66,8 @@ Pipeline:
 
 ### Compare
 
+**Data:** [p_value.zip](https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/p_value.zip)
+
 #### QQ plot
 
 **Code:** [```negative_control_qq.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/7_total_UMI_covariate/negative_control_qq.R)  
