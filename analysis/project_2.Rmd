@@ -44,6 +44,11 @@ Pipeline:
 
 **Code:** [```sceptre.sh```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/sceptre.sh)  
 
+### d. QQ plot function
+
+**Code:** [```sceptre.sh```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/qqunif.plot.R)  
+**Ref:** [Code Sample: Generating QQ Plots in R()]https://genome.sph.umich.edu/wiki/Code_Sample:_Generating_QQ_Plots_in_R)  
+
 
 ## 2. Manual regression
 
