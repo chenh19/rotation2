@@ -401,7 +401,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-08-08
+<strong>Last updated:</strong> 2022-08-09
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -532,15 +532,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree75aba857533266e7976134d036e8b6d793b71efetargetblank75aba85a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree8f127ae97f56dd1709db1377363ed99def30013btargetblank8f127aea">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/chenh19/rotation2/tree/75aba857533266e7976134d036e8b6d793b71efe" target="_blank">75aba85</a>
+<a href="https://github.com/chenh19/rotation2/tree/8f127ae97f56dd1709db1377363ed99def30013b" target="_blank">8f127ae</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree75aba857533266e7976134d036e8b6d793b71efetargetblank75aba85a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomchenh19rotation2tree8f127ae97f56dd1709db1377363ed99def30013btargetblank8f127aea"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -550,7 +550,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/chenh19/rotation2/tree/75aba857533266e7976134d036e8b6d793b71efe" target="_blank">75aba85</a>.
+<a href="https://github.com/chenh19/rotation2/tree/8f127ae97f56dd1709db1377363ed99def30013b" target="_blank">8f127ae</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -564,7 +564,33 @@ depends on. Below is the status of the Git repository when the results
 were generated:
 </p>
 <pre><code>
-working directory clean
+Untracked files:
+    Untracked:  analysis/cache/old/
+    Untracked:  code/0_prepare/qqunif.plot.R
+    Untracked:  code/6_naive_NB/
+    Untracked:  code/7_total_UMI_covariate/
+    Untracked:  output/SCEPTRE/NB_with_covarite_qq.png
+    Untracked:  output/SCEPTRE/candidate_pvalues.csv
+    Untracked:  output/SCEPTRE/candidate_pvalues_with_covariate.csv
+    Untracked:  output/SCEPTRE/gene-gRNA_pairs/
+    Untracked:  output/SCEPTRE/naive_NB_qq.png
+    Untracked:  output/SCEPTRE/negative_control_pvalues.csv
+    Untracked:  output/SCEPTRE/negative_control_pvalues_with_covariate.csv
+    Untracked:  output/SCEPTRE/negative_controls_qq.png
+    Untracked:  output/SCEPTRE/p_value.zip
+    Untracked:  output/SCEPTRE/positive_control_pvalues.csv
+    Untracked:  output/SCEPTRE/positive_control_pvalues_with_covariate.csv
+
+Unstaged changes:
+    Modified:   .RData
+    Modified:   .Rhistory
+    Deleted:    analysis/cache/Expression_filtered_means.csv
+    Deleted:    analysis/cache/Expression_filtered_means_non-zeros.csv
+    Deleted:    analysis/cache/cache.Rmd
+    Modified:   code/4_filter/QC_compare_2.R
+    Modified:   code/4_filter/QC_filter_2.R
+    Modified:   code/5_zero-inflated/zero-inflated.R
+
 </code></pre>
 <p>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not
@@ -609,6 +635,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/chenh19/rotation2/blob/8f127ae97f56dd1709db1377363ed99def30013b/analysis/project_2.Rmd" target="_blank">8f127ae</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-08-09
+</td>
+<td>
+wflow_publish("./analysis/*.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/chenh19/rotation2/f7a30e6cc66e2107a9f6fd77a8e0b8d5e9ab14f3/docs/project_2.html" target="_blank">f7a30e6</a>
+</td>
+<td>
+chenh19
+</td>
+<td>
+2022-08-08
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -3456,9 +3516,6 @@ probabilities as the conditions)</li>
 <li>fit a skew-t distribution to the null distribution and then
 calculate p-values from z-values</li>
 </ul>
-<p>From <a
-href="https://chenh19.github.io/rotation2/refs/Morris_2020.pdf">Morris
-<em>et al.</em> 2021: STING-Seq</a></p>
 </div>
 <div id="b.-check-the-package" class="section level3">
 <h3>b. Check the package</h3>
@@ -3474,8 +3531,104 @@ href="https://github.com/Katsevich-Lab/sceptre-manuscript">Katsevich-Lab/sceptre
 <p><strong>Code:</strong> <a
 href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/0_prepare/sceptre.sh"><code>sceptre.sh</code></a></p>
 </div>
-<div id="d.-run-sceptre" class="section level3">
-<h3>d. run sceptre</h3>
+</div>
+<div id="manual-regression" class="section level2">
+<h2>Manual regression</h2>
+<div id="naive-nb-regression" class="section level3">
+<h3>Naive NB regression</h3>
+<ul>
+<li>no umi covariate</li>
+<li>no empirical null distribution</li>
+</ul>
+<p><strong>Code:</strong> <a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/6_naive_NB/naive_NB.R"><code>naive_NB.R</code></a></p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/naive_NB_qq.png" /></p>
+</div>
+<div id="nb-regression-with-total-umi-covariate" class="section level3">
+<h3>NB regression with total UMI covariate</h3>
+<ul>
+<li>total UMI counts for each cell in gene_matrix was used as a
+covariate</li>
+</ul>
+<p><strong>Code:</strong> <a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/7_total_UMI_covariate/NB_with_covariate.R"><code>NB_with_covariate.R</code></a></p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/NB_with_covarite_qq.png" /></p>
+</div>
+<div id="compare" class="section level3">
+<h3>Compare</h3>
+<div id="qq-plot" class="section level4">
+<h4>QQ plot</h4>
+<p><strong>Code:</strong> <a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/7_total_UMI_covariate/negative_control_qq.R"><code>negative_control_qq.R</code></a></p>
+<p><img
+src="https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/negative_controls_qq.png" /></p>
+</div>
+<div id="smallest-p-values" class="section level4">
+<h4>Smallest p-values</h4>
+<p><strong>Code:</strong> <a
+href="https://raw.githubusercontent.com/chenh19/rotation2/main/code/7_total_UMI_covariate/head_pvalue.R"><code>head_pvalue.R</code></a></p>
+<pre><code>[1] &quot;The smallest p-values in [negative_control_pvalues.csv] :&quot;
+     Gene   gRNA      p_value
+1   TIMP1  NTC-2 1.893138e-14
+2   DAAM1 NTC-10 5.380489e-12
+3 ANAPC11 NTC-12 5.970695e-10
+4    OST4  NTC-2 7.803250e-10
+5  NDUFS5 NTC-12 2.727219e-09
+6   MYDGF NTC-12 5.158344e-09
+
+[1] &quot;The smallest p-values in [negative_control_pvalues_with_covariate.csv] :&quot;
+     Gene   gRNA      p_value
+1   DAAM1 NTC-10 6.169608e-08
+2   HSPA8  NTC-3 2.177909e-07
+3    TPT1  NTC-3 1.876122e-06
+4   TAF10 NTC-10 4.655719e-06
+5 ZFAND2A  NTC-3 4.809740e-06
+6  VKORC1  NTC-3 7.248893e-06
+
+
+[1] &quot;The smallest p-values in [positive_control_pvalues.csv] :&quot;
+   Gene    gRNA      p_value
+1  CD46  CD46-2 1.404819e-32
+2 HSPA8 HSPA8-1 3.658421e-15
+3  CD52  CD52-1 5.918623e-07
+4 HSPA8 HSPA8-2 7.758467e-02
+5   NMU   NMU-1 1.077502e-01
+6  PPIA  PPIA-1 2.090641e-01
+
+[1] &quot;The smallest p-values in [positive_control_pvalues_with_covariate.csv] :&quot;
+   Gene    gRNA      p_value
+1 HSPA8 HSPA8-1 7.940576e-42
+2  CD46  CD46-2 4.646680e-36
+3 HSPA8 HSPA8-2 3.540640e-19
+4  CD52  CD52-1 2.594172e-08
+5   NMU   NMU-1 5.694585e-02
+6  PPIA  PPIA-1 9.576647e-01
+
+
+[1] &quot;The smallest p-values in [candidate_pvalues.csv] :&quot;
+    Gene     gRNA      p_value
+1   CR1L SNP-20-2 6.805935e-33
+2  PTPRC SNP-14-2 1.010292e-24
+3   CTU2 SNP-35-1 2.420409e-20
+4   ANK1 SNP-61-1 9.305671e-17
+5 KDELR2 SNP-85-1 1.871454e-15
+6   PAXX SNP-29-2 6.924731e-14
+
+[1] &quot;The smallest p-values in [candidate_pvalues_with_covariate.csv] :&quot;
+    Gene     gRNA      p_value
+1   CR1L SNP-20-2 3.905370e-43
+2   ANK1 SNP-61-1 2.579855e-31
+3  PTPRC SNP-14-2 1.613814e-30
+4  GLRX5 SNP-58-2 2.276511e-17
+5 PDLIM1 SNP-77-2 1.042396e-12
+6  NUDT4 SNP-62-2 1.123020e-12</code></pre>
+</div>
+</div>
+</div>
+<div id="sceptre-regression" class="section level2">
+<h2>SCEPTRE regression</h2>
 <ul>
 <li><strong>SCEPTRE <a
 href="https://katsevich-lab.github.io/sceptre/articles/using_sceptre_v2.html">tutorial</a></strong></li>
@@ -3539,7 +3692,6 @@ loaded via a namespace (and not attached):
 [33] rmarkdown_2.14   callr_3.7.0      magrittr_2.0.3   whisker_0.4     
 [37] ps_1.7.1         promises_1.2.0.1 htmltools_0.5.2  ellipsis_0.3.2  
 [41] httpuv_1.6.5     utf8_1.2.2       stringi_1.7.6   </code></pre>
-</div>
 </div>
 </div>
 
