@@ -113,8 +113,9 @@ Pipeline:
 4   TAF10 NTC-10 4.655719e-06
 5 ZFAND2A  NTC-3 4.809740e-06
 6  VKORC1  NTC-3 7.248893e-06
+```
 
-
+```
 [1] "The smallest p-values in [positive_control_pvalues.csv] :"
    Gene    gRNA      p_value
 1  CD46  CD46-2 1.404819e-32
@@ -132,8 +133,9 @@ Pipeline:
 4  CD52  CD52-1 2.594172e-08
 5   NMU   NMU-1 5.694585e-02
 6  PPIA  PPIA-1 9.576647e-01
+```
 
-
+```
 [1] "The smallest p-values in [candidate_pvalues.csv] :"
     Gene     gRNA      p_value
 1   CR1L SNP-20-2 6.805935e-33
