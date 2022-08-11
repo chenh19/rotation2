@@ -28,7 +28,7 @@ gene_matrix2 <- gene_matrix2[(rownames(gene_matrix2) %in% genes), ]
 rm("genes")
 
 
-# positive control NB regression
+# NB regression
 nbregression <- function(sample){
   filename <- paste0("./output/SCEPTRE/gene-gRNA_pairs/", deparse(substitute(sample)), "_pairs.csv")
   pairs <- read.csv(filename)
