@@ -54,6 +54,12 @@ Pipeline:
 
 **Aim:** To better understand SCEPTRE, I'll first perform naive negative binomial regression with and without total UMI as a covariate. This is mainly to check whether the negative controls have inflated p-values.
 
+gRNA-gene pairs:  
+
+- [Negative Controls](https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/gene-gRNA_pairs/negative_control_pairs.csv)
+- [Positive Controls](https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/gene-gRNA_pairs/positive_control_pairs.csv)
+- [Candidates](https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/gene-gRNA_pairs/candidate_pairs.csv)
+
 ### a. Naive NB regression
 
 - No UMI covariate.
