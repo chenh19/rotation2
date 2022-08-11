@@ -54,7 +54,8 @@ git commit -a -m "update"
 git push -u origin main
 ```
 
-**Environment: [Kubuntu 22.04 LTS](https://kubuntu.org/); [Setup Shell Scripts](https://github.com/chenh19/MyWorkspace)**
+**Environment: [Kubuntu 22.04 LTS](https://kubuntu.org/); [Setup Shell Scripts](https://github.com/chenh19/MyWorkspace)**  
+**[R colors cheat-sheet](https://chenh19.github.io/rotation2/refs/Rcolor.pdf)**
 
 ## 2. Meetings
 
