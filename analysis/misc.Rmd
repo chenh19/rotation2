@@ -43,18 +43,19 @@ rm(list = ls())
 #mkdir ./Developing/rotation2/
 #cd ./Developing/rotation2/
 #git init
+#git remote add origin git@github.com:chenh19/rotation2.git
 #git pull git@github.com:chenh19/rotation2.git
 
 # git push
 #cd ./Developing/rotation2/
-#git remote add origin git@github.com:chenh19/rotation2.git
 git commit -a -m "update"
 git add --all
 git commit -a -m "update"
 git push -u origin main
 ```
 
-**Environment: [Kubuntu 22.04 LTS](https://kubuntu.org/); [Setup Shell Scripts](https://github.com/chenh19/MyWorkspace)**
+**Environment: [Kubuntu 22.04 LTS](https://kubuntu.org/); [Setup Shell Scripts](https://github.com/chenh19/MyWorkspace)**  
+**[R colors cheat-sheet](https://chenh19.github.io/rotation2/refs/Rcolor.pdf)**
 
 ## 2. Meetings
 
