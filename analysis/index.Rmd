@@ -24,7 +24,7 @@ editor_options:
 - [x] perform QC (learn Seurat functions, such as filtering out mito genes)
 - [x] check QC'ed scRNA-seq data (expression distribution)
 - [x] re-do QC (UMI>=1400)
-- [ ] re-make PDF/CDF plots (add "Unique" to the X-axis)
+- [x] re-make PDF/CDF plots (add "Unique" to the X-axis)
 
 [**Project-2: SCEPTRE**](https://chenh19.github.io/rotation2/project_2.html)
 
@@ -37,4 +37,4 @@ editor_options:
 
 - [x] organize all logistics
 - [x] organize all code into separate scripts
-- [ ] organize everything, git push and rsync to midway2
+- [x] organize everything, git push and rsync to midway2
