@@ -31,10 +31,10 @@ editor_options:
 - [x] read Barry *et al.* 2021
 - [x] perform association analysis (*cis*-regulation; negative control; naive negative binomial; with total_UMI cov)
 - [x] QQ-plot
-- [ ] p-value distribution
-- [ ] debug SCEPTRE
+- [x] debug SCEPTRE
 
 [**Miscellaneous:**](https://chenh19.github.io/rotation2/misc.html)
 
 - [x] organize all logistics
 - [x] organize all code into separate scripts
+- [ ] organize everything, git push and rsync to midway2
