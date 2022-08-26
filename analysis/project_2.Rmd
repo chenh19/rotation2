@@ -176,5 +176,6 @@ Pipeline:
 
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/31_negative_controls_qq_sceptre.png)  
 ![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/34_qq_sceptre_all.png)  
-[**Full list**](https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/result2.csv)  
-[**Top hits**](https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/hits.csv)  
+
+- [**Full list**](https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/result2.csv)  
+- [**Top hits**](https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/hits.csv)  
