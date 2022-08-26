@@ -175,7 +175,6 @@ gRNA-gene pairs:
 
 **Code:** [```sceptre_example.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/8_sceptre/sceptre_example.R)  
 
-<<<<<<< HEAD
 ### Code
 
 **Code:** [```sceptre_package_modified.zip```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/8_sceptre/sceptre_package_modified.zip)  
