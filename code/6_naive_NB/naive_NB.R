@@ -89,9 +89,9 @@ positive_control <- read.csv("./output/SCEPTRE/positive_control_pvalues.csv")
 positive_control <- filter(positive_control, !is.na(p_value))
 candidate <- read.csv("./output/SCEPTRE/candidate_pvalues.csv")
 candidate <- filter(candidate, !is.na(p_value))
-my.pvalue.list <- list("Negative Control"= negative_control$p_value,
-                       "Positive Control"= positive_control$p_value,
-                       "Candidate"= candidate$p_value)
+my.pvalue.list <- list("Negative Control (Naive NB)"= negative_control$p_value,
+                       "Positive Control (Naive NB)"= positive_control$p_value,
+                       "Candidate (Naive NB)"= candidate$p_value)
 filename <- paste0("./analysis/cache/naive_NB_qq.tif")
 tiff(file=filename, width=8, height=5, units="in", res=600)
 qqunif.plot(my.pvalue.list, auto.key=list(corner=c(.95,.05)))

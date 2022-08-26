@@ -11,6 +11,8 @@ navbar:
       href: project_1.html
     - text: Project-2
       href: project_2.html 
+  - text: Presentation
+    href: presentation.html
   - text: Misc.
     href: misc.html
   right:

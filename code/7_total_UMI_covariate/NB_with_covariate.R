@@ -90,9 +90,9 @@ positive_control <- read.csv("./output/SCEPTRE/positive_control_pvalues_with_cov
 positive_control <- filter(positive_control, !is.na(p_value))
 candidate <- read.csv("./output/SCEPTRE/candidate_pvalues_with_covariate.csv")
 candidate <- filter(candidate, !is.na(p_value))
-my.pvalue.list <- list("Negative Control"= negative_control$p_value,
-                       "Positive Control"= positive_control$p_value,
-                       "Candidate"= candidate$p_value)
+my.pvalue.list <- list("Negative Control (NB w/ Cov)"= negative_control$p_value,
+                       "Positive Control (NB w/ Cov)"= positive_control$p_value,
+                       "Candidate (NB w/ Cov)"= candidate$p_value)
 filename <- paste0("./analysis/cache/NB_with_covarite_qq.tif")
 tiff(file=filename, width=8, height=5, units="in", res=600)
 qqunif.plot(my.pvalue.list, auto.key=list(corner=c(.95,.05)))

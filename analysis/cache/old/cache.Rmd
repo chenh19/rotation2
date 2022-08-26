@@ -91,3 +91,164 @@ The [Expression@assays$RNA@counts] matrix has:
 
 Note: according to Kim *et al.* 2020, for single cell type RNAseq, UMI data can be effectively modeled by the Poisson distribution.
 
+
+```{r,eval=FALSE}
+#===============================================================================
+
+# aux_functs.R
+
+combine_perturbations_workaround <- function(perturbation_matrix, gRNA_groups_table) {
+  
+  perturbation_matrix <-  perturbation_matrix2
+  gRNA_groups_table <- gRNA_groups_table2
+  
+  
+  
+  # check that gRNA_id and gRNA_group are present in `gRNA_groups` df
+  if (!all(c("gRNA_id", "gRNA_group") %in% colnames(gRNA_groups_table))) {
+    stop("`gRNA_id` and `gRNA_group` should be columns of `gRNA_groups`.")
+  }
+
+  # convert the data frame to a named list
+  gRNA_groups <- as.character(unique(gRNA_groups_table$gRNA_group))
+  gRNA_groups <- magrittr::set_names(gRNA_groups, gRNA_groups)
+  gRNA_grp_list <- lapply(X = gRNA_groups, FUN = function(gRNA_group) {
+    dplyr::filter(gRNA_groups_table, gRNA_group == !!gRNA_group) %>% dplyr::pull(gRNA_id)
+  })
+  # Determine which gRNAs are not contained within gRNA_grps
+  leftover_gRNAs <- setdiff(row.names(perturbation_matrix), unlist(gRNA_grp_list))
+  out_leftover <- perturbation_matrix[leftover_gRNAs,]
+  
+  # doens't work
+  #out_grped <- sapply(X = names(gRNA_grp_list), FUN = function(grp_name) {
+    #mat_sub <- perturbation_matrix[gRNA_grp_list[[grp_name]],]
+    #Matrix::colSums(mat_sub)
+  #}) %>% Matrix::t()
+  
+  # workaround
+  grp_name <- names(gRNA_grp_list)
+  out_grped <- sapply(X = names(gRNA_grp_list), FUN = function(grp_name) {
+    mat_sub <- perturbation_matrix[gRNA_grp_list[[grp_name]],]
+    Matrix::colSums(mat_sub)
+  }) %>% Matrix::t()
+  out_grped <- out_grped >= 1
+  out <- rbind(out_leftover, out_grped)
+}
+
+#===============================================================================
+#rm(combine_perturbations_workaround)
+```
+
+
+```{r,eval=FALSE}
+```{r,eval=FAlSE}
+
+
+```
+
+
+
+
+
+
+
+
+
+```{r,eval=FALSE}
+  mat_sub <- c()
+  for (i in 1:length(grp_name)) {
+    i = 25
+    mat_sub <- perturbation_matrix[gRNA_grp_list[[i]],]
+    Matrix::colSums(mat_sub)
+    Matrix::t(mat_sub)
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  out_grped <- matrix(, nrow = length(gRNA_grp_list), ncol = ncol(perturbation_matrix))
+  out_grped[is.na(out_grped)] <- 0
+  
+  out_grped <- out_grped >= 1
+  out <- rbind(out_leftover, out_grped)
+  
+  out@Dimnames[[1]] <- grp_name
+
+
+
+
+
+
+
+
+
+
+
+
+write.table(perturbation_matrix2, file="./analysis/cache/perturbation_matrix2.csv", sep=",", row.names = TRUE)
+write.table(gRNA_groups_table2, file="./analysis/cache/gRNA_groups_table2.csv", sep=",", row.names = FALSE)
+
+gene_names2 <- rownames(gene_matrix2)
+gRNA_names2 <- rownames(gRNA_matrix2)
+
+#write.table(gene_names2, file="./analysis/cache/gene_names.csv", sep=",", row.names = FALSE)
+#write.table(gRNA_names2, file="./analysis/cache/gRNA_names.csv", sep=",", row.names = FALSE)
+
+Expression <- Seurat::ReadMtx(mtx = "../Morris_2021/GSM5225857_cDNA.mtx",
+                                features = "../Morris_2021/GSM5225857_cDNA.features.txt",
+                                cells = "../Morris_2021/GSM5225857_cDNA.barcodes.txt",
+                                cell.column=1,
+                                feature.column=1,
+                                mtx.transpose=T)
+gene_name_ori <- rownames(as(Expression, "dgTMatrix"))
+rm("Expression")
+
+
+
+#gene_gRNA_group_pairs2 <- dplyr::filter(gene_gRNA_group_pairs2, gRNA_group != "NTC-10")
+
+
+#===============================================================================
+  # 3. Remove all genes and gRNAs that have low counts; arrange pairs by gRNA then gene; remove duplicates
+  gene_lib_sizes <- Matrix::rowSums(gene_matrix2)
+  gRNA_lib_sizes <- Matrix::rowSums(gRNA_matrix2)
+  bad_genes <- names(gene_lib_sizes[gene_lib_sizes < MIN_GENE_EXP])
+  bad_gRNAs <- names(gRNA_lib_sizes[gRNA_lib_sizes < MIN_GRNA_EXP])
+  if (length(bad_genes) >= 1) {
+    warning(paste0("Removing the following genes with low expressions (UMI count <", MIN_GENE_EXP, "): ", paste0(bad_gRNAs, collapse = " ")))
+    gene_gRNA_group_pairs2 <- gene_gRNA_group_pairs2 %>% dplyr::filter(!(gene_id %in% bad_genes))
+  }
+  if (length(bad_gRNAs) >= 1) {
+    warning(paste0("Removing the following perturbations with low counts (counts <", MIN_GRNA_EXP, "): ", paste0(bad_gRNAs, collapse = " "), ". Consider grouping together perturbations that target the same site to circumvent this problem."))
+    gene_gRNA_group_pairs2 <- gene_gRNA_group_pairs2 %>% dplyr::filter(!(gRNA_group %in% bad_gRNAs))
+  }
+  # 4. Make sure genes/gRNAs in the data frame are actually a part of the expression matrices; ensure all rows distinct
+  if (!all(c("gene_id", "gRNA_group") %in% colnames(gene_gRNA_group_pairs2))) stop("The columns `gene_id` and `gRNA_group` must be present in the `gene_gRNA_group_pairs` data frame.")
+  # swap "gRNA_group" to "gRNA_id"
+  gene_gRNA_group_pairs2 <- dplyr::rename(gene_gRNA_group_pairs2, gRNA_id = gRNA_group)
+  abs_genes <- gene_gRNA_group_pairs2$gene_id[!(gene_gRNA_group_pairs2$gene_id %in% row.names(gene_matrix2))]
+  abs_gRNAs <- gene_gRNA_group_pairs2$gRNA_id[!(gene_gRNA_group_pairs2$gRNA_id %in% row.names(gRNA_matrix2))]
+  if (length(abs_genes) >= 1) {
+    msg <- paste0("The genes `", paste0(abs_genes, collapse = ", "), "' are present in the `gene_gRNA_group_pairs` data frame but not in the `gene_matrix` matrix. Either remove these genes from `gene_gRNA_group_pairs,` or add these genes to `gene_matrix`.")
+    stop(msg)
+  }
+  if (length(abs_gRNAs) >= 1) {
+    msg <- paste0("The perturbations `", paste0(abs_gRNAs, collapse = ", "), "' are present in the `gene_gRNA_group_pairs` data frame but not in the `gRNA_matrix` matrix. Either remove these perturbations from `gene_gRNA_group_pairs,` or add these perturbations to `gRNA_matrix`.")
+    stop(msg)
+  }
+  gene_gRNA_group_pairs2 <- gene_gRNA_group_pairs2 %>% dplyr::distinct()
+
+
+
+genes <- do.call(rbind.data.frame, genes)[,"Gene"]
+Sys.sleep(3)
+gene_matrix2 <- gene_matrix2[(rownames(gene_matrix2) %in% genes), ]
+rm("genes")
+#===============================================================================
+```
+
+```
