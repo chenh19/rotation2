@@ -158,6 +158,23 @@ Pipeline:
 
 ## 3. SCEPTRE regression
 
+### SCEPTRE Documents
+
 - **SCEPTRE [tutorial](https://katsevich-lab.github.io/sceptre/articles/using_sceptre_v2.html)**
 - **SCEPTRE [functions](https://katsevich-lab.github.io/sceptre/reference/index.html)**
+**Code:** [```sceptre_example.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/8_sceptre/sceptre_example.R)  
 
+### Code
+
+**Code:** [```sceptre_package_modified.zip```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/8_sceptre/sceptre_package_modified.zip)  
+**Code:** [```sceptre_morris.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/8_sceptre/sceptre_morris.R)  
+**Code:** [```qqplot_sceptre_all.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/8_sceptre/qqplot_sceptre_all.R)  
+**Code:** [```top_hits.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/8_sceptre/top_hits.R)  
+
+
+### Results
+
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/31_negative_controls_qq_sceptre.png)  
+![](https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/34_qq_sceptre_all.png)  
+[**Full list**](https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/result2.csv)  
+[**Top hits**](https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/hits.csv)  
