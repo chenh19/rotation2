@@ -1,5 +1,5 @@
 ---
-title: "Miscellaneous"
+title: "Presentation"
 site: workflowr::wflow_site
 output:
   workflowr::wflow_html:
