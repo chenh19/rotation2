@@ -161,14 +161,3 @@ Pipeline:
 - **SCEPTRE [tutorial](https://katsevich-lab.github.io/sceptre/articles/using_sceptre_v2.html)**
 - **SCEPTRE [functions](https://katsevich-lab.github.io/sceptre/reference/index.html)**
 
-```{r,eval=FALSE}
-#install.packages("devtools")
-#devtools::install_github("katsevich-lab/sceptre")
-#install.packages("tidyverse")
-#install.packages("cowplot")
-
-library(tidyverse)
-library(cowplot)
-library(Matrix)
-library(sceptre)
-```

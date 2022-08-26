@@ -29,6 +29,8 @@ editor_options:
 
 - [x] read Barry *et al.* 2021
 - [x] perform association analysis (*cis*-regulation; negative control; naive negative binomial; with total_UMI cov)
+- [x] QQ-plot
+- [ ] p-value distribution
 - [ ] debug SCEPTRE
 
 [**Miscellaneous:**](https://chenh19.github.io/rotation2/misc.html)
