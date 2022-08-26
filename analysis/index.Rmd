@@ -37,4 +37,4 @@ editor_options:
 
 - [x] organize all logistics
 - [x] organize all code into separate scripts
-- [x] organize git push everything
+- [x] organize and git push everything after finishing
