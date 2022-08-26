@@ -171,6 +171,11 @@ Pipeline:
 **Code:** [```qqplot_sceptre_all.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/8_sceptre/qqplot_sceptre_all.R)  
 **Code:** [```top_hits.R```](https://raw.githubusercontent.com/chenh19/rotation2/main/code/8_sceptre/top_hits.R)  
 
+**Note:**  
+
+- I modified the SCEPTRE package source code a little bit and built the package locally.
+- SCEPTRE has very strict requirements for input. For example, every ```gRNA_group``` must contain 2 or more gRNAs.
+- I didn't have the ```covariate_matrix``` from the authors, so I just used ```rnorm()``` to generate a matrix that I think will minimally affect the results.
 
 ### Results
 
@@ -179,3 +184,15 @@ Pipeline:
 
 - [**Full list**](https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/result2.csv)  
 - [**Top hits**](https://raw.githubusercontent.com/chenh19/rotation2/main/output/SCEPTRE/hits.csv)  
+
+#### Observation
+
+- SCEPTRE reduced inflation to a minimal level.
+- Top hits from my run were all is Morris' results ([Table S3E](https://chenh19.github.io/rotation2/refs/media-2.zip)).
+
+#### Future direction
+
+- According to Nikita, there is indeed no ```covariate_matrix``` from the author.
+- Also according to Nikita, after PCA, there was no clear batch separation. We cannot infer batch from the data itself, and we may just drop the ```batch``` column in ```covariate_matrix```.
+- Although no ```covariate_matrix``` provided by the author, I may generate it by myself. I can calculate the UMI counts, percent-mito, etc (there are 5 covariates in total might be used according to Nikita).
+- The 
